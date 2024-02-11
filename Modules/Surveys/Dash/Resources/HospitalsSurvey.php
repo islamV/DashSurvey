@@ -89,7 +89,6 @@ class HospitalsSurvey extends Resource {
 
 	public function fields() {
 		return [
-			
 			belongsTo()->make(__('survey.guest_information' ), 'guest', Guests::class)->column(3),
 			belongsTo()->make(__('survey.branch' ), 'hospital', Hospitals::class)->column(3),
 			select()->make(__('survey.status'),'status') // you can use disabled() with this element

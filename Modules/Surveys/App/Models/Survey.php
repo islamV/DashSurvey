@@ -4,14 +4,15 @@ namespace Modules\Surveys\App\Models;
 
 use Carbon\Carbon;
 use Modules\Clubs\App\Models\Club;
+use Modules\Guests\App\Models\Guest;
 use Modules\Hotels\App\Models\Hotel;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Hospitals\App\Models\Hospital;
+use Modules\Questions\App\Models\Question;
 use Modules\CoffeeShops\App\Models\CoffeeShop;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Modules\Surveys\Database\factories\SurveyFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Modules\Guests\App\Models\Guest;
 
 class Survey extends Model
 {
@@ -29,7 +30,9 @@ class Survey extends Model
         return  $date->diffForHumans();
     
     }
-   
+   public function Answers(){
+    return $this->hasMany(Answer::class);
+   }
 
     public function guest(){
         return $this->belongsTo(Guest::class ,'guest_id');

@@ -23,6 +23,7 @@ class Guests extends Resource {
 	public static $search = [
 		'id',
 		'name',
+		'phone',
 	];
 public static function dtButtons() {
 	return [

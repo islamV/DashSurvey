@@ -1,22 +1,15 @@
 <?php
-namespace Modules\Surveys\Dash\Resources;
+namespace Modules\surveys\Dash\Resources;
 use Dash\Resource;
+use Modules\Surveys\App\Models\Answer;
 
-use Modules\Surveys\App\Models\Survey;
-use Modules\guests\Dash\Resources\Guests;
-use Modules\Hotels\Dash\Resources\Hotels;
-use Modules\questions\Dash\Resources\HotelsQ;
-
-
-
-class HotelsSurvey extends Resource {
-
+class Answers extends Resource {
 
 	/**
 	 * define Model of resource
 	 * @var string $model
 	 */
-	public static $model = Survey::class;
+	public static $model = Answer::class;
 
 	/**
 	 * Policy Permission can handel
@@ -32,7 +25,7 @@ class HotelsSurvey extends Resource {
 	 * and add this key directly users
 	 * @var string $group
 	 */
-	public static $group = 'surveys';
+	public static $group = 'Answers';
 
 	/**
 	 * show or hide resouce In Navigation Menu true|false
@@ -45,7 +38,7 @@ class HotelsSurvey extends Resource {
 	 * you can use font awesome icons LIKE (<i class="fa fa-users"></i>)
 	 * @var string $icon
 	 */
-	public static $icon = '<i class="fa-regular fa-clipboard"></i>'; // put <i> tag or icon name
+	public static $icon = ''; // put <i> tag or icon name
 
 	/**
 	 * title static property to labels in Rows,Show,Forms
@@ -75,12 +68,7 @@ class HotelsSurvey extends Resource {
 	 * @return string
 	 */
 	public static function customName() {
-		return __('dash.hotels');
-	}
-
-
-	public function query($model){
-		return $model->where('service_type' , 'hotels') ;
+		return 'Answers';
 	}
 
 	/**
@@ -90,26 +78,14 @@ class HotelsSurvey extends Resource {
 	public static function vertex() {
 		return [];
 	}
-	
+
 	/**
 	 * define fields by Helpers
 	 * @return array<string>
 	 */
 	public function fields() {
 		return [
-			belongsTo()->make(__('survey.guest_information' ), 'guest', Guests::class)->column(3),
-
-			belongsTo()->make(__('survey.branch' ), 'hotel', Hotels::class)->column(3),
-			select()->make(__('survey.status'),'status') 
-			->options([
-			'positive'=> __('survey.positive'),
-			'negative'=>__('survey.negative'),
-			'pending'=>__('survey.pending'),
-			])->selected('pending')->column(6)->valueWhenUpdate('pending'),
-			text()->make(__('survey.time') , 'created_at')->column(6)->hideInUpdate() ,
-			textarea()->make(__('survey.note') , 'note') ,
-		
-
+			
 		];
 	}
 
