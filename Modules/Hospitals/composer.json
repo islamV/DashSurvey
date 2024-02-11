@@ -1,0 +1,31 @@
+{
+    "name": "nwidart/hospitals",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Hospitals\\": "",
+            "Modules\\Hospitals\\App\\": "app/",
+            "Modules\\Hospitals\\Database\\Factories\\": "database/factories/",
+            "Modules\\Hospitals\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Hospitals\\Tests\\": "tests/"
+        }
+    }
+}

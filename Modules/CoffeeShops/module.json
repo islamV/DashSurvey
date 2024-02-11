@@ -1,0 +1,11 @@
+{
+    "name": "CoffeeShops",
+    "alias": "coffeeshops",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CoffeeShops\\App\\Providers\\CoffeeShopsServiceProvider"
+    ],
+    "files": []
+}

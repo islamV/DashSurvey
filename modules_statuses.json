@@ -1,0 +1,12 @@
+{
+    "Clubs": true,
+    "CoffeeShops": true,
+    "Complaints": true,
+    "Guests": true,
+    "Hospitals": true,
+    "Hotels": true,
+    "Questions": true,
+    "Reports": true,
+    "Services": true,
+    "Surveys": true
+}

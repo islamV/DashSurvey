@@ -1,0 +1,11 @@
+{
+    "name": "Questions",
+    "alias": "questions",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Questions\\App\\Providers\\QuestionsServiceProvider"
+    ],
+    "files": []
+}

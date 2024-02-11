@@ -1,0 +1,11 @@
+{
+    "name": "Hospitals",
+    "alias": "hospitals",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Hospitals\\App\\Providers\\HospitalsServiceProvider"
+    ],
+    "files": []
+}
