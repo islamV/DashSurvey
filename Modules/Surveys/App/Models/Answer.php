@@ -3,8 +3,10 @@
 namespace Modules\Surveys\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Questions\App\Models\Question;
+use Modules\questions\Dash\Resources\HotelsQ;
 use Modules\Surveys\Database\factories\AnswerFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Answer extends Model
 {
@@ -13,7 +15,13 @@ class Answer extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = [];
-    
-  
+    protected $fillable = ['survey_id' , 'question_id' , 'answer'];
+    public function questions(){
+        return $this->hasMany(Question::class);
+      }
+    public function survey(){
+        return $this->belongsTo(Survey::class ,'survey_id');
+    }
+      
+
 }

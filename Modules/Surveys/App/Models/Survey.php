@@ -13,6 +13,7 @@ use Modules\CoffeeShops\App\Models\CoffeeShop;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Modules\Surveys\Database\factories\SurveyFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\questions\Dash\Resources\HotelsQ;
 
 class Survey extends Model
 {
@@ -21,7 +22,7 @@ class Survey extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = ['guest_id' , 'service_type'  ,'service_id', 'status' , 'answers' ,'note'];
+    protected $fillable = ['id','guest_id' , 'service_type'  ,'service_id', 'status' ,'note'];
 
     public function getCreatedAtAttribute()
     {
@@ -30,23 +31,27 @@ class Survey extends Model
         return  $date->diffForHumans();
     
     }
-   public function Answers(){
-    return $this->hasMany(Answer::class);
-   }
+public function service(){
+    return $this->morphTo() ;
+}
 
-    public function guest(){
-        return $this->belongsTo(Guest::class ,'guest_id');
-    }
-    public function club(){
-        return $this->belongsTo(Club::class , 'service_id' );
-    }
-    public function hotel(){
-        return $this->belongsTo(Hotel::class , 'service_id'  );
-    }
-    public function coffeeshop(){
-        return $this->belongsTo(CoffeeShop::class , 'service_id' );
-    }
-    public function hospital(){
-        return $this->belongsTo(Hospital::class , 'service_id');
-    }
+//    public function answers(){
+//     return $this->hasMany(Answer::class,'survey_id','id');
+//    }
+ 
+    // public function guest(){
+    //     return $this->belongsTo(Guest::class ,'guest_id');
+    // }
+    // public function club(){
+    //     return $this->belongsTo(Club::class , 'service_id' );
+    // }
+    // public function hotel(){
+    //     return $this->belongsTo(Hotel::class , 'service_id'  );
+    // }
+    // public function coffeeshop(){
+    //     return $this->belongsTo(CoffeeShop::class , 'service_id' );
+    // }
+    // public function hospital(){
+    //     return $this->belongsTo(Hospital::class , 'service_id');
+    // }
 }

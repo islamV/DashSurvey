@@ -41,7 +41,7 @@ class HotelsQ extends Resource {
 	 * title static property to labels in Rows,Show,Forms
 	 * @param static property string
 	 */
-	public static $title = 'name';
+	public static $title = 'title';
 
 	/**
 	 * defining column name to enable or disable search in main resource page
@@ -49,7 +49,7 @@ class HotelsQ extends Resource {
 	 */
 	public static $search = [
 		'id',
-		'name',
+		'title',
 	];
 
 	/**

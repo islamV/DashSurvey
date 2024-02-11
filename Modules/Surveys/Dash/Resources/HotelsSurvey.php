@@ -5,9 +5,9 @@ use Dash\Resource;
 use Modules\Surveys\App\Models\Survey;
 use Modules\guests\Dash\Resources\Guests;
 use Modules\Hotels\Dash\Resources\Hotels;
+use Modules\Questions\App\Models\Question;
 use Modules\questions\Dash\Resources\HotelsQ;
-
-
+use Modules\Services\App\Models\Service;
 
 class HotelsSurvey extends Resource {
 
@@ -99,7 +99,7 @@ class HotelsSurvey extends Resource {
 		return [
 			belongsTo()->make(__('survey.guest_information' ), 'guest', Guests::class)->column(3),
 
-			belongsTo()->make(__('survey.branch' ), 'hotel', Hotels::class)->column(3),
+			morphTo()->make(__('survey.branch' ), 'service', Service::class)->column(3),
 			select()->make(__('survey.status'),'status') 
 			->options([
 			'positive'=> __('survey.positive'),
@@ -115,6 +115,8 @@ class HotelsSurvey extends Resource {
 			])->selected('pending')->hideInIndex()->hideInShow()->column(6)->valueWhenUpdate('pending'),
 			text()->make(__('survey.time') , 'created_at')->column(6)->hideInUpdate() ,
 			textarea()->make(__('survey.note') , 'note') ,
+			// hasMany()->make(__('survey.hotelsQ') , 'answers' , Answers::class),
+			hasMany()->make(__('survey.hotelsQ') , 'questions' , HotelsQ::class),
 		
 
 		];

@@ -1,66 +1,68 @@
 <?php
-namespace Modules\surveys\Dash\Resources;
+namespace Modules\Services\Dash\Resources;
 use Dash\Resource;
-use Modules\Surveys\App\Models\Answer;
-use Modules\questions\Dash\Resources\HotelsQ;
+use Modules\Services\App\Models\Service;
+use Modules\CoffeeShops\App\Models\CoffeeShop;
 
-class Answers extends Resource {
 
+
+class CoffeeShops extends Resource {
+	
 	/**
 	 * define Model of resource
-	 * @var string $model
-	 */
-	public static $model = Answer::class;
+	 * @param Model Class
+	 */ 
+	public static $model = Service::class;
 
 	/**
 	 * Policy Permission can handel
 	 * (viewAny,view,create,update,delete,forceDelete,restore) methods
-	 * @var string $policy
+	 * @param static property as Policy Class
 	 */
-	//public static $policy = UserPolicy::class;
+	//public static $policy =UserPolicy::class;
 
 	/**
 	 * define this resource in group to show in navigation menu
 	 * if you need to translate a dynamic name
 	 * define dash.php in /resources/views/lang/en/dash.php
 	 * and add this key directly users
-	 * @var string $group
+	 * @param static property
 	 */
-	public static $group = 'Answers';
+	public static $group = 'services'; 
 
 	/**
 	 * show or hide resouce In Navigation Menu true|false
-	 * @var bool $displayInMenu
+	 * @param static property string
 	 */
 	public static $displayInMenu = true;
 
 	/**
 	 * change icon in navigation menu
 	 * you can use font awesome icons LIKE (<i class="fa fa-users"></i>)
-	 * @var string $icon
+	 * @param static property string
 	 */
-	public static $icon = ''; // put <i> tag or icon name
+	public static $icon = '<i class="fa-solid fa-mug-saucer"></i>'; // put <i> tag or icon name
 
 	/**
 	 * title static property to labels in Rows,Show,Forms
-	 * @var string $title
+	 * @param static property string
 	 */
-	public static $title = 'answer';
+	public static $title = 'name';
 
 	/**
 	 * defining column name to enable or disable search in main resource page
-	 * @var array<string> $search
+	 * @param static property array
 	 */
 	public static $search = [
 		'id',
-		'answer',
+		'name',
 	];
 
 	/**
 	 *  if you want define relationship searches
 	 *  one or Multiple Relations
 	 * 	Example: method=> 'invoices'  => columns=>['title'],
-	 * @var array<string> $searchWithRelation
+	 * @param static array
 	 */
 	public static $searchWithRelation = [];
 
@@ -69,32 +71,37 @@ class Answers extends Resource {
 	 * @return string
 	 */
 	public static function customName() {
-		return 'Answers';
+		return __('dash.coffee shops');
 	}
 
 	/**
 	 * you can define vertext in header of page like (Card,HTML,view blade)
-	 * @return array<string>
+	 * @return array
 	 */
 	public static function vertex() {
 		return [];
 	}
 
-	/**
-	 * define fields by Helpers
-	 * @return array<string>
-	 */
+
+	
+	public function query($model) {
+		return $model->where('type', 'coffee_shop');
+	   }
+	   
 	public function fields() {
 		return [
-
-			belongsTo()->make(__('survey.question') ,'question' , HotelsQ::class),
+			text()->make(__('dash::dash.name'),'title')->rule('required'),
+			text()->make(__('dash::dash.address'),'address')->rule('required'),
+		
+	
+			
 		];
 	}
 
 	/**
 	 * define the actions To Using in Resource (index,show)
 	 * php artisan dash:make-action ActionName
-	 * @return array<string>
+	 * @return array
 	 */
 	public function actions() {
 		return [];
@@ -103,7 +110,7 @@ class Answers extends Resource {
 	/**
 	 * define the filters To Using in Resource (index)
 	 * php artisan dash:make-filter FilterName
-	 * @return array<string>
+	 * @return array
 	 */
 	public function filters() {
 		return [];

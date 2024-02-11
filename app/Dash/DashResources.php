@@ -13,11 +13,12 @@ return [
     \Modules\Surveys\Dash\Resources\HospitalsSurvey::class,
     \Modules\Surveys\Dash\Resources\ClubsSurvey::class,
     \Modules\Surveys\Dash\Resources\CoffeeShopsSurvey::class,
+  
     //services
-    \Modules\Hotels\Dash\Resources\Hotels::class,
-    \Modules\Hospitals\Dash\Resources\Hospitals::class,
-    \Modules\Clubs\Dash\Resources\Clubs::class,
-    \Modules\CoffeeShops\Dash\Resources\CoffeeShops::class,
+     \Modules\Services\Dash\Resources\Hotels::class,
+     \Modules\Services\Dash\Resources\Hospitals::class,
+     \Modules\Services\Dash\Resources\Clubs::class,
+     \Modules\Services\Dash\Resources\CoffeeShops::class,
 
     // Questions
     \Modules\questions\Dash\Resources\HotelsQ::class,
