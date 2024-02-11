@@ -5,9 +5,12 @@ return [
 'guest_information' => 'معلومات الزائر',
 'branch' => 'الفرع' ,
 'status' => 'حالة الاستبيان',
-'negative'=>'<span class="badge badge-danger">سلبي/span>',
+'negative'=>'<span class="badge badge-danger">سلبي</span>',
 'pending'=>'<span class="badge badge-warning">قيد الانتظار</span>',
 'positive'=> '<span class="badge badge-success">ايجابي</span>',
 'note' => 'الملاحظات' ,
-'time' => 'وقت الاستبيان'
+'time' => 'وقت الاستبيان',
+'negativeu'=>'سلبي',
+'pendingu'=>'قيد الانتظار',
+'positiveu'=> 'ايجابي',
 ] ;

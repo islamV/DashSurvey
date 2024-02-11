@@ -9,5 +9,8 @@ return [
 'pending'=>'<span class="badge badge-warning">Pending</span>',
 'positive'=> '<span class="badge badge-success">Positive</span>',
 'note' => 'Note' ,
-'time' => 'Time'
+'time' => 'Time',
+'negativeu'=>'Negative',
+'pendingu'=>'Pending',
+'positiveu'=> 'Positive',
 ] ;

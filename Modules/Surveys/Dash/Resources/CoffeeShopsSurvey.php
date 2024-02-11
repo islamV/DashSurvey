@@ -97,10 +97,18 @@ public function query($model){
 			belongsTo()->make(__('survey.branch' ), 'coffeeshop', CoffeeShops::class)->column(3),
 			select()->make(__('survey.status'),'status') // you can use disabled() with this element
 			->options([
-			'satisfied'=> __('survey.Positive'),
-			'Notsatisfied'=>__('survey.Pending'),
-			])->selected('satisfied')->column(6),
-			text()->make(__('survey.time') , 'created_at')->column(6) ,
+			'positive'=> __('survey.positive'),
+			'negative'=>__('survey.negative'),
+			'pending'=>__('survey.pending'),
+			])->selected('pending')->hideInUpdate()->hideInCreate()->column(6)->valueWhenUpdate('pending'),
+
+			select()->make(__('survey.status'),'status') // you can use disabled() with this element
+			->options([
+				'positive'=> __('survey.positiveu'),
+				'negative'=>__('survey.negativeu'),
+				'pending'=>__('survey.pendingu'),
+			])->selected('pending')->hideInIndex()->hideInShow()->column(6)->valueWhenUpdate('pending'),
+			text()->make(__('survey.time') , 'created_at')->column(6)->hideInUpdate() ,
 			textarea()->make(__('survey.note') , 'note') ,
 
 		];
