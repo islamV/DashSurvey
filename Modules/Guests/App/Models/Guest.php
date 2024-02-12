@@ -13,7 +13,7 @@ class Guest extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = ['name' , 'phone'];
+    protected $fillable = ['name' , 'phone' ,'service_type'];
     
     
 }

@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Services\Dash\Resources;
 use Dash\Resource;
+use App\Policies\UserPolicy;
 use Modules\Services\App\Models\Service;
 use Modules\Hospitals\App\Models\Hospital;
 
@@ -43,7 +44,7 @@ class Hospitals extends Resource {
 	public static $icon = '<i class="fa-solid fa-circle-h"></i>'; // put <i> tag or icon name
 
 	/**
-	 * title static property to labels in Rows,Show,Forms
+	 * name static property to labels in Rows,Show,Forms
 	 * @param static property string
 	 */
 	public static $title = 'name';
@@ -60,7 +61,7 @@ class Hospitals extends Resource {
 	/**
 	 *  if you want define relationship searches
 	 *  one or Multiple Relations
-	 * 	Example: method=> 'invoices'  => columns=>['title'],
+	 * 	Example: method=> 'invoices'  => columns=>['name'],
 	 * @param static array
 	 */
 	public static $searchWithRelation = [];
@@ -82,15 +83,21 @@ class Hospitals extends Resource {
 	}
 
 	public function query($model) {
-		return $model->where('type', 'hospital');
+		return $model->where('type', 'hospitals');
 	   }
 	   
 	public function fields() {
 		return [
-			text()->make(__('dash::dash.name'),'title')->rule('required'),
+			text()->make(__('dash::dash.name'),'name')->rule('required'),
 			text()->make(__('dash::dash.address'),'address')->rule('required'),
 			
-			
+			text()->make(__('service Type') , 'type')->whenStore(function(){
+				return ['type' =>'hospitals' ];
+
+			})->whenUpdate(function(){
+				return ['type' =>'hospitals' ] ;
+
+			})->disabled()->value('Hospitals')->hideInIndex()
 		];
 	}
 

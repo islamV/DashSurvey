@@ -64,7 +64,7 @@ class ClubsQ extends Resource {
 	public static $searchWithRelation = [];
 
 	public function query($model) {
-		return $model->where('service_type', 'clubs');
+		return $model->where('type', 'clubs');
 	   }
 	public static function customName() {
            return __('dash.clubs') ;
@@ -85,11 +85,11 @@ class ClubsQ extends Resource {
 	public function fields() {
 		return [
 			text()->make(__ ('title') , 'title')->rule('required'),
-			text()->make(__('service Type') , 'service_type')->whenStore(function(){
-				return ['service_type' =>'clubs' ] ;
+			text()->make(__('service Type') , 'type')->whenStore(function(){
+				return ['type' =>'clubs' ] ;
 			})->whenUpdate(function(){
-				return ['service_type' =>'clubs' ] ;
-			})->value('clubs')->disabled(),
+				return ['type' =>'clubs' ] ;
+			})->value('clubs')->disabled()->hideInIndex(),
 		];
 	}
 

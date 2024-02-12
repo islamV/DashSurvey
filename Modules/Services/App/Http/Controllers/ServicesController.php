@@ -2,19 +2,28 @@
 
 namespace Modules\Services\App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Modules\Questions\App\Models\Question;
+use Modules\Services\App\Models\Service;
 
 class ServicesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($service)
     {
-        return view('services::index');
+      
+        
+            $services = Service::where('type' , $service)->get();
+            $questions  = Question::where('type' ,$service)->take(5)->get();
+          
+           
+            return view("surveys::".$service,compact('services','questions' , 'service'));
+      
     }
 
     /**
@@ -28,9 +37,9 @@ class ServicesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        //
+       
     }
 
     /**

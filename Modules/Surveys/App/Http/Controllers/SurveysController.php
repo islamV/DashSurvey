@@ -19,10 +19,7 @@ class SurveysController extends Controller
      */
     public function index()
     {
-        $survey = Survey::find(1);
-        $g = AdminGroup::find(1);
-       
-    dd($survey->answers[0]->questions) ;
+     
         
     }
 
@@ -38,17 +35,20 @@ class SurveysController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request ,$service){
-    
+   
        $guest = $request->validate([
             'name'=> 'required|string',
             'phone' => 'required',
+            'service_type'
             ] ,[
                 'phone' => 'الصيغة غير صحيحة' ,
             ]);
-    $guestfind =  Guest::where('phone', $request->phone)->first();
+    $guestfind =  Guest::where('phone', $request->phone)->where('service_type'  , $service)->first();
    
     if(!$guestfind ){
-        $guest = Guest::create($guest);
+        $guest['service_type'] = $service;
+    
+     $guest = Guest::create($guest);
     }else{
          $guestfind->name = $request->name;
         $guestfind->save() ;

@@ -44,10 +44,11 @@ class Hotels extends Resource {
 	public static $icon = '<i class="fa-solid fa-hotel"></i>'; // put <i> tag or icon name
 
 	/**
-	 * title static property to labels in Rows,Show,Forms
+	 * name static property to labels in Rows,Show,Forms
 	 * @param static property string
 	 */
-	public static $title = 'title';
+	public static $title = 'name';
+
 
 	/**
 	 * defining column name to enable or disable search in main resource page
@@ -55,13 +56,13 @@ class Hotels extends Resource {
 	 */
 	public static $search = [
 		'id',
-		'title',
+		'name',
 	];
 
 	/**
 	 *  if you want define relationship searches
 	 *  one or Multiple Relations
-	 * 	Example: method=> 'invoices'  => columns=>['title'],
+	 * 	Example: method=> 'invoices'  => columns=>['name'],
 	 * @param static array
 	 */
 	public static $searchWithRelation = [];
@@ -84,19 +85,22 @@ class Hotels extends Resource {
 	}
 
 	public function query($model) {
-		return $model->where('type', 'hotel');
+		return $model->where('type', 'hotels');
 	   }
 	
 	public function fields() {
 		return [
-			text()->make(__('dash::dash.name'),'title')->rule('required'),
+			text()->make(__('dash::dash.name'),'name')->rule('required'),
 			text()->make(__('dash::dash.address'),'address')->rule('required'),
 			text()->make(__('service Type') , 'type')->whenStore(function(){
-				return ['type' =>'hotel' ] ;
+				return ['type' =>'hotels' ];
 
 			})->whenUpdate(function(){
-				return ['type' =>'hotel' ] ;
-			})->value('Hotels')->disabled(),
+				return ['type' =>'hotels' ] ;
+
+			})->disabled()->value('Hotels')->hideInIndex(),
+       
+		
 
 		];
 	}

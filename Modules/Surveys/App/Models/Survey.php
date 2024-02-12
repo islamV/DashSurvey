@@ -35,13 +35,13 @@ public function service(){
     return $this->morphTo() ;
 }
 
-//    public function answers(){
-//     return $this->hasMany(Answer::class,'survey_id','id');
-//    }
+   public function answers(){
+    return $this->hasMany(Answer::class);
+   }
  
-    // public function guest(){
-    //     return $this->belongsTo(Guest::class ,'guest_id');
-    // }
+    public function guest(){
+        return $this->belongsTo(Guest::class ,'guest_id');
+    }
     // public function club(){
     //     return $this->belongsTo(Club::class , 'service_id' );
     // }

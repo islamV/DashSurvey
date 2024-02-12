@@ -13,4 +13,7 @@ return [
 'negativeu'=>'Negative',
 'pendingu'=>'Pending',
 'positiveu'=> 'Positive',
+'Satisfied' => '<span class="badge badge-success">Satisfied</span>' ,
+'NotSatisfied'=> '<span class="badge badge-danger">Not Satisfied</span>',
+
 ] ;

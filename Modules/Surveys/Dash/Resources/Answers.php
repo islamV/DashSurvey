@@ -1,5 +1,7 @@
 <?php
 namespace Modules\surveys\Dash\Resources;
+
+use App\Livewire\Survey;
 use Dash\Resource;
 use Modules\Surveys\App\Models\Answer;
 use Modules\questions\Dash\Resources\HotelsQ;
@@ -54,6 +56,7 @@ class Answers extends Resource {
 	public static $search = [
 		'id',
 		'answer',
+
 	];
 
 	/**
@@ -87,7 +90,7 @@ class Answers extends Resource {
 	public function fields() {
 		return [
 
-			belongsTo()->make(__('survey.question') ,'question' , HotelsQ::class),
+			belongsTo()->make(__('survey') ,'survey' , Survey::class),
 		];
 	}
 

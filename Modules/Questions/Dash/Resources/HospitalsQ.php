@@ -82,16 +82,16 @@ class HospitalsQ extends Resource {
 	}
 
 	public function query($model) {
-		return $model->where('service_type', 'hospitals');
+		return $model->where('type', 'hospitals');
 	   }
 	public function fields() {
 		return [
 			text()->make(__ ('title') , 'title')->rule('required'),
-			text()->make(__('service Type') , 'service_type')->whenStore(function(){
-				return ['service_type' =>'hospitals' ] ;
+			text()->make(__('service Type') , 'type')->whenStore(function(){
+				return ['type' =>'hospitals' ] ;
 			})->whenUpdate(function(){
-				return ['service_type' =>'hospitals' ] ;
-			})->value('Hospitals')->disabled(),
+				return ['type' =>'hospitals' ] ;
+			})->value('Hospitals')->disabled()->hideInIndex(),
 		];
 	}
 

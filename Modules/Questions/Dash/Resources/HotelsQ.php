@@ -65,7 +65,7 @@ class HotelsQ extends Resource {
 	 * @return string
 	 */
 	public function query($model) {
-		return $model->where('service_type', 'hotels');
+		return $model->where('type', 'hotels');
 	   }
 	public static function customName() {
 		return  __('dash.hotels');
@@ -86,11 +86,11 @@ class HotelsQ extends Resource {
 	public function fields() {
 		return [
 			text()->make(__ ('title') , 'title')->rule('required'),
-			text()->make(__('service Type') , 'service_type')->whenStore(function(){
-				return ['service_type' =>'hotels' ] ;
+			text()->make(__('service Type') , 'type')->whenStore(function(){
+				return ['type' =>'hotels' ] ;
 			})->whenUpdate(function(){
-				return ['service_type' =>'hotels' ] ;
-			})->value('Hotels')->disabled(),
+				return ['type' =>'hotels' ] ;
+			})->value('Hotels')->disabled()->hideInIndex(),
 		];
 	}
 

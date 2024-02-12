@@ -85,15 +85,21 @@ class CoffeeShops extends Resource {
 
 	
 	public function query($model) {
-		return $model->where('type', 'coffee_shop');
+		return $model->where('type', 'coffee_shops');
 	   }
 	   
 	public function fields() {
 		return [
-			text()->make(__('dash::dash.name'),'title')->rule('required'),
+			text()->make(__('dash::dash.name'),'name')->rule('required'),
 			text()->make(__('dash::dash.address'),'address')->rule('required'),
 		
-	
+			text()->make(__('service Type') , 'type')->whenStore(function(){
+				return ['type' =>'coffee_shops' ];
+
+			})->whenUpdate(function(){
+				return ['type' =>'coffee_shops' ] ;
+
+			})->disabled()->value('Coffee Shops')->hideInIndex()
 			
 		];
 	}

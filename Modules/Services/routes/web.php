@@ -17,3 +17,5 @@ use Modules\Services\App\Http\Controllers\ServicesController;
 Route::group([], function () {
     Route::resource('services', ServicesController::class)->names('services');
 });
+
+Route::get('services/{service}' ,[ServicesController::class,'index'])->name('service');
