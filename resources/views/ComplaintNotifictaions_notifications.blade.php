@@ -12,9 +12,9 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end" role="menu">
                 <li><a  href="javascript:void(0);"><i class="feather feather-eye me-2"></i>View</a></li>
-                <li><a  href="javascript:void(0);"><i class="feather feather-plus-circle me-2"></i>Add</a></li>
+                {{-- <li><a  href="javascript:void(0);"><i class="feather feather-plus-circle me-2"></i>Add</a></li> --}}
                 <li><a  href="javascript:void(0);"><i class="feather feather-trash-2 me-2"></i>Remove</a></li>
-                <li><a  href="javascript:void(0);"><i class="feather feather-settings me-2"></i>More</a></li>
+                {{-- <li><a  href="javascript:void(0);"><i class="feather feather-settings me-2"></i>More</a></li> --}}
             </ul>
         </div>
     </div>
