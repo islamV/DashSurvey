@@ -116,10 +116,10 @@ class HotelsSurvey extends Resource {
 			text()->make(__('survey.time') , 'created_at')->column(3)->hideInUpdate() ,
 			// hasMany()->make(__('answer') , 'answers' , Answers::class ),
 			// you can use help & placeholder , whenstore , whenUpdate
-			custom()->make('answers') 
-			->view('surveys::answers')->hideInIndex()->hideInCreate()->hideInUpdate()->column(6), // append your blade file
-			textarea()->make(__('survey.note') , 'note'),
-		
+				textarea()->make(__('survey.note') , 'note'),
+				custom()->make('answers') 
+				->view('surveys::answers')->hideInIndex()->hideInCreate()->hideInUpdate()->column(6), // append your blade file
+			
 
 		];
 	}

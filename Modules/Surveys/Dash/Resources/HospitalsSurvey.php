@@ -105,7 +105,11 @@ class HospitalsSurvey extends Resource {
 				'pending'=>__('survey.pendingu'),
 			])->selected('pending')->hideInIndex()->hideInShow()->column(6)->valueWhenUpdate('pending'),
 			text()->make(__('survey.time') , 'created_at')->column(6)->hideInUpdate() ,
+			
 			textarea()->make(__('survey.note') , 'note') ,
+			custom()->make('answers') 
+			->view('surveys::answers')->hideInIndex()->hideInCreate()->hideInUpdate()->column(6), // append your blade file
+		
 
 
 
