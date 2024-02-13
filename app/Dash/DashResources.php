@@ -26,4 +26,12 @@ return [
     \Modules\questions\Dash\Resources\ClubsQ::class,
     \Modules\questions\Dash\Resources\CoffeeShopsQ::class,
 
+     // Complaints
+     \Modules\Complaints\Dash\Resources\HotelsComplaint::class,
+     \Modules\Complaints\Dash\Resources\HospitalsComplaint::class,
+     \Modules\Complaints\Dash\Resources\ClubsComplaint::class,
+     \Modules\Complaints\Dash\Resources\CoffeeShopsComplaint::class,
+    
+     
+
 ];

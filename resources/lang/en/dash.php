@@ -14,4 +14,5 @@ return [
 	'coffee shops'=> 'Coffee Shops',
 	'questions' => 'Questions' ,
 	'surveys' => 'Surveys', 
+	'complaints'=> 'Complaints'
 ];
