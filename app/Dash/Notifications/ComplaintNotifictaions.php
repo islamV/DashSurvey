@@ -14,10 +14,10 @@ class ComplaintNotifictaions extends Notification {
 	public static function stack() {
 		return [
 			'js' => [
-				//url('test.js'), // js url
+				url('test.js'), // js url
 			],
 			'blade' => [
-			//	'test', //test.blade.php
+			'test', //test.blade.php
 			],
 		];
 	}
