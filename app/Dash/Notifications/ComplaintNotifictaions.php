@@ -43,8 +43,8 @@ class ComplaintNotifictaions extends Notification {
 			$lists = Complaint::where('show_status' ,'0')->orderBy('created_at','desc')->with('survey')->get();
 
 		$data  = '';
-		foreach ($lists as $list) {
-			$data .= view('ComplaintNotifictaions_notifications', ['list' => $list])->render();
+		foreach ($lists as $complaint) {
+			$data .= view('ComplaintNotifictaions_notifications', ['complaint' => $complaint])->render();
 		}
 		return $data;
 	}
