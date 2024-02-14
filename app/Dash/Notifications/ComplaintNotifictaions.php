@@ -2,6 +2,7 @@
 namespace App\Dash\Notifications;
 use App\Models\User;
 use Dash\Notification;
+use Modules\Complaints\App\Models\Complaint;
 
 class ComplaintNotifictaions extends Notification {
 
@@ -14,10 +15,10 @@ class ComplaintNotifictaions extends Notification {
 	public static function stack() {
 		return [
 			'js' => [
-				url('test.js'), // js url
+				// url('test.js'), // js url
 			],
 			'blade' => [
-			'test', //test.blade.php
+				 'pusher', //test.blade.php
 			],
 		];
 	}
@@ -29,7 +30,8 @@ class ComplaintNotifictaions extends Notification {
 	 * @return int
 	 */
 	public static function unreadCount() {
-		return User::count();
+		return Complaint::where('show_status' , '0')->orderBy('created_at','desc')->count();
+
 	}
 
 	/**
@@ -38,7 +40,8 @@ class ComplaintNotifictaions extends Notification {
 	 * @return string
 	 */
 	public static function content() {
-		$lists = User::all();
+			$lists = Complaint::where('show_status' ,'0')->orderBy('created_at','desc')->with('survey')->get();
+
 		$data  = '';
 		foreach ($lists as $list) {
 			$data .= view('ComplaintNotifictaions_notifications', ['list' => $list])->render();

@@ -2,6 +2,7 @@
 namespace Modules\Complaints\Dash\Resources;
 use Dash\Resource;
 
+use Modules\guests\Dash\Resources\Guests;
 use Modules\Complaints\App\Models\Complaint;
 
 class HotelsComplaint extends Resource {
@@ -41,7 +42,7 @@ class HotelsComplaint extends Resource {
 	 * title static property to labels in Rows,Show,Forms
 	 * @param static property string
 	 */
-	public static $title = 'status';
+	public static $title = 'id';
 
 	/**
 	 * defining column name to enable or disable search in main resource page
@@ -85,12 +86,30 @@ class HotelsComplaint extends Resource {
 	 */
 	public function fields() {
 		return [
-			text()->make(__ ('survey.status') , 'status')->rule('required'),
-			text()->make(__('Complaint Type') , 'type')->whenStore(function(){
-				return ['type' =>'hotels' ] ;
-			})->whenUpdate(function(){
-				return ['type' =>'hotels' ] ;
-			})->value('Hotels')->disabled()->hideInIndex(),
+			belongsTo()->make(__('survey.guest_information' ), 'guest', Guests::class)->column(3)->viewColumns(['phone'=>__('dash::dash.phone')]),
+			select()->make(__('survey.Cstatus'),'status') 
+			->options([
+			'positive'=> __('survey.positive'),
+			'negative'=>__('survey.negative'),
+			'pending'=>__('survey.pending'),
+			])->selected('pending')->hideInUpdate()->hideInCreate()->column(6)->valueWhenUpdate('pending')->column(3),
+
+			select()->make(__('survey.Cstatus'),'status') // you can use disabled() with this element
+			->options([
+				'positive'=> __('survey.positiveu'),
+				'negative'=>__('survey.negativeu'),
+				'pending'=>__('survey.pendingu'),
+			])->selected('pending')->hideInIndex()->hideInShow()->column(6)->valueWhenUpdate('pending')->column(3),
+			text()->make(__('survey.Ctime') , 'created_at')->column(3)->hideInUpdate() ,
+			
+			
+			custom()->make('Canswers') 
+				->view('complaints::answers')->hideInIndex()->hideInCreate()->hideInUpdate()->column(6),
+				text()->make(__('Complaint Type') , 'type')->whenStore(function(){
+					return ['type' =>'hotels' ] ;
+				})->whenUpdate(function(){
+					return ['type' =>'hotels' ] ;
+				})->value('Hotels')->disabled()->hideInIndex()->hideInShow(),
 		];
 	}
 

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('status');
             $table->string('type')->nullable();
-            $table->string('expired_time')->nullable();
+            // $table->string('expired_time')->nullable();
             $table->string('show_status')->nullable();
             $table->foreignId('survey_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('guest_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();

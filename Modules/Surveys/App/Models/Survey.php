@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Modules\Surveys\Database\factories\SurveyFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\questions\Dash\Resources\HotelsQ;
+use Modules\Services\App\Models\Service;
 
 class Survey extends Model
 {
@@ -32,7 +33,7 @@ class Survey extends Model
     
     }
 public function service(){
-    return $this->morphTo() ;
+    return $this->belongsTo(Service::class) ;
 }
 
    public function answers(){

@@ -15,4 +15,8 @@ return [
 'positiveu'=> 'ايجابي',
 'Satisfied'=> '<span class="badge badge-success">راضي</span>',
 'NotSatisfied'=> '<span class="badge badge-danger">غير راضي</span>'
+,
+'Newcomplain' => 'شكوي جديدة' ,
+'Ctime' => 'وقت الشكوي',
+'Cstatus'=> 'حالة الشكوي',
 ] ;

@@ -5,6 +5,7 @@ use App\Dash\Dashboard\Help;
 use Dash\DashServiceProviderInit;
 use App\Dash\Notifications\guestNotifction;
 use App\Dash\Notifications\ComplaintNotifictaions;
+use App\Dash\Notifications\ComplaintNotifictaionss;
 
 
 class DashServiceProvider extends DashServiceProviderInit {
@@ -34,6 +35,7 @@ class DashServiceProvider extends DashServiceProviderInit {
 	public static function notifications() {
 		return [
 			ComplaintNotifictaions::class,
+		
 		];
 	}
 

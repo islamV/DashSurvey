@@ -11,6 +11,7 @@ use Modules\Hotels\App\Models\Hotel;
 use Illuminate\Http\RedirectResponse;
 use Modules\Surveys\App\Models\Answer;
 use Modules\Surveys\App\Models\Survey;
+use Modules\Complaints\App\Models\Complaint;
 
 class SurveysController extends Controller
 {
@@ -19,7 +20,8 @@ class SurveysController extends Controller
      */
     public function index()
     {
-     
+		$c= Complaint::where('show_status' , '0')->orderBy('created_at','desc')->with('survey')->first();
+     dd($c->survey->guest->name);
         
     }
 
@@ -53,26 +55,29 @@ class SurveysController extends Controller
          $guestfind->name = $request->name;
         $guestfind->save() ;
     }
-    // chack if all answers is Satisfied
-$status = 'positive' ;
-foreach($request->answers as $answer){
-    if($answer == 'NotSatisfied'){
-        $status  =  'pending';
-        break ;
-    }
-}
-   
-   
+ 
       
     $data =  [
         'guest_id'=> $guest->id??  $guestfind->id ,
         'service_id'=> $request->service_branch,
         'service_type' => $service,
-        'status' => $status,
+        'status' => in_array("NotSatisfied" ,$request->answers) ? 'pending' : 'positive',
         'note'=> $request->note,
     ];
 
     $survey = Survey::create($data);
+    if (in_array("NotSatisfied" ,$request->answers)){
+        Complaint::create([
+            'status' => 'pending' ,
+            'type' =>  $service ,
+            'show_status' => false  ,
+            'guest_id'=> $guest->id??$guestfind->id,
+            'survey_id' => $survey->id,
+            'service_id'=> $request->service_branch,
+
+          ]) ;
+          event(new \App\Events\Complaint('hello world'));
+       }
     foreach($request->answers as $key=>  $answer){
        
         $ans = new Answer;

@@ -1,7 +1,7 @@
 @if(!empty($dash_notifications) && count($dash_notifications))
-<li class="nav-item dropdown px-2 d-flex align-items-center mr-3">
+{{-- <li class="nav-item dropdown px-2 d-flex align-items-center mr-3">
   <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-    <i class="fa fa-bell fa-2x cursor-pointer"></i>
+    <i class="fa fa-bell fa-2x cursor-pointer"></i></a></li> --}}
     @php
     $DashtotalCount=0;
     foreach($dash_notifications as $dash_count){

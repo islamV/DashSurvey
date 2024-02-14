@@ -12,7 +12,7 @@ class Surveys extends Chart{
     public function options():array{
         return [
             'column'=>'3',
-            'elem'=>'YourElementAttributeIDWithoutHash'// do not add hash # just clearname
+            'elem'=>'status'// do not add hash # just clearname
         ];
     }
 
@@ -29,23 +29,41 @@ class Surveys extends Chart{
         return $this->data([
                     'type'=>'bar',
                     'data'=>[
-                            'labels'=> ['positive' , 'negative'],
+                            'labels'=> ['positive'],
                             'datasets'=>[
                                 [
-                                    'label'=>'حالات الاستبيان',
+                                    'label'=>'  حالات الاستبيان الايجابية' ,
                                     'data'=>[
-                                       15751 ,20000
+                                      20000
                                      ],
                                      'backgroundColor'=> [
 
                                         'rgba(75, 192, 192, 0.2)',
-                                        'rgba(255, 99, 132, 0.2)',
+                                       
                                      
                                         
                                       
                                       ],
                                    ' barPercentage'=> .5
                                   
+                                  
+                                ]
+                                ,
+                                [
+                                    
+                                    'label'=>'  حالات الاستبيان السلبية' ,
+                                    'data'=>[
+                                       15751 
+                                     ],
+                                     'backgroundColor'=> [
+
+                                     
+                                        'rgba(255, 99, 132, 0.2)',
+                                     
+                                        
+                                      
+                                      ],
+                                   ' barPercentage'=> .5
                                   
                                 ]
                             ]
