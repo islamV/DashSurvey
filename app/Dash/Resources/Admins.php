@@ -11,9 +11,7 @@ class Admins extends Resource {
 	//public static $policy = \App\Policies\AdminPolicy::class;
 	public static $group              = 'users';
 	public static $displayInMenu      = true;
-	// public static $policy  = \App\Policies\AdminsPolicy::class;
-
-	public static $icon               = '<i class="fa-solid fa-users-gear"></i>';
+	public static $icon               = '<i class="fa fa-users"></i>';
 	public static $title              = 'name';
 	public static $appendToMainSearch = false;
 	public static $search             = [
@@ -23,7 +21,7 @@ class Admins extends Resource {
 	];
 
 	public static function customName() {
-		return __('dash.Admins');
+		return 'Admins';
 	}
 
     public static $lengthMenu        = [50, 10, 15, 20, 25, 50, 100];
@@ -79,7 +77,7 @@ class Admins extends Resource {
 			        ->options([
 					'user'  => 'User',
 					'admin' => 'Admin',
-				]),
+				])  ->column(6),
                 image()->make('Photo', 'photo')
                 ->path('users/{id}')
                 ->column(6)

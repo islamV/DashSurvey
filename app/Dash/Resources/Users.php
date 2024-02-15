@@ -70,7 +70,7 @@ class Users extends Resource {
 			->hideInShow()
 			->hideInIndex(),
             image()->make('Photo', 'photo')
-            ->path('users')
+            ->path('users/{id}')
             ->column(6)
             ->accept('image/png', 'image/jpeg'),
 

@@ -88,7 +88,7 @@ class SurveysController extends Controller
         $ans->save() ;
      }
    
-    return view('surveys::done');
+    return redirect('done');
 
 
     }

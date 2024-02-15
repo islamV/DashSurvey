@@ -6,16 +6,16 @@
 			</svg>
 		</div>
 		<div class="check-shadow"></div>
+		<div>thank you !</div>
+
 	</div>
 </div>
 <style>
-    // HTML font size can define checkbox size
-html,
 body {
 	font-size: 24px;
 }
 
-// Sample container
+
 .main-container {
 	width: 100%;
 	height: 100vh;
@@ -25,10 +25,10 @@ body {
 	align-items: center;
 }
 
-// Main CSS
+
 .check-container {
-	width: 6.25rem;
-	height: 7.5rem;
+	width: 12.25rem;
+	height: 13rem;
 	display: flex;
 	flex-flow: column;
 	align-items: center;
@@ -131,3 +131,11 @@ body {
 }
 
 </style>
+
+<script>
+
+  setTimeout(function() {
+    window.location.href = "http://127.0.0.1:8000/"; // Replace "https://example.com" with the URL you want to redirect to
+  }, 3000); // 3000 milliseconds = 3 seconds
+
+</script>

@@ -19,7 +19,5 @@
                 {{-- <li><a  href="javascript:void(0);"><i class="feather feather-settings me-2"></i>More</a></li> --}}
             </ul>
         </div>
- 
- 
     </div>
 </div>

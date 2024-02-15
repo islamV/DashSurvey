@@ -18,3 +18,6 @@ Route::group([], function () {
     Route::resource('surveys', SurveysController::class)->names('surveys');
 });
 Route::get('survey/{service}', [SurveysController::class,'store'])->name('servey');
+route::get('done' , function(){
+    return view('surveys::done');
+})->name('done');

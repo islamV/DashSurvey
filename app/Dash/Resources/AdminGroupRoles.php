@@ -12,8 +12,6 @@ class AdminGroupRoles extends Resource {
 	 * @param Model Class
 	 */
 	public static $model = \App\Models\AdminGroupRole::class ;
-	public static $policy  = \App\Policies\AdminGroupRolesPolicy::class;
-
 
 	/**
 	 * Policy Permission can handel

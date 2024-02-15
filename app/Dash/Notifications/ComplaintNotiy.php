@@ -3,8 +3,9 @@ namespace App\Dash\Notifications;
 use App\Models\User;
 use Dash\Notification;
 use Modules\Complaints\App\Models\Complaint;
+use Modules\Complaints\App\Models\Complaint as ModelsComplaint;
 
-class ComplaintNotifictaions extends Notification {
+class ComplaintNotiy extends Notification {
 
 
 	/**
@@ -15,10 +16,10 @@ class ComplaintNotifictaions extends Notification {
 	public static function stack() {
 		return [
 			'js' => [
-				// url('test.js'), // js url
+			//	url('pusher.js'), // js url
 			],
 			'blade' => [
-				 'pusher', //test.blade.php
+				'pusher', //test.blade.php
 			],
 		];
 	}
@@ -31,7 +32,6 @@ class ComplaintNotifictaions extends Notification {
 	 */
 	public static function unreadCount() {
 		return Complaint::where('show_status' , '0')->orderBy('created_at','desc')->count();
-
 	}
 
 	/**
@@ -40,11 +40,10 @@ class ComplaintNotifictaions extends Notification {
 	 * @return string
 	 */
 	public static function content() {
-			$lists = Complaint::where('show_status' ,'0')->orderBy('created_at','desc')->with('survey')->get();
-
+		$lists  =Complaint::where('show_status' , '0')->orderBy('created_at','desc')->get();
 		$data  = '';
 		foreach ($lists as $complaint) {
-			$data .= view('ComplaintNotifictaions_notifications', ['complaint' => $complaint])->render();
+			$data .= view('Complaint_notifications', ['complaint' => $complaint])->render();
 		}
 		return $data;
 	}

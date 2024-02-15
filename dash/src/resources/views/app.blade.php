@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() == 'ar' ? 'ar' : 'en' }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : '' }}">
-@livewireStyles
+
 <head>
     <meta charset="utf-8" />
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
@@ -234,7 +234,6 @@
 		<script src="{{ url('dashboard/assets/dashtemplate') }}/js/themeColors.js"></script>
 
 		<!-- Custom js-->
-        @livewireScripts
 		<script src="{{ url('dashboard/assets/dashtemplate') }}/js/custom.js"></script>
         <script>
             @if (!empty(request('relationField')))
@@ -291,6 +290,5 @@
             };
         });
     </script>
-
 	</body>
 </html>

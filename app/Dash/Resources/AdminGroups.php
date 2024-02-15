@@ -12,7 +12,6 @@ class AdminGroups extends Resource {
 	 * @param Model Class
 	 */
 	public static $model = \App\Models\AdminGroup::class ;
-	 public static $policy  = \App\Policies\AdminGroupsPolicy::class;
 
 	/**
 	 * Policy Permission can handel
@@ -41,7 +40,7 @@ class AdminGroups extends Resource {
 	 * you can use font awesome icons LIKE (<i class="fa fa-users"></i>)
 	 * @param static property string
 	 */
-	public static $icon = '<i class="fa-solid fa-people-group"></i>';// put <i> tag or icon name
+	public static $icon = '<i class="fa fa-users"></i>';// put <i> tag or icon name
 
 	/**
 	 * title static property to labels in Rows,Show,Forms
@@ -96,12 +95,7 @@ class AdminGroups extends Resource {
             (new AllAdminGroups)->render(),
         ];
 	}
-	// php artisan dash:chart Users    
-	// # [app/Dash/Metrics/Charts/Users.php]
-	// # Users Chart generated
-	// # or write --module flag to Create in specific module
-	// php artisan dash:chart Users  --module=Users
-	
+
 	/**
 	 * define fields by Helpers
 	 * @return array

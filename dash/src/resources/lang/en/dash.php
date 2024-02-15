@@ -95,7 +95,5 @@ return [
 	'none_data'                      => 'Add Card To Your Dashboard Class',
 	'attention'                      => 'Attention',
 	'need_permission_to_access_page' => 'You need permission to access this page or the page does not exist',
-    'file_deleted'=>'File Is Deleted' ,
-	'phone' => 'Phone' ,
-	'address' => 'Address',
+    'file_deleted'=>'File Is Deleted'
 ];

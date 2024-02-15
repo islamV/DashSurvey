@@ -92,7 +92,4 @@ return [
 	'attention'                      => 'انتبه',
 	'need_permission_to_access_page' => 'تحتاج الى اذن من المدير للوصول لهذه الصفحة ',
     "file_deleted"=>'تم حذف الملف',
-	'phone' => 'رقم الهاتف' ,
-	'address' => 'العنوان',
-
 ];

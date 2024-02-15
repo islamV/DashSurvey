@@ -31,7 +31,5 @@ return [
      \Modules\Complaints\Dash\Resources\HospitalsComplaint::class,
      \Modules\Complaints\Dash\Resources\ClubsComplaint::class,
      \Modules\Complaints\Dash\Resources\CoffeeShopsComplaint::class,
-    
-     
 
 ];
