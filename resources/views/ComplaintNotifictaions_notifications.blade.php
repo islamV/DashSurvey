@@ -13,13 +13,13 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end" role="menu">
                 <li><a  href="{{ route('show_complaint',['complain_id'=>$complaint->id]) }}"><i class="feather feather-eye me-2"></i>View</a></li>
-                <li><a  href=""><i class="feather feather-plus-circle me-2"></i>Add</a></li>
-                <li><a  href=""><i class="feather feather-plus-circle me-2"></i>Remove</a></li>
+                {{-- <li><a  href=""><i class="feather feather-plus-circle me-2"></i>Add</a></li> --}}
+                <li><a  href=""><i class="feather feather-minus-circle me-2"></i>Remove</a></li>
              {{-- <button type="submit" wire.submit.prevent ="Remove({{ $complaint->id }})" ></button> --}}
-                <li><a  href="javascript:void(0);"><i class="feather feather-settings me-2"></i>More</a></li>
+                {{-- <li><a  href="javascript:void(0);"><i class="feather feather-settings me-2"></i>More</a></li> --}}
             </ul>
         </div>
  
-        {{-- @livewire('complaint-notification' , ['complaint'=> $complaint] ) --}}
+ 
     </div>
 </div>

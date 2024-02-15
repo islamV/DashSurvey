@@ -67,7 +67,7 @@ class SurveysController extends Controller
 
     $survey = Survey::create($data);
     if (in_array("NotSatisfied" ,$request->answers)){
-        Complaint::create([
+       $complaint=  Complaint::create([
             'status' => 'pending' ,
             'type' =>  $service ,
             'show_status' => false  ,
@@ -76,7 +76,8 @@ class SurveysController extends Controller
             'service_id'=> $request->service_branch,
 
           ]) ;
-          event(new \App\Events\Complaint('hello world'));
+        
+          event(new \App\Events\Complaint($complaint));
        }
     foreach($request->answers as $key=>  $answer){
        
@@ -87,7 +88,7 @@ class SurveysController extends Controller
         $ans->save() ;
      }
    
-    return redirect()->back();
+    return view('surveys::done');
 
 
     }

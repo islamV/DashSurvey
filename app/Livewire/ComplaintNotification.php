@@ -7,13 +7,15 @@ use Modules\Complaints\App\Models\Complaint;
 
 class ComplaintNotification extends Component
 {
+    public Complaint $complaint;
+    public function mount(Complaint $complaint){
+        $this->complaint = $complaint;
+    }
     public function render()
     {
         return view('livewire.complaint-notification');
     }
     public function Remove($complaintId){
-        $complaint = Complaint::where('id' , $complaintId)->first();
-        $complaint->show_status = 1;
-        $complaint->save();
+    dd($complaintId);
     }
 }
