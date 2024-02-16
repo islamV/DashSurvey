@@ -2,7 +2,7 @@
 namespace Modules\Complaints\Dash\Resources;
 use Dash\Resource;
 
-use Modules\guests\Dash\Resources\Guests;
+use Modules\guests\Dash\Resources\Guesthotels;
 use Modules\Complaints\App\Models\Complaint;
 
 class HotelsComplaint extends Resource {
@@ -86,7 +86,7 @@ class HotelsComplaint extends Resource {
 	 */
 	public function fields() {
 		return [
-			belongsTo()->make(__('survey.guest_information' ), 'guest', Guests::class)->column(3)->viewColumns(['phone'=>__('dash::dash.phone')]),
+			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthotels::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
 			select()->make(__('survey.Cstatus'),'status') 
 			->options([
 			'positive'=> __('survey.positive'),

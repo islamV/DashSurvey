@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Complaints\Dash\Resources;
 use Dash\Resource;
+use Modules\guests\Dash\Resources\GuestcoffeeShops;
 use Modules\Complaints\App\Models\Complaint;
 
 
@@ -85,14 +86,35 @@ class CoffeeShopsComplaint extends Resource {
 		return $model->where('type', 'coffee_shops');
 	   }
 	public function fields() {
+	
 		return [
-			text()->make(__ ('survey.status') , 'status')->rule('required'),
-			text()->make(__('Complaint Type') , 'type')->whenStore(function(){
-				return ['type' =>'coffee_shops' ] ;
-			})->whenUpdate(function(){
-				return ['type' =>'coffee_shops' ] ;
-			})->value('coffee_shops')->disabled()->hideInIndex(),
+			belongsTo()->make(__('survey.guest_information' ), 'guest', GuestcoffeeShops::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
+			select()->make(__('survey.Cstatus'),'status') 
+			->options([
+			'positive'=> __('survey.positive'),
+			'negative'=>__('survey.negative'),
+			'pending'=>__('survey.pending'),
+			])->selected('pending')->hideInUpdate()->hideInCreate()->column(6)->valueWhenUpdate('pending')->column(3),
+
+			select()->make(__('survey.Cstatus'),'status') // you can use disabled() with this element
+			->options([
+				'positive'=> __('survey.positiveu'),
+				'negative'=>__('survey.negativeu'),
+				'pending'=>__('survey.pendingu'),
+			])->selected('pending')->hideInIndex()->hideInShow()->column(6)->valueWhenUpdate('pending')->column(3),
+			text()->make(__('survey.Ctime') , 'created_at')->column(3)->hideInUpdate() ,
+			
+			
+			custom()->make('Canswers') 
+				->view('complaints::answers')->hideInIndex()->hideInCreate()->hideInUpdate()->column(6),
+				text()->make(__('Complaint Type') , 'type')->whenStore(function(){
+					return ['type' =>'coffee_shops' ] ;
+				})->whenUpdate(function(){
+					return ['type' =>'coffee_shops' ] ;
+				})->value('coffee_shops')->disabled()->hideInIndex()->hideInShow(),
 		];
+
+
 	}
 
 	/**

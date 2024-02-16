@@ -3,7 +3,7 @@ namespace Modules\Surveys\Dash\Resources;
 use Dash\Resource;
 use Modules\Surveys\App\Models\Survey;
 
-use Modules\guests\Dash\Resources\Guests;
+use Modules\guests\Dash\Resources\Guesthospitals;
 use Modules\Hotels\Dash\Resources\Hotels;
 use Modules\Hospitals\Dash\Resources\Hospitals;
 
@@ -89,7 +89,7 @@ class HospitalsSurvey extends Resource {
 
 	public function fields() {
 		return [
-			belongsTo()->make(__('survey.guest_information' ), 'guest', Guests::class)->column(3),
+			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthospitals::class)->column(3),
 			
 			select()->make(__('survey.status'),'status') // you can use disabled() with this element
 			->options([

@@ -6,14 +6,31 @@
   var pusher = new Pusher('35eb4b1ba793be0cd002', {
     cluster: 'eu'
   });
+
+  let yourSound = new Audio('https://server11.mp3quran.net/yasser/001.mp3');
+
+
   var channel = pusher.subscribe('my-channel');
   channel.bind('my-event', function(data) {
-  
+    
       toastr.error( 'شكوي جديدة' , {
         timeOut: 0,
         extendedTimeOut: 0,
       
-      });
+      }
+      );
+      // toastr.error('<audio src="https://server11.mp3quran.net/yasser/001.mp3" id="audiox" autoplay  style="display:hiden;"  > ToastToast  </audio>', 'Toast Image');
+      // playAudio();
+      // alert(data.message);
     
+      // yourSound.play();
   });
+
+
+
+  
+
+
+
 </script>
+

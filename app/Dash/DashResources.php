@@ -6,7 +6,11 @@ return [
      \App\Dash\Resources\Admins::class,
      \App\Dash\Resources\Users::class,
     // Users End//
-    \Modules\Guests\Dash\Resources\Guests::class,
+    \Modules\Guests\Dash\Resources\Guesthotels::class,
+    \Modules\Guests\Dash\Resources\Guesthospitals::class,
+    \Modules\Guests\Dash\Resources\Guestclubs::class,
+    \Modules\Guests\Dash\Resources\GuestcoffeeShops::class,
+    
 
     //surveys
     \Modules\Surveys\Dash\Resources\HotelsSurvey::class,

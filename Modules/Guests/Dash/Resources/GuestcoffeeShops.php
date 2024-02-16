@@ -3,7 +3,7 @@ namespace Modules\guests\Dash\Resources;
 use Dash\Resource;
 use Modules\Guests\App\Models\Guest;
 
-class Guests extends Resource {
+class GuestcoffeeShops extends Resource {
 	
 	
 	public static $model = Guest::class;
@@ -44,9 +44,12 @@ public static function dtButtons() {
 	 * @return string
 	 */
 	public static function customName() {
-		return __('dash.guests');
+		return __('dash.coffee shops');
 	}
 
+	public function query($model) {
+		return $model->where('service_type', 'coffee_shops');
+	   }
 	/**
 	 * you can define vertext in header of page like (Card,HTML,view blade)
 	 * @return array

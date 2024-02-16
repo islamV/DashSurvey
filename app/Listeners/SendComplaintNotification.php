@@ -21,6 +21,6 @@ class SendComplaintNotification
      */
     public function handle(Complaint $event): void
     {
-        // Complaint::class
+        // Complaint::class;
     }
 }

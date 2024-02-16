@@ -4,7 +4,7 @@ use Dash\Resource;
 
 use Modules\Surveys\App\Models\Survey;
 use Modules\Clubs\Dash\Resources\Clubs;
-use Modules\guests\Dash\Resources\Guests;
+use Modules\guests\Dash\Resources\Guestclubs;
 
 
 class ClubsSurvey extends Resource {
@@ -92,7 +92,7 @@ class ClubsSurvey extends Resource {
 	public function fields() {
 		return [
 		
-			belongsTo()->make(__('survey.guest_information' ), 'guest', Guests::class)->column(3),
+			belongsTo()->make(__('survey.guest_information' ), 'guest', Guestclubs::class)->column(3),
 			// belongsTo()->make(__('survey.branch' ), 'club', Clubs::class)->column(3),
 			select()->make(__('survey.status'),'status') // you can use disabled() with this element
 			->options([

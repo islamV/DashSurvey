@@ -3,7 +3,7 @@ namespace Modules\Surveys\Dash\Resources;
 use Dash\Resource;
 
 use Modules\Surveys\App\Models\Survey;
-use Modules\guests\Dash\Resources\Guests;
+use Modules\guests\Dash\Resources\Guesthotels;
 use Modules\Questions\App\Models\Question;
 use Modules\questions\Dash\Resources\HotelsQ;
 use Modules\Services\App\Models\Service;
@@ -97,7 +97,7 @@ class HotelsSurvey extends Resource {
 	 */
 	public function fields() {
 		return [
-			belongsTo()->make(__('survey.guest_information' ), 'guest', Guests::class)->column(3),
+			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthotels::class)->column(3),
 
 			// morphTo()->make(__('survey.branch' ), 'service', Hotels::class)->column(3),
 			select()->make(__('survey.status'),'status') 
