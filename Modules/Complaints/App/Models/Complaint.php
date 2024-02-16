@@ -8,6 +8,7 @@ use Modules\Surveys\App\Models\Answer;
 use Modules\Surveys\App\Models\Survey;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Services\App\Models\Service;
 
 class Complaint extends Model
 {
@@ -35,6 +36,10 @@ class Complaint extends Model
    public function answers(){
     return $this->hasMany(Answer::class ,'id' , 'survey_id')->where('answer' ,'NotSatisfied');
    }
+
+   public function service(){
+    return $this->belongsTo(Service::class ,'service_id') ;
+}
     
    
 }

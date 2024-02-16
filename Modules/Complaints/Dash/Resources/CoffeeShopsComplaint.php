@@ -3,7 +3,7 @@ namespace Modules\Complaints\Dash\Resources;
 use Dash\Resource;
 use Modules\guests\Dash\Resources\GuestcoffeeShops;
 use Modules\Complaints\App\Models\Complaint;
-
+use Modules\Services\Dash\Resources\CoffeeShops;
 
 class CoffeeShopsComplaint extends Resource {
 	
@@ -89,6 +89,8 @@ class CoffeeShopsComplaint extends Resource {
 	
 		return [
 			belongsTo()->make(__('survey.guest_information' ), 'guest', GuestcoffeeShops::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
+			belongsTo()->make(__('survey.branch' ), 'service', CoffeeShops::class)->column(3), // name service
+
 			select()->make(__('survey.Cstatus'),'status') 
 			->options([
 			'positive'=> __('survey.positive'),

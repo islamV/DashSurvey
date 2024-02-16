@@ -4,7 +4,8 @@ use Dash\Resource;
 use Modules\Surveys\App\Models\Survey;
 
 use Modules\guests\Dash\Resources\GuestcoffeeShops;
-use Modules\CoffeeShops\Dash\Resources\CoffeeShops;
+// use Modules\CoffeeShops\Dash\Resources\CoffeeShops;
+use Modules\Services\Dash\Resources\CoffeeShops;
 
 
 
@@ -67,7 +68,10 @@ class CoffeeShopsSurvey extends Resource {
 	 * 	Example: method=> 'invoices'  => columns=>['title'],
 	 * @var array<string> $searchWithRelation
 	 */
-	public static $searchWithRelation = [];
+	public static $searchWithRelation = [
+        'guest' => ['name' , 'phone'] ,
+
+	];
 
 	/**
 	 * if you need to custom resource name in menu navigation
@@ -93,7 +97,13 @@ public function query($model){
 	 */
 	public function fields() {
 		return [
-			belongsTo()->make(__('survey.guest_information' ), 'guest', GuestcoffeeShops::class)->column(3),
+			belongsTo()->make(__('survey.guest_information' ), 'guest', GuestcoffeeShops::class)->column(3)->viewColumns(['phone'=>__('survey.phone')])	,		
+
+			belongsTo()->make(__('survey.branch' ), 'service', CoffeeShops::class)->column(3), // name service
+
+
+		
+		
 			// belongsTo()->make(__('survey.branch' ), 'coffeeshop', CoffeeShops::class)->column(3),
 			select()->make(__('survey.status'),'status') // you can use disabled() with this element
 			->options([

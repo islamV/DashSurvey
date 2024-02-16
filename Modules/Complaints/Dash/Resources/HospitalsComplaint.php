@@ -3,6 +3,7 @@ namespace Modules\Complaints\Dash\Resources;
 use Dash\Resource;
 use Modules\guests\Dash\Resources\Guesthospitals;
 use Modules\Complaints\App\Models\Complaint;
+use Modules\Services\Dash\Resources\Hospitals;
 
 
 class HospitalsComplaint extends Resource {
@@ -90,6 +91,8 @@ class HospitalsComplaint extends Resource {
 	
 		return [
 			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthospitals::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
+			belongsTo()->make(__('survey.branch' ), 'service', Hospitals::class)->column(3), // name service
+
 			select()->make(__('survey.Cstatus'),'status') 
 			->options([
 			'positive'=> __('survey.positive'),

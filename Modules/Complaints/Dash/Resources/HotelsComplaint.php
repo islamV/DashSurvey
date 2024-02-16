@@ -4,7 +4,7 @@ use Dash\Resource;
 
 use Modules\guests\Dash\Resources\Guesthotels;
 use Modules\Complaints\App\Models\Complaint;
-
+use Modules\Services\Dash\Resources\Hotels;
 class HotelsComplaint extends Resource {
 	
 	public static $model = Complaint::class;
@@ -87,6 +87,8 @@ class HotelsComplaint extends Resource {
 	public function fields() {
 		return [
 			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthotels::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
+			belongsTo()->make(__('survey.branch' ), 'service', Hotels::class)->column(3), // name service
+
 			select()->make(__('survey.Cstatus'),'status') 
 			->options([
 			'positive'=> __('survey.positive'),

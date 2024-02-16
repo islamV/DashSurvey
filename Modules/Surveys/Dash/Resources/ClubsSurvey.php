@@ -3,8 +3,9 @@ namespace Modules\Surveys\Dash\Resources;
 use Dash\Resource;
 
 use Modules\Surveys\App\Models\Survey;
-use Modules\Clubs\Dash\Resources\Clubs;
+// use Modules\Clubs\Dash\Resources\Clubs;
 use Modules\guests\Dash\Resources\Guestclubs;
+use Modules\Services\Dash\Resources\Clubs;
 
 
 class ClubsSurvey extends Resource {
@@ -63,7 +64,10 @@ class ClubsSurvey extends Resource {
 	 * 	Example: method=> 'invoices'  => columns=>['title'],
 	 * @var array<string> $searchWithRelation
 	 */
-	public static $searchWithRelation = [];
+	public static $searchWithRelation = [
+        'guest' => ['name' , 'phone'] ,
+
+	];
 
 	/**
 	 * if you need to custom resource name in menu navigation
@@ -92,8 +96,13 @@ class ClubsSurvey extends Resource {
 	public function fields() {
 		return [
 		
-			belongsTo()->make(__('survey.guest_information' ), 'guest', Guestclubs::class)->column(3),
+			belongsTo()->make(__('survey.guest_information' ), 'guest', Guestclubs::class)->column(3)->viewColumns(['phone'=>__('survey.phone')])	,	
 			// belongsTo()->make(__('survey.branch' ), 'club', Clubs::class)->column(3),
+			belongsTo()->make(__('survey.branch' ), 'service', Clubs::class)->column(3), // name service
+
+
+			
+			
 			select()->make(__('survey.status'),'status') // you can use disabled() with this element
 			->options([
 			'positive'=> __('survey.positive'),

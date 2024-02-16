@@ -5,7 +5,8 @@ use Modules\Surveys\App\Models\Survey;
 
 use Modules\guests\Dash\Resources\Guesthospitals;
 use Modules\Hotels\Dash\Resources\Hotels;
-use Modules\Hospitals\Dash\Resources\Hospitals;
+// use Modules\Hospitals\Dash\Resources\Hospitals;
+use Modules\Services\Dash\Resources\Hospitals;
 
 
 class HospitalsSurvey extends Resource {
@@ -67,8 +68,12 @@ class HospitalsSurvey extends Resource {
 	 * 	Example: method=> 'invoices'  => columns=>['title'],
 	 * @var array<string> $searchWithRelation
 	 */
-	public static $searchWithRelation = [];
 
+
+	public static $searchWithRelation = [
+        'guest' => ['name' , 'phone'] ,
+
+	];
 	/**
 	 * if you need to custom resource name in menu navigation
 	 * @return string
@@ -89,8 +94,13 @@ class HospitalsSurvey extends Resource {
 
 	public function fields() {
 		return [
-			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthospitals::class)->column(3),
+			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthospitals::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
 			
+
+
+			belongsTo()->make(__('survey.branch' ), 'service', Hospitals::class)->column(3), // name service
+
+
 			select()->make(__('survey.status'),'status') // you can use disabled() with this element
 			->options([
 			'positive'=> __('survey.positive'),

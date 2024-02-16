@@ -57,6 +57,7 @@ class Hotels extends Resource {
 	public static $search = [
 		'id',
 		'name',
+		'address'
 	];
 
 	/**

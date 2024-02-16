@@ -59,7 +59,7 @@ class HotelsSurvey extends Resource {
 	 */
 	public static $search = [
 		'id',
-		'name',
+		'status',
 	];
 
 	/**
@@ -68,7 +68,10 @@ class HotelsSurvey extends Resource {
 	 * 	Example: method=> 'invoices'  => columns=>['title'],
 	 * @var array<string> $searchWithRelation
 	 */
-	public static $searchWithRelation = [];
+	public static $searchWithRelation = [
+        'guest' => ['name' , 'phone'] ,
+
+	];
 
 	/**
 	 * if you need to custom resource name in menu navigation
@@ -97,7 +100,12 @@ class HotelsSurvey extends Resource {
 	 */
 	public function fields() {
 		return [
-			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthotels::class)->column(3),
+
+			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthotels::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
+
+			// belongsTo()->make(__('survey.guest_information' ), 'guest', Guests::class)->column(3)->ViewColumns('phone'),
+			belongsTo()->make(__('survey.branch' ), 'service', Hotels::class)->column(3), // name service
+
 
 			// morphTo()->make(__('survey.branch' ), 'service', Hotels::class)->column(3),
 			select()->make(__('survey.status'),'status') 
