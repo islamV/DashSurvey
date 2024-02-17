@@ -25,7 +25,7 @@ class Help extends Resource {
             // (new AllAdminGroups)->render(),
             // (new AllAdminGroupRoles)->render(),
 			// (new Users)->render(),
-			(new Surveys)->render(),
+			// (new Surveys)->render(),
 		      
 			//  HTML::render('<h1>Some HTML</h1>'),
 

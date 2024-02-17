@@ -1,7 +1,9 @@
 <?php
 namespace Modules\guests\Dash\Resources;
 use Dash\Resource;
+use Illuminate\Support\Facades\Auth;
 use Modules\Guests\App\Models\Guest;
+use Modules\Surveys\Dash\Resources\HotelsSurvey;
 
 class Guesthotels extends Resource {
 	
@@ -10,8 +12,8 @@ class Guesthotels extends Resource {
 
 	public static $group = 'guests'; 
 
-
-	public static $displayInMenu = true;
+            
+	public static $displayInMenu =true ;
 
     public static $lengthMenu        = [20, 40, 60, 80, 100];
 	
@@ -67,6 +69,7 @@ public static function dtButtons() {
 	
 			text()->make(__('dash::dash.name'),'name')->rule('required')->column(2),
 			tel()->make(__('dash::dash.phone'),'phone')->placeholder('01234567899')->rule('required' , 'regex:/^(0|(\+\d{1,2}\s?))?(\(\d{3}\)|\d{3})([-.\s]?)\d{3}([-.\s]?)\d{4}$/'),
+			hasMany()->make(__('survey.surveys'),'survey' , HotelsSurvey::class),
 		];
 	}
 

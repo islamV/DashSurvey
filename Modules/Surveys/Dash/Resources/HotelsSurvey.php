@@ -2,12 +2,13 @@
 namespace Modules\Surveys\Dash\Resources;
 use Dash\Resource;
 
+use App\Dash\Metrics\Charts\Surveys;
 use Modules\Surveys\App\Models\Survey;
-use Modules\guests\Dash\Resources\Guesthotels;
-use Modules\Questions\App\Models\Question;
-use Modules\questions\Dash\Resources\HotelsQ;
 use Modules\Services\App\Models\Service;
+use Modules\Questions\App\Models\Question;
 use Modules\Services\Dash\Resources\Hotels;
+use Modules\questions\Dash\Resources\HotelsQ;
+use Modules\guests\Dash\Resources\Guesthotels;
 
 class HotelsSurvey extends Resource {
 
@@ -51,7 +52,7 @@ class HotelsSurvey extends Resource {
 	 * title static property to labels in Rows,Show,Forms
 	 * @var string $title
 	 */
-	public static $title = 'name';
+	public static $title = 'status';
 
 	/**
 	 * defining column name to enable or disable search in main resource page
@@ -90,19 +91,27 @@ class HotelsSurvey extends Resource {
 	 * you can define vertext in header of page like (Card,HTML,view blade)
 	 * @return array<string>
 	 */
-	public static function vertex() {
-		return [];
-	}
 	
 	/**
 	 * define fields by Helpers
 	 * @return array<string>
 	 */
+	public static function dtButtons() {
+		return [
+			// 'print',
+			'pdf',
+			'excel',
+			'csv',
+			'copy',
+		]; 
+	}
 	public function fields() {
 		return [
 
-			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthotels::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
-
+			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthotels::class)->column(3)->viewColumns(['phone'=>__('survey.phone')])->whenUpdate(function($model){
+				return['guest_id' =>$model->guest_id];
+			})->disabled(),
+            
 			// belongsTo()->make(__('survey.guest_information' ), 'guest', Guests::class)->column(3)->ViewColumns('phone'),
 			belongsTo()->make(__('survey.branch' ), 'service', Hotels::class)->column(3), // name service
 
@@ -131,7 +140,12 @@ class HotelsSurvey extends Resource {
 
 		];
 	}
-
+	public static function vertex() {
+		return [
+			// (new Surveys)->render(),
+		];
+	}
+	
 	/**
 	 * define the actions To Using in Resource (index,show)
 	 * php artisan dash:make-action ActionName

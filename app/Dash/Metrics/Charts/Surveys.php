@@ -1,6 +1,8 @@
 <?php
 namespace App\Dash\Metrics\Charts;
 use Dash\Extras\Metrics\Chart;
+use Modules\Surveys\App\Models\Survey;
+use Modules\Surveys\Dash\Resources\HotelsSurvey;
 
 class Surveys extends Chart{
 
@@ -34,7 +36,7 @@ class Surveys extends Chart{
                                 [
                                     'label'=>'  حالات الاستبيان الايجابية' ,
                                     'data'=>[
-                                      20000
+                                      Survey::where('status','positive')->where('service_type' ,'hotels')->count() ,
                                      ],
                                      'backgroundColor'=> [
 
@@ -53,7 +55,7 @@ class Surveys extends Chart{
                                     
                                     'label'=>'  حالات الاستبيان السلبية' ,
                                     'data'=>[
-                                       15751 
+                                   10
                                      ],
                                      'backgroundColor'=> [
 

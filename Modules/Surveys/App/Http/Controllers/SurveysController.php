@@ -6,9 +6,11 @@ use App\Models\AdminGroup;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+
 use Modules\Guests\App\Models\Guest;
 use Modules\Hotels\App\Models\Hotel;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Modules\Surveys\App\Models\Answer;
 use Modules\Surveys\App\Models\Survey;
 use Modules\Complaints\App\Models\Complaint;
@@ -20,9 +22,7 @@ class SurveysController extends Controller
      */
     public function index()
     {
-		$c= Complaint::where('show_status' , '0')->orderBy('created_at','desc')->with('survey')->first();
-     dd($c->survey->guest->name);
-        
+
     }
 
     /**
