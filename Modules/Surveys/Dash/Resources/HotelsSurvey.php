@@ -1,14 +1,19 @@
 <?php
 namespace Modules\Surveys\Dash\Resources;
-use Dash\Resource;
 
+use Dash\Resource;
 use App\Dash\Metrics\Charts\Surveys;
 use Modules\Surveys\App\Models\Survey;
+
+use App\Dash\Filters\HotelsSurveyBranch;
+use App\Dash\Filters\HotelsSurveyStatus;
 use Modules\Services\App\Models\Service;
 use Modules\Questions\App\Models\Question;
 use Modules\Services\Dash\Resources\Hotels;
 use Modules\questions\Dash\Resources\HotelsQ;
 use Modules\guests\Dash\Resources\Guesthotels;
+use Modules\surveys\Dash\Metrics\Charts\HotelsSurveys;
+use Modules\surveys\Dash\Metrics\Charts\HotelsAnswersSurveys;
 
 class HotelsSurvey extends Resource {
 
@@ -92,8 +97,11 @@ class HotelsSurvey extends Resource {
 	 * @return array<string>
 	 */
 
-	public static function vertex() {
-		return [];
+	public static function vertex() :array{
+		return [
+			(new HotelsAnswersSurveys)->render(),
+			// (new HotelsSurveys)->render(),
+		];
 	}
 	public static function dtButtons() {
 		return [
@@ -117,7 +125,7 @@ class HotelsSurvey extends Resource {
 
 			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthotels::class)->column(3)->viewColumns(['phone'=>__('survey.phone')])->whenUpdate(function($model){
 				return['guest_id' =>$model->guest_id];
-			})->disabled(),
+			}),
             
 			// belongsTo()->make(__('survey.guest_information' ), 'guest', Guests::class)->column(3)->ViewColumns('phone'),
 			belongsTo()->make(__('survey.branch' ), 'service', Hotels::class)->column(3), // name service
@@ -163,7 +171,11 @@ class HotelsSurvey extends Resource {
 	 * @return array<string>
 	 */
 	public function filters() {
-		return [];
+		return [
+			HotelsSurveyStatus::class,
+			HotelsSurveyBranch::class,
+
+		];
 	}
 
 }

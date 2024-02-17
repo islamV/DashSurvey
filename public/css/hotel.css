@@ -12,7 +12,7 @@
 body {
     width: 100%;
     height: fit-content;
-    background-color: #ffffff;
+    background-color: rgba(78, 206, 78, 0.995);
     display: flex;
     align-items: center;
     justify-content: center;

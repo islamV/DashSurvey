@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Modules\Surveys\App\Models\Answer;
 use Modules\Surveys\App\Models\Survey;
 use Modules\Complaints\App\Models\Complaint;
+use Modules\Questions\App\Models\Question;
 
 class SurveysController extends Controller
 {
@@ -80,11 +81,12 @@ class SurveysController extends Controller
           event(new \App\Events\Complaint($complaint));
        }
     foreach($request->answers as $key=>  $answer){
-       
+       $question = Question::find($key) ;
         $ans = new Answer;
         $ans->survey_id = $survey->id ;
         $ans->question_id = $key ;
         $ans->answer = $answer; 
+        $ans->type_service= $question->type_service;
         $ans->save() ;
      }
    

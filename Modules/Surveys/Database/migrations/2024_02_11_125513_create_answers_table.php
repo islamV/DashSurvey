@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('survey_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('question_id')->constrained('questions')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('answer');
+            $table->string('type_service')->nullable();
             $table->timestamps();
         });
     }
