@@ -91,13 +91,14 @@ class HotelsSurvey extends Resource {
 	 * you can define vertext in header of page like (Card,HTML,view blade)
 	 * @return array<string>
 	 */
-	
-	/**
-	 * define fields by Helpers
-	 * @return array<string>
-	 */
+
+	public static function vertex() {
+		return [];
+	}
 	public static function dtButtons() {
 		return [
+		
+		
 			// 'print',
 			'pdf',
 			'excel',
@@ -105,6 +106,12 @@ class HotelsSurvey extends Resource {
 			'copy',
 		]; 
 	}
+
+	/**
+	 * define fields by Helpers
+	 * @return array<string>
+	 */
+
 	public function fields() {
 		return [
 
@@ -140,12 +147,7 @@ class HotelsSurvey extends Resource {
 
 		];
 	}
-	public static function vertex() {
-		return [
-			// (new Surveys)->render(),
-		];
-	}
-	
+
 	/**
 	 * define the actions To Using in Resource (index,show)
 	 * php artisan dash:make-action ActionName

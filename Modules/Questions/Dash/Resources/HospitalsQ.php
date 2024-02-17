@@ -87,6 +87,17 @@ class HospitalsQ extends Resource {
 	public function fields() {
 		return [
 			text()->make(__ ('title') , 'title')->rule('required'),
+
+			select()->make(__('survey.type_service'),'type_service') // you can use disabled() with this element
+			->options([
+				'Nurse'=> __('survey.Nurse'),
+				'Service_Level'=>__('survey.Service_Level'),
+				'evaluation'=>__('survey.evaluation'),
+				'Doctor'=>__('survey.Doctor'),
+			
+				
+			])->column(6),
+
 			text()->make(__('service Type') , 'type')->whenStore(function(){
 				return ['type' =>'hospitals' ] ;
 			})->whenUpdate(function(){

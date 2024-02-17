@@ -85,6 +85,20 @@ class ClubsQ extends Resource {
 	public function fields() {
 		return [
 			text()->make(__ ('title') , 'title')->rule('required'),
+			select()->make(__('survey.type_service'),'type_service') // you can use disabled() with this element
+			->options([
+				'cleanliness'=> __('survey.cleanliness'),
+				'staff'=>__('survey.staff'),
+				'services_provided'=>__('survey.services_provided'),
+				'massage'=>__('survey.massage'),
+				' Moroccan_bath'=>__('survey.Moroccan_bath'),
+				'recommend'=>__('survey.recommend'),
+				'amenities'=>__('survey.amenities'),
+				'Money'=>__('survey.Money'),
+				'difficulties '=>__('survey.difficulties'),
+				
+			])->column(6),
+
 			text()->make(__('service Type') , 'type')->whenStore(function(){
 				return ['type' =>'clubs' ] ;
 			})->whenUpdate(function(){

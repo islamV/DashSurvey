@@ -69,7 +69,6 @@ public static function dtButtons() {
 	
 			text()->make(__('dash::dash.name'),'name')->rule('required')->column(2),
 			tel()->make(__('dash::dash.phone'),'phone')->placeholder('01234567899')->rule('required' , 'regex:/^(0|(\+\d{1,2}\s?))?(\(\d{3}\)|\d{3})([-.\s]?)\d{3}([-.\s]?)\d{4}$/'),
-			hasMany()->make(__('survey.surveys'),'survey' , HotelsSurvey::class),
 		];
 	}
 

@@ -15,8 +15,9 @@ class Guest extends Model
      * The attributes that are mass assignable.
      */
     protected $fillable = ['name' , 'phone' ,'service_type'];
-    public function survey(){
+
+    public  function servey(){
         return $this->hasMany(Survey::class);
-    }    
-    // to each survey type make function hasmany
+    }
+    
 }

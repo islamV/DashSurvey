@@ -51,7 +51,7 @@ class HospitalsSurvey extends Resource {
 	 * title static property to labels in Rows,Show,Forms
 	 * @var string $title
 	 */
-	public static $title = 'name';
+	public static $title = 'status';
 
 	/**
 	 * defining column name to enable or disable search in main resource page
@@ -90,6 +90,18 @@ class HospitalsSurvey extends Resource {
 	 */
 	public static function vertex() {
 		return [];
+	}
+
+	public static function dtButtons() {
+		return [
+		
+		
+			// 'print',
+			'pdf',
+			'excel',
+			'csv',
+			'copy',
+		]; 
 	}
 
 	public function fields() {

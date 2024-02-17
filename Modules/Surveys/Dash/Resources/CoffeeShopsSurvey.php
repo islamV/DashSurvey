@@ -51,7 +51,7 @@ class CoffeeShopsSurvey extends Resource {
 	 * title static property to labels in Rows,Show,Forms
 	 * @var string $title
 	 */
-	public static $title = 'name';
+	public static $title = 'status';
 
 	/**
 	 * defining column name to enable or disable search in main resource page
@@ -79,6 +79,17 @@ class CoffeeShopsSurvey extends Resource {
 	 */
 	public static function customName() {
 		return __('dash.coffee shops');
+	}
+	public static function dtButtons() {
+		return [
+		
+		
+			// 'print',
+			'pdf',
+			'excel',
+			'csv',
+			'copy',
+		]; 
 	}
 
 	/**

@@ -80,7 +80,17 @@ class ClubsComplaint extends Resource {
 	public static function vertex() {
 		return [];
 	}
-
+	public static function dtButtons() {
+		return [
+		
+		
+			// 'print',
+			'pdf',
+			'excel',
+			'csv',
+			'copy',
+		]; 
+	}
 	/**
 	 * define fields by Helpers
 	 * @return array

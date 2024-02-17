@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('type')->nullable();
+            $table->string('type_service')->nullable();
       
             $table->timestamps();
         });
