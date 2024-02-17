@@ -47,7 +47,7 @@ class ClubsSurvey extends Resource {
 	 * title static property to labels in Rows,Show,Forms
 	 * @var string $title
 	 */
-	public static $title = 'name';
+	public static $title = 'status';
 
 	/**
 	 * defining column name to enable or disable search in main resource page
@@ -77,7 +77,17 @@ class ClubsSurvey extends Resource {
 		return __('dash.clubs');
 	}
 
-
+	public static function dtButtons() {
+		return [
+		
+		
+			// 'print',
+			'pdf',
+			'excel',
+			'csv',
+			'copy',
+		]; 
+	}
 
 	/**
 	 * you can define vertext in header of page like (Card,HTML,view blade)

@@ -43,6 +43,8 @@ public function service(){
     public function guest(){
         return $this->belongsTo(Guest::class ,'guest_id');
     }
+
+   
     // public function club(){
     //     return $this->belongsTo(Club::class , 'service_id' );
     // }

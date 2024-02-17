@@ -86,6 +86,22 @@ class HotelsQ extends Resource {
 	public function fields() {
 		return [
 			text()->make(__ ('title') , 'title')->rule('required'),
+			select()->make(__('survey.type_service'),'type_service') // you can use disabled() with this element
+			->options([
+			'Reception_Bellman'=> __('survey.Reception_Bellman'),
+			'Reservation_checkin_checkout_riendly'=>__('survey.Reservation_checkin_checkout_riendly'),
+			'Resturant'=>__('survey.Resturant'),
+			'Food'=>__('survey.Food'),
+			'coffe_shop'=>__('survey.coffe_shop'),
+			'Swimmingpool_GYM'=>__('survey.Swimmingpool_GYM'),
+			'cleanliness_room'=>__('survey.cleanliness_room'),
+			'cleanliness_Area'=>__('survey.cleanliness_Area'),
+			'Money'=>__('survey.Money'),
+			'WI-FI'=>__('survey.WI-FI'),
+			
+
+			])->column(6),
+
 			text()->make(__('service Type') , 'type')->whenStore(function(){
 				return ['type' =>'hotels' ] ;
 			})->whenUpdate(function(){

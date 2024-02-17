@@ -15,7 +15,7 @@ class Question extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = ['title' , 'service_type' ,'service_id'];
+    protected $fillable = ['title' ,'type_service', 'type' ,'service_id'];
    
 public function survey(){
     return $this->belongsTo(Survey::class);

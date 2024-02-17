@@ -86,6 +86,13 @@ class CoffeeShopsQ extends Resource {
 	public function fields() {
 		return [
 			text()->make(__ ('title') , 'title')->rule('required'),
+			select()->make(__('survey.type_service'),'type_service') // you can use disabled() with this element
+			->options([
+			'positive'=> __('survey.positive'),
+			'negative'=>__('survey.negative'),
+			'pending'=>__('survey.pending'),
+			])->column(6),
+			
 			text()->make(__('service Type') , 'type')->whenStore(function(){
 				return ['type' =>'coffee_shops' ] ;
 			})->whenUpdate(function(){
