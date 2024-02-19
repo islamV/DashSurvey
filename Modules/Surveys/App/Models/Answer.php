@@ -15,7 +15,7 @@ class Answer extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = ['survey_id' , 'question_id' , 'answer' ,'type_service'];
+    protected $fillable = ['survey_id' , 'question_id' , 'answer' ,'type_service','type'];
     public function question(){
         return $this->belongsTo(Question::class);
       }

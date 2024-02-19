@@ -4,8 +4,12 @@ use Dash\Resource;
 
 use Modules\Surveys\App\Models\Survey;
 // use Modules\Clubs\Dash\Resources\Clubs;
-use Modules\guests\Dash\Resources\Guestclubs;
+use App\Dash\Filters\ClubsSurveyBranch;
+use App\Dash\Filters\ClubsSurveyStatus;
 use Modules\Services\Dash\Resources\Clubs;
+use Modules\guests\Dash\Resources\Guestclubs;
+use Modules\surveys\Dash\Metrics\Charts\ClubsSurveys;
+use Modules\surveys\Dash\Metrics\Charts\ClubsAnswersSurveys;
 
 
 class ClubsSurvey extends Resource {
@@ -94,7 +98,10 @@ class ClubsSurvey extends Resource {
 	 * @return array<string>
 	 */
 	public static function vertex() {
-		return [];
+		return [
+			// (new ClubsSurveys)->render(),
+			// (new ClubsAnswersSurveys)->render(),
+		];
 	}
 	public function query($model){
 		return $model->where('service_type' , 'clubs') ;
@@ -150,7 +157,11 @@ class ClubsSurvey extends Resource {
 	 * @return array<string>
 	 */
 	public function filters() {
-		return [];
+		return [
+			ClubsSurveyStatus::class,
+			ClubsSurveyBranch::class,
+
+		];
 	}
 
 }

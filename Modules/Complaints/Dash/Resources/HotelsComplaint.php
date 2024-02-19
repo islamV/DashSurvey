@@ -2,9 +2,14 @@
 namespace Modules\Complaints\Dash\Resources;
 use Dash\Resource;
 
-use Modules\guests\Dash\Resources\Guesthotels;
-use Modules\Complaints\App\Models\Complaint;
+use App\Dash\Filters\HotelsCBranch;
+use App\Dash\Filters\HotelsCStatus;
 use Modules\Services\Dash\Resources\Hotels;
+use Modules\Complaints\App\Models\Complaint;
+use Modules\guests\Dash\Resources\Guesthotels;
+use Modules\Complaints\Dash\Metrics\Charts\HotelsR;
+use Modules\Complaints\Dash\Metrics\Charts\HotelComplaints;
+
 class HotelsComplaint extends Resource {
 	
 	public static $model = Complaint::class;
@@ -77,7 +82,10 @@ class HotelsComplaint extends Resource {
 	 * @return array
 	 */
 	public static function vertex() {
-		return [];
+		return [
+			// (new HotelComplaints)->render(),
+			(new HotelsR)->render(),
+		];
 	}
 	public static function dtButtons() {
 		return [
@@ -140,7 +148,11 @@ class HotelsComplaint extends Resource {
 	 * @return array
 	 */
 	public function filters() {
-		return [];
+		return [
+			HotelsCStatus::class,
+			HotelsCBranch::class,
+
+		];
 	}
 
 }

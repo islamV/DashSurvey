@@ -1,9 +1,13 @@
 <?php
 namespace Modules\Complaints\Dash\Resources;
 use Dash\Resource;
-use Modules\guests\Dash\Resources\Guestclubs;
-use Modules\Complaints\App\Models\Complaint;
+use App\Dash\Filters\ClubsCBranch;
+use App\Dash\Filters\ClubsCStatus;
 use Modules\Services\Dash\Resources\Clubs;
+use Modules\Complaints\App\Models\Complaint;
+use Modules\guests\Dash\Resources\Guestclubs;
+use Modules\Complaints\Dash\Metrics\Charts\ClubsR;
+use Modules\Complaints\Dash\Metrics\Charts\ClubsComplaints;
 
 class ClubsComplaint extends Resource {
 	
@@ -78,7 +82,10 @@ class ClubsComplaint extends Resource {
 	 * @return array
 	 */
 	public static function vertex() {
-		return [];
+		return [
+			(new ClubsComplaints)->render(),
+			// (new ClubsR)->render(),
+	];
 	}
 	public static function dtButtons() {
 		return [
@@ -143,7 +150,11 @@ class ClubsComplaint extends Resource {
 	 * @return array
 	 */
 	public function filters() {
-		return [];
+		return [
+			ClubsCStatus::class,
+			ClubsCBranch::class,
+
+		];
 	}
 
 }

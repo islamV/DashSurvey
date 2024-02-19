@@ -1,6 +1,7 @@
 <?php
 namespace Modules\surveys\Dash\Metrics\Charts;
 use Dash\Extras\Metrics\Chart;
+use Modules\Surveys\App\Models\Survey;
 
 class CoffeeShopsSurveys extends Chart{
 
@@ -11,7 +12,7 @@ class CoffeeShopsSurveys extends Chart{
      */
     public function options():array{
         return [
-            'column'=>'6',
+            'column'=>'5',
             'elem'=>'YourElementAttributeIDWithoutHash'// do not add hash # just clearname
         ];
     }
@@ -27,21 +28,29 @@ class CoffeeShopsSurveys extends Chart{
      */
     public function calc(){
         return $this->data([
-                    'type'=>'bar',
+                    'type'=>'pie',
                     'data'=>[
-                            'labels'=> [/*write some labels */],
+                            'labels'=> [__('survey.positiveu') ,__('survey.negativeu') ,__("survey.pendingu")],
                             'datasets'=>[
                                 [
-                                    'label'=>'total groups',
+                                    'label'=>''.__('survey.survey'),
                                     'data'=>[
-                                       /* write some values using ORM OR QueryBuilder */
+                                        Survey::where('status' , 'positive')->where('service_type' , 'coffee_shops')->count(),
+                                        Survey::where('status' , 'negative')->where('service_type' , 'coffee_shops')->count(),
+                                        Survey::where('status' , 'pending')->where('service_type' , 'coffee_shops')->count(),
+
+                                    //   Complaint::where('status' , 'pending')->where('type' , 'hotels')->count(),
                                      ],
+                                     'backgroundColor'=> [
+                                         'rgba(78, 206, 78, 0.995)',
+                                         'rgb(255, 99, 132)',
+                                        'rgb(255, 205, 86)'
+                                      ],
+                                      'weight' => 1
                                 ]
                             ]
                         ],
-                        /*
-                         you can add more options here after data
-                        */
+                      
         ]);
 
     }
