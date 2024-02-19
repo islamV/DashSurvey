@@ -18,8 +18,8 @@ class HotelsAnswersSurveys extends Chart
     public function options(): array
     {
         return [
-            'column' => '6',
-            'elem' => 'status' // do not add hash # just clearname
+            'column' => '8',
+            'elem' => 'HotelsAnswersSurveys' // do not add hash # just clearname
         ];
     }
 
@@ -32,53 +32,84 @@ class HotelsAnswersSurveys extends Chart
      * @return $this->data method
      *
      */
+
+
+     public function typeServiceTrans(){
+        $answers = Answer::select('type_service')->distinct()->pluck('type_service');
+
+    
+        foreach ($answers as $kay => $label) {
+            $labels[$kay]= __('survey.'. $label);
+    
+        }  
+    return  $labels ;
+    }  
+public function dataServiceSatisfied(){
+  
+
+$data  =  [] ; 
+       foreach($this->typeService() as $kay => $value){
+        $data[$kay] =    Answer::where('answer', 'Satisfied')->where('type_service' ,$value)->count();
+       }
+       return $data ;
+}
+public function dataServiceNotSatisfied(){
+  
+
+    $data  =  [] ; 
+           foreach($this->typeService() as $kay => $value){
+            $data[$kay] =    Answer::where('answer', 'NotSatisfied')->where('type_service' ,$value)->count();
+           }
+           return $data ;
+    }
+    public function typeService(){
+        $answers = Answer::select('type_service')->distinct()->pluck('type_service');
+    
+        foreach ($answers as $kay => $label) {
+            $labels[$kay]=  $label;
+        }  
+    return  $labels ;
+    }  
+    public function colorGreen(): array{
+        $data = [] ;
+        foreach($this->typeService() as $kay => $value){
+            $data[$kay] =  'rgba(75, 192, 192, 0.2)';                
+
+        }  
+        return $data;
+
+    }  
+    public function colorRed(): array{
+        $data = [] ;
+        foreach($this->typeService() as $kay => $value){
+            $data[$kay] =  'rgba(255, 99, 132, 0.2)';
+           
+
+        }  
+        return $data;
+
+    }  
+
+
     public function calc()
     {
         return $this->data([
             'type' => 'bar',
             'data' => [
-                'labels' => [__('survey.Reception_Bellman'), __('survey.Food'), __('survey.WI-FI')],
+                'labels' => $this->typeServiceTrans(),
                 'datasets' => [
                     [
                         'label' => 'Satisfied',
-                        'data' => [
-                      Answer::where('answer', 'Satisfied')->where('type_service' ,'Reception_Bellman')->count(),
-                          Answer::where('answer', 'Satisfied')->count(),
-                           Answer::where('answer', 'Satisfied')->count(),
-                         
-                        ],
-                        'backgroundColor' => [
-
-                            'rgba(75, 192, 192, 0.2)',
-                            // 'rgba(255, 99, 132, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-
-
-
-                        ],
+                        'data' =>$this->dataServiceSatisfied(),
+                        'backgroundColor' =>$this->colorGreen(),
                         ' barPercentage' => .5
 
                     ],
                     [
 
                         'label' => 'NOTSatisfied',
-                        'data' => [
-                       
-                            Answer::where('answer', 'NotSatisfied')->where('type_service' ,'Reception_Bellman')->count(),
-                            Answer::where('answer', 'NotSatisfied')->count(),
-                         Answer::where('answer', 'NotSatisfied')->count(),
-
-                        ],
-                        'backgroundColor' => [
-
-                            'rgba(255, 99, 132, 0.2)',
-
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(255, 99, 132, 0.2)',
-
-
-                        ],
+                        'data' => $this->dataServiceNotSatisfied(),
+                        'backgroundColor' => $this->colorRed(),
                         ' barPercentage' => .5
 
                     ] ,
@@ -90,6 +121,6 @@ class HotelsAnswersSurveys extends Chart
         ])
             // blank or parent or remove this prarm default is parent
             ->icon('<i class="fa-regular fa-clipboard"></i>')
-            ->title(__('survey.report'));
+            ->title(__('answer'));
     }
 }

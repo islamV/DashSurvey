@@ -98,11 +98,13 @@ class HotelsSurvey extends Resource {
 	 */
 
 	public static function vertex() :array{
-		return [
-			(new HotelsAnswersSurveys)->render(),
-			// (new HotelsSurveys)->render(),
-		];
+		return 
+			[(new HotelsAnswersSurveys)->render('hotel'),
+		 (new HotelsSurveys)->render('hotel2')];
+		
 	}
+
+		
 	public static function dtButtons() {
 		return [
 		

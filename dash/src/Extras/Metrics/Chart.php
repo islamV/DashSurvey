@@ -7,8 +7,8 @@ use Dash\Extras\Metrics\Contracts\AbstractMetricsChart;
 
 class Chart extends AbstractMetricsChart{
 
-    public function render(){
-        return $this->chartJs();
+    public function render($v){
+        return $this->chartJs($v);
     }
 
 

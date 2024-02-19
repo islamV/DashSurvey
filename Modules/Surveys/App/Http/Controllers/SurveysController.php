@@ -21,9 +21,19 @@ class SurveysController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function typeServiceTrans(){
+        $answers = Answer::select('type_service')->distinct()->pluck('type_service');
+
+    
+        foreach ($answers as $kay => $label) {
+            $labels[$kay]= __('survey.'. $label);
+    
+        }  
+    return  $labels ;
+    }  
     public function index()
     {
-
+        dd($this->typeServiceTrans());
     }
 
     /**

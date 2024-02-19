@@ -4,6 +4,6 @@
 <link rel="stylesheet" href="{{ asset('css/hospital.css') }}">
 @endpush
 @section('cover')
-<div class="cover"><img src="{{ asset('img/hosptial.zip') }}" alt=""></div>
+<div class="cover"><img src="{{ asset('img/h.jpg') }}" alt=""></div>
 
 @endsection

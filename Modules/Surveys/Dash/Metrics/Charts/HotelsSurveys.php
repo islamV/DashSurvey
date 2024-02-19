@@ -13,8 +13,9 @@ class HotelsSurveys extends Chart{
      */
     public function options():array{
         return [
-            'column'=>'5',
-            'elem'=>'YourElementAttributeIDWithoutHash'// do not add hash # just clearname
+            'column'=>'4',
+            'elem'=>'HotelsSurveys',
+            
         ];
     }
 
@@ -52,7 +53,8 @@ class HotelsSurveys extends Chart{
                             ]
                         ],
                       
-        ]);
+        ])  ->icon('<i class="fa-regular fa-clipboard"></i>')
+        ->title(__('survey.report'));
 
     }
 

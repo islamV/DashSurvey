@@ -19,8 +19,9 @@ abstract class AbstractMetricsChart{
         $this->calc();
     }
 
-    public function chartJs()
+    public function chartJs($v)
     {
+
         $allChartData = json_encode($this->allChartData, JSON_PRETTY_PRINT);
         $subTitle = !empty($this->subtitle)?'<small class="ps-3 text-xs">'.$this->subtitle.'</small>
         ':'';
@@ -53,8 +54,8 @@ abstract class AbstractMetricsChart{
         ';
         $data .= "
           <script>
-              const ctx = document.getElementById('".$this->elem."');
-              new Chart(ctx, " .$allChartData.");
+              const ctx".$v." = document.getElementById('".$this->elem."');
+              new Chart(ctx".$v.", " .$allChartData.");
           </script>
          ";
 
