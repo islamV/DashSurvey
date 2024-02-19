@@ -47,4 +47,15 @@ return [
 'amenities'=>'facilities and amenities provided',
 'difficulties'=>' difficulties or concerns',
 
+// coffee
+'quality_coffee'=>' the quality of coffee',
+'bakery'=>'the quality of the bakery',
+'candy'=>' the quality of the candy ',
+'speed'=>'  the speed of the order ',
+'quality'=>'  the quality of the order',
+'employees'=>' the CAFÉ employees',
+
+'survey'=>'Number Of Survey '
+
+
 ] ;

@@ -3,10 +3,14 @@ namespace Modules\Surveys\Dash\Resources;
 use Dash\Resource;
 use Modules\Surveys\App\Models\Survey;
 
-use Modules\guests\Dash\Resources\Guesthospitals;
 use Modules\Hotels\Dash\Resources\Hotels;
+use App\Dash\Filters\HospitalsSurveyBranch;
 // use Modules\Hospitals\Dash\Resources\Hospitals;
+use App\Dash\Filters\HospitalsSurveyStatus;
 use Modules\Services\Dash\Resources\Hospitals;
+use Modules\guests\Dash\Resources\Guesthospitals;
+use Modules\surveys\Dash\Metrics\Charts\HospitalsSurveys;
+use Modules\surveys\Dash\Metrics\Charts\HospitalsAnswersSurveys;
 
 
 class HospitalsSurvey extends Resource {
@@ -89,7 +93,11 @@ class HospitalsSurvey extends Resource {
 	 * @return array<string>
 	 */
 	public static function vertex() {
-		return [];
+		return [
+			// (new HospitalsSurveys)->render(),
+			(new HospitalsAnswersSurveys)->render(),
+			
+		];
 	}
 
 	public static function dtButtons() {
@@ -153,7 +161,12 @@ class HospitalsSurvey extends Resource {
 	 * @return array<string>
 	 */
 	public function filters() {
-		return [];
+		return [
+			HospitalsSurveyStatus::class,
+			HospitalsSurveyBranch::class,
+
+		];
+	}
 	}
 
-}
+

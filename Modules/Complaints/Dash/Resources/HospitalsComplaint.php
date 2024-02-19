@@ -1,9 +1,13 @@
 <?php
 namespace Modules\Complaints\Dash\Resources;
 use Dash\Resource;
-use Modules\guests\Dash\Resources\Guesthospitals;
+use App\Dash\Filters\HospitalsCBranch;
+use App\Dash\Filters\HospitalsCStatus;
 use Modules\Complaints\App\Models\Complaint;
 use Modules\Services\Dash\Resources\Hospitals;
+use Modules\guests\Dash\Resources\Guesthospitals;
+use Modules\Complaints\Dash\Metrics\Charts\HospitalsR;
+use Modules\Complaints\Dash\Metrics\Charts\HospitalsComplaints;
 
 
 class HospitalsComplaint extends Resource {
@@ -81,7 +85,10 @@ class HospitalsComplaint extends Resource {
 	 * @return array
 	 */
 	public static function vertex() {
-		return [];
+		return [
+			// (new HospitalsComplaints)->render(),
+			(new HospitalsR)->render(),
+		];
 	}
 	public static function dtButtons() {
 		return [
@@ -145,7 +152,11 @@ class HospitalsComplaint extends Resource {
 	 * @return array
 	 */
 	public function filters() {
-		return [];
+		return [
+			HospitalsCStatus::class,
+			HospitalsCBranch::class,
+
+		];
 	}
 
 }

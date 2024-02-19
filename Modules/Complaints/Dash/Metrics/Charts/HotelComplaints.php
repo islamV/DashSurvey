@@ -1,9 +1,10 @@
 <?php
-namespace Modules\surveys\Dash\Metrics\Charts;
+namespace Modules\Complaints\Dash\Metrics\Charts;
 use Dash\Extras\Metrics\Chart;
-use Modules\Surveys\App\Models\Survey;
+use Modules\Complaints\App\Models\Complaint;
+// use Modules\Complaints\App\Models\Question;
 
-class ClubsSurveys extends Chart{
+class HotelComplaints extends Chart{
 
      /**
      * @method options
@@ -35,9 +36,9 @@ class ClubsSurveys extends Chart{
                                 [
                                     'label'=>''.__('survey.survey'),
                                     'data'=>[
-                                        Survey::where('status' , 'positive')->where('service_type' , 'clubs')->count(),
-                                        Survey::where('status' , 'negative')->where('service_type' , 'clubs')->count(),
-                                        Survey::where('status' , 'pending')->where('service_type' , 'clubs')->count(),
+                                        Complaint::where('status' , 'positive')->where('type' , 'hotels')->count(),
+                                        Complaint::where('status' , 'negative')->where('type' , 'hotels')->count(),
+                                        Complaint::where('status' , 'pending')->where('type' , 'hotels')->count(),
 
                                     //   Complaint::where('status' , 'pending')->where('type' , 'hotels')->count(),
                                      ],

@@ -3,9 +3,13 @@ namespace Modules\Surveys\Dash\Resources;
 use Dash\Resource;
 use Modules\Surveys\App\Models\Survey;
 
-use Modules\guests\Dash\Resources\GuestcoffeeShops;
+use App\Dash\Filters\CoffeeshopsSurveyBranch;
 // use Modules\CoffeeShops\Dash\Resources\CoffeeShops;
+use App\Dash\Filters\CoffeeshopsSurveyStatus;
 use Modules\Services\Dash\Resources\CoffeeShops;
+use Modules\guests\Dash\Resources\GuestcoffeeShops;
+use Modules\surveys\Dash\Metrics\Charts\CoffeeShopsSurveys;
+use Modules\surveys\Dash\Metrics\Charts\CoffeeShopsAnswersSurveys;
 
 
 
@@ -97,7 +101,10 @@ class CoffeeShopsSurvey extends Resource {
 	 * @return array<string>
 	 */
 	public static function vertex() {
-		return [];
+		return [
+			// (new CoffeeShopsSurveys)->render(),
+			(new CoffeeShopsAnswersSurveys)->render(),
+		];
 	}
 public function query($model){
 	return $model->where('service_type' , 'coffee_shops') ;
@@ -154,7 +161,11 @@ public function query($model){
 	 * @return array<string>
 	 */
 	public function filters() {
-		return [];
+		return [
+			CoffeeshopsSurveyStatus::class,
+			CoffeeshopsSurveyBranch::class,
+
+		];
 	}
 
 }

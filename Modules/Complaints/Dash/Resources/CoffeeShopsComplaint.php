@@ -1,9 +1,13 @@
 <?php
 namespace Modules\Complaints\Dash\Resources;
 use Dash\Resource;
-use Modules\guests\Dash\Resources\GuestcoffeeShops;
+use App\Dash\Filters\CoffesCBranch;
+use App\Dash\Filters\CoffesCStatus;
 use Modules\Complaints\App\Models\Complaint;
 use Modules\Services\Dash\Resources\CoffeeShops;
+use Modules\guests\Dash\Resources\GuestcoffeeShops;
+use Modules\Complaints\Dash\Metrics\Charts\CoffeeShopsR;
+use Modules\Complaints\Dash\Metrics\Charts\CoffeeShopsComplaints;
 
 class CoffeeShopsComplaint extends Resource {
 	
@@ -79,7 +83,10 @@ class CoffeeShopsComplaint extends Resource {
 	 * @return array
 	 */
 	public static function vertex() {
-		return [];
+		return [
+				(new CoffeeShopsComplaints)->render(),
+				// (new CoffeeShopsR)->render(),
+		];
 	}
 	public static function dtButtons() {
 		return [
@@ -144,7 +151,11 @@ class CoffeeShopsComplaint extends Resource {
 	 * @return array
 	 */
 	public function filters() {
-		return [];
+		return [
+			CoffesCStatus::class,
+			CoffesCBranch::class,
+
+		];
 	}
 
 }

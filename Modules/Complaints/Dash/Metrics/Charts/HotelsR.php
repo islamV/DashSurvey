@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\surveys\Dash\Metrics\Charts;
+namespace Modules\Complaints\Dash\Metrics\Charts;
 
 use Dash\Extras\Metrics\Chart;
 use Modules\Surveys\App\Models\Answer;
 use Modules\Surveys\App\Models\Survey;
 
 
-class HotelsAnswersSurveys extends Chart
+class HotelsR extends Chart
 {
 
     /**
