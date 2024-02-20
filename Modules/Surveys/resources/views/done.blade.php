@@ -132,10 +132,10 @@ body {
 
 </style>
 
-<script>
+{{-- <script>
 
   setTimeout(function() {
-    window.location.href = "http://127.0.0.1:8000/"; // Replace "https://example.com" with the URL you want to redirect to
+    window.location.href = ; // Replace "https://example.com" with the URL you want to redirect to
   }, 3000); // 3000 milliseconds = 3 seconds
 
-</script>
+</script> --}}
