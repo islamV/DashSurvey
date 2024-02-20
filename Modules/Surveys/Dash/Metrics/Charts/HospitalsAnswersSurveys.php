@@ -39,7 +39,7 @@ class HospitalsAnswersSurveys extends Chart
             'type' => 'bar',
             'data' => [
                 'labels' => [__('survey.Nurse'),__('survey.Service_Level'),
-                 __('survey.evaluation'), __('survey.Doctor')],
+                 __('survey.evaluation'), __('survey.Doctor') ],
                 'datasets' => [
                     [
                         'label' => __('survey.positiveu'),

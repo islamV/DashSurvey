@@ -31,9 +31,11 @@ class SurveysController extends Controller
         }  
     return  $labels ;
     }  
+   
+	
     public function index()
     {
-        dd($this->typeServiceTrans());
+          
     }
 
     /**

@@ -27,7 +27,8 @@ class HospitalsSurvey extends Resource {
 	 * (viewAny,view,create,update,delete,forceDelete,restore) methods
 	 * @var string $policy
 	 */
-	//public static $policy = UserPolicy::class;
+	public static $policy = \App\Policies\SurveysPolicy::class;
+
 
 	/**
 	 * define this resource in group to show in navigation menu
@@ -94,8 +95,8 @@ class HospitalsSurvey extends Resource {
 	 */
 	public static function vertex() {
 		return [
-			// (new HospitalsSurveys)->render(),
-			// (new HospitalsAnswersSurveys)->render(),
+			 (new HospitalsSurveys)->render('hosspital'),
+			 (new HospitalsAnswersSurveys)->render('hosspitalanswers'),
 			
 		];
 	}

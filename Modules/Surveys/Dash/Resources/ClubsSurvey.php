@@ -23,7 +23,8 @@ class ClubsSurvey extends Resource {
 	 * (viewAny,view,create,update,delete,forceDelete,restore) methods
 	 * @var string $policy
 	 */
-	//public static $policy = UserPolicy::class;
+	public static $policy = \App\Policies\SurveysPolicy::class;
+
 
 	/**
 	 * define this resource in group to show in navigation menu

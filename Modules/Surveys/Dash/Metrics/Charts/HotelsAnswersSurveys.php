@@ -35,7 +35,7 @@ class HotelsAnswersSurveys extends Chart
 
 
      public function typeServiceTrans(){
-        $answers = Answer::select('type_service')->distinct()->pluck('type_service');
+        $answers = Answer::where('type' , 'hotels')->select('type_service')->distinct()->pluck('type_service');
 
     
         foreach ($answers as $kay => $label) {
@@ -64,7 +64,7 @@ public function dataServiceNotSatisfied(){
            return $data ;
     }
     public function typeService(){
-        $answers = Answer::select('type_service')->distinct()->pluck('type_service');
+        $answers = Answer::where('type' , 'hotels')->select('type_service')->distinct()->pluck('type_service');
     
         foreach ($answers as $kay => $label) {
             $labels[$kay]=  $label;

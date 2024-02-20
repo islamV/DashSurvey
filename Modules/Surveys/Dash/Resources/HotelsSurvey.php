@@ -1,12 +1,14 @@
 <?php
 namespace Modules\Surveys\Dash\Resources;
 
+use App\Policies\HotelsServeyPolicy;
 use Dash\Resource;
 use App\Dash\Metrics\Charts\Surveys;
 use Modules\Surveys\App\Models\Survey;
 
 use App\Dash\Filters\HotelsSurveyBranch;
 use App\Dash\Filters\HotelsSurveyStatus;
+use App\Policies\Surveys as PoliciesSurveys;
 use Modules\Services\App\Models\Service;
 use Modules\Questions\App\Models\Question;
 use Modules\Services\Dash\Resources\Hotels;
@@ -29,7 +31,7 @@ class HotelsSurvey extends Resource {
 	 * (viewAny,view,create,update,delete,forceDelete,restore) methods
 	 * @var string $policy
 	 */
-	//public static $policy = UserPolicy::class;
+	public static $policy = \App\Policies\SurveysPolicy::class;
 
 	/**
 	 * define this resource in group to show in navigation menu
@@ -44,7 +46,9 @@ class HotelsSurvey extends Resource {
 	 * show or hide resouce In Navigation Menu true|false
 	 * @var bool $displayInMenu
 	 */
-	public static $displayInMenu = true;
+
+	
+	 	public static $displayInMenu =  true ;
 
 	/**
 	 * change icon in navigation menu

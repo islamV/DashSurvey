@@ -119,6 +119,8 @@ class AdminGroupRoles extends Resource {
 					'users'            => 'Users',
 					'admin_groups'     => 'AdminGroups',
 					'admin_group_role' => 'AdminGroupRoles',
+				
+					'surveys' => 'Surveys' ,
 				]),
 			checkbox()
 				->make(' add ', 'create')
