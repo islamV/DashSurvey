@@ -84,7 +84,7 @@ class CoffeeShopsComplaint extends Resource {
 	 */
 	public static function vertex() {
 		return [
-				(new CoffeeShopsComplaints)->render(),
+			//	(new CoffeeShopsComplaints)->render(),
 				// (new CoffeeShopsR)->render(),
 		];
 	}

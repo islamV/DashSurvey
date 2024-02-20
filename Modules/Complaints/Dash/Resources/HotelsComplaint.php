@@ -84,7 +84,7 @@ class HotelsComplaint extends Resource {
 	public static function vertex() {
 		return [
 			// (new HotelComplaints)->render(),
-			(new HotelsR)->render(),
+		//	(new HotelsR)->render(),
 		];
 	}
 	public static function dtButtons() {

@@ -5,6 +5,7 @@ use App\Livewire\Survey;
 use Dash\Resource;
 use Modules\Surveys\App\Models\Answer;
 use Modules\questions\Dash\Resources\HotelsQ;
+use Modules\Surveys\App\Models\Survey as ModelsSurvey;
 
 class Answers extends Resource {
 

@@ -83,7 +83,7 @@ class ClubsComplaint extends Resource {
 	 */
 	public static function vertex() {
 		return [
-			(new ClubsComplaints)->render(),
+		//	(new ClubsComplaints)->render(),
 			// (new ClubsR)->render(),
 	];
 	}

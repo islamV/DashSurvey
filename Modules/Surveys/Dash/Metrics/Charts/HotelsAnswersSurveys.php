@@ -42,14 +42,15 @@ class HotelsAnswersSurveys extends Chart
             $labels[$kay]= __('survey.'. $label);
     
         }  
-    return  $labels ;
+        return  $labels ?? [];
+
     }  
 public function dataServiceSatisfied(){
   
 
 $data  =  [] ; 
        foreach($this->typeService() as $kay => $value){
-        $data[$kay] =    Answer::where('answer', 'Satisfied')->where('type_service' ,$value)->count();
+        $data[$kay] =    Answer::where('answer', 'Satisfied')->where('type_service' ,$value)->where('type' ,'hotels')->count();
        }
        return $data ;
 }
@@ -58,7 +59,7 @@ public function dataServiceNotSatisfied(){
 
     $data  =  [] ; 
            foreach($this->typeService() as $kay => $value){
-            $data[$kay] =    Answer::where('answer', 'NotSatisfied')->where('type_service' ,$value)->count();
+            $data[$kay] =     Answer::where('answer', 'Satisfied')->where('type_service' ,$value)->where('type' ,'hotels')->count();
            }
            return $data ;
     }
@@ -68,7 +69,7 @@ public function dataServiceNotSatisfied(){
         foreach ($answers as $kay => $label) {
             $labels[$kay]=  $label;
         }  
-    return  $labels ;
+    return  $labels ?? [];
     }  
     public function colorGreen(): array{
         $data = [] ;
@@ -116,7 +117,6 @@ public function dataServiceNotSatisfied(){
                    
                 ]
             ],
-
 
         ])
             // blank or parent or remove this prarm default is parent

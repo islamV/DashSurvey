@@ -97,10 +97,14 @@ class HotelsSurvey extends Resource {
 	 * @return array<string>
 	 */
 
-	public static function vertex() :array{
+	public static function vertex() {
 		return 
 			[(new HotelsAnswersSurveys)->render('hotel'),
-		 (new HotelsSurveys)->render('hotel2')];
+		 (new HotelsSurveys)->render('hotel2'),
+		//  (new \Modules\surveys\Dash\Metrics\Values\Hotels)->render(),
+		
+		
+		];
 		
 	}
 
