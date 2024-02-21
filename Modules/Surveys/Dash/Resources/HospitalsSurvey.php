@@ -95,8 +95,9 @@ class HospitalsSurvey extends Resource {
 	 */
 	public static function vertex() {
 		return [
-			 (new HospitalsSurveys)->render('hosspital'),
+			
 			 (new HospitalsAnswersSurveys)->render('hosspitalanswers'),
+			 (new HospitalsSurveys)->render('hosspital'),
 			
 		];
 	}

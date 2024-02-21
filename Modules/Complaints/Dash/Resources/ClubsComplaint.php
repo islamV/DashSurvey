@@ -33,6 +33,7 @@ class ClubsComplaint extends Resource {
 	 */
 	public static $group = 'complaints'; 
 
+	public static $policy = \App\Policies\ComplaintsPolicy::class;
 	/**
 	 * show or hide resouce In Navigation Menu true|false
 	 * @param static property string
@@ -83,8 +84,8 @@ class ClubsComplaint extends Resource {
 	 */
 	public static function vertex() {
 		return [
-		//	(new ClubsComplaints)->render(),
-			// (new ClubsR)->render(),
+			(new ClubsComplaints)->render('clubcompaints'),
+			(new ClubsR)->render('clubsr'),
 	];
 	}
 	public static function dtButtons() {

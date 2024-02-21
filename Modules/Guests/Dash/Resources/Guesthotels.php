@@ -11,6 +11,7 @@ class Guesthotels extends Resource {
 	public static $model = Guest::class;
 
 	public static $group = 'guests'; 
+	public static $policy = \App\Policies\GuestsPolicy::class;
 
             
 	public static $displayInMenu =true ;
