@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\SurveyController;
 use Illuminate\Support\Facades\Route;
+use Modules\Surveys\App\Http\Controllers\SurveysController;
 
 /*
 |--------------------------------------------------------------------------

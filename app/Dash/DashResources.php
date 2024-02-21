@@ -1,4 +1,5 @@
 <?php
+
 return [
     // Users Start //
      \App\Dash\Resources\AdminGroupRoles::class,
@@ -25,10 +26,10 @@ return [
      \Modules\Services\Dash\Resources\CoffeeShops::class,
 
     // Questions
-    \Modules\questions\Dash\Resources\HotelsQ::class,
-    \Modules\questions\Dash\Resources\HospitalsQ::class,
-    \Modules\questions\Dash\Resources\ClubsQ::class,
-    \Modules\questions\Dash\Resources\CoffeeShopsQ::class,
+    \Modules\Questions\Dash\Resources\HotelsQ::class,
+    \Modules\Questions\Dash\Resources\HospitalsQ::class,
+    \Modules\Questions\Dash\Resources\ClubsQ::class,
+    \Modules\Questions\Dash\Resources\CoffeeShopsQ::class,
 
      // Complaints
      \Modules\Complaints\Dash\Resources\HotelsComplaint::class,
