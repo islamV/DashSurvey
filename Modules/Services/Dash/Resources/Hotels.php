@@ -13,6 +13,7 @@ class Hotels extends Resource {
 	 * @param Model Class
 	 */ 
 	public static $model = Service::class;
+	public static $policy = \App\Policies\ServiesPolicy::class;
 
 	/**
 	 * Policy Permission can handel

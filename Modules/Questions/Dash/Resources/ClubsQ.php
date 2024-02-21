@@ -10,6 +10,7 @@ class ClubsQ extends Resource {
 	 * @param Model Class
 	 */ 
 	public static $model = Question::class;
+	public static $policy = \App\Policies\QuestionsPolicy::class;
 
 	/**
 	 * Policy Permission can handel

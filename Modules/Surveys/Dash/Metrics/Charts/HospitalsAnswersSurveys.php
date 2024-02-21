@@ -18,7 +18,7 @@ class HospitalsAnswersSurveys extends Chart
     public function options(): array
     {
         return [
-            'column' => '7',
+            'column' => '8',
             'elem' => 'status' // do not add hash # just clearname
         ];
     }

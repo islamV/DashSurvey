@@ -36,6 +36,7 @@ class HotelsQ extends Resource {
 	 * @param static property string
 	 */
 	public static $icon = '<i class="fa-solid fa-clipboard-question"></i>'; // put <i> tag or icon name
+	public static $policy = \App\Policies\QuestionsPolicy::class;
 
 	/**
 	 * title static property to labels in Rows,Show,Forms

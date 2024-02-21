@@ -16,6 +16,9 @@ class CoffeeShopsComplaint extends Resource {
 	 * @param Model Class
 	 */ 
 	public static $model = Complaint::class;
+	
+	public static $policy = \App\Policies\ComplaintsPolicy::class;
+
 
 	/**
 	 * Policy Permission can handel
@@ -84,8 +87,8 @@ class CoffeeShopsComplaint extends Resource {
 	 */
 	public static function vertex() {
 		return [
-			//	(new CoffeeShopsComplaints)->render(),
-				// (new CoffeeShopsR)->render(),
+				(new CoffeeShopsComplaints)->render('coffee1'),
+				(new CoffeeShopsR)->render('coffee2'),
 		];
 	}
 	public static function dtButtons() {

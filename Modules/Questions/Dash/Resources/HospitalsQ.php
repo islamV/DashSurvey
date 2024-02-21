@@ -27,6 +27,7 @@ class HospitalsQ extends Resource {
 	 * @param static property
 	 */
 	public static $group = 'questions'; 
+	public static $policy = \App\Policies\QuestionsPolicy::class;
 
 	/**
 	 * show or hide resouce In Navigation Menu true|false

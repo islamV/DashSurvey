@@ -17,6 +17,7 @@ class HospitalsComplaint extends Resource {
 	 * @param Model Class
 	 */ 
 	public static $model = Complaint::class;
+	public static $policy = \App\Policies\ComplaintsPolicy::class;
 
 	/**
 	 * Policy Permission can handel
@@ -86,8 +87,8 @@ class HospitalsComplaint extends Resource {
 	 */
 	public static function vertex() {
 		return [
-			// (new HospitalsComplaints)->render(),
-		//	(new HospitalsR)->render(),
+			(new HospitalsComplaints)->render('hospitals1'),
+			(new HospitalsR)->render('hospitals2'),
 		];
 	}
 	public static function dtButtons() {

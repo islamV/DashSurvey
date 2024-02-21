@@ -29,6 +29,7 @@ class HotelsComplaint extends Resource {
 	 * @param static property
 	 */
 	public static $group =  'complaints'; 
+	public static $policy = \App\Policies\ComplaintsPolicy::class;
 
 	/**
 	 * show or hide resouce In Navigation Menu true|false
@@ -83,8 +84,8 @@ class HotelsComplaint extends Resource {
 	 */
 	public static function vertex() {
 		return [
-			// (new HotelComplaints)->render(),
-		//	(new HotelsR)->render(),
+			(new HotelComplaints)->render('hotels1'),
+			(new HotelsR)->render('hotels2'),
 		];
 	}
 	public static function dtButtons() {
