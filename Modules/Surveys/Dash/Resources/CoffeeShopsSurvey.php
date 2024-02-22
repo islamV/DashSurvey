@@ -103,8 +103,9 @@ class CoffeeShopsSurvey extends Resource {
 	 */
 	public static function vertex() {
 		return [
-			// (new CoffeeShopsSurveys)->render(),
-			// (new CoffeeShopsAnswersSurveys)->render(),
+		
+			(new CoffeeShopsAnswersSurveys)->render('coffee_shops2'),
+			(new CoffeeShopsSurveys)->render('coffee_shops1'),
 		];
 	}
 public function query($model){

@@ -11,7 +11,7 @@ class Guestclubs extends Resource {
 
 	public static $group = 'guests'; 
 
-
+	public static $policy = \App\Policies\GuestsPolicy::class;
 	public static $displayInMenu = true;
 
     public static $lengthMenu        = [20, 40, 60, 80, 100];

@@ -13,7 +13,7 @@ class HotelComplaints extends Chart{
      */
     public function options():array{
         return [
-            'column'=>'5',
+            'column'=>'4',
             'elem'=>'YourElementAttributeIDWithoutHash'// do not add hash # just clearname
         ];
     }
