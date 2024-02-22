@@ -13,7 +13,7 @@ class CoffeeShops extends Resource {
 	 * @param Model Class
 	 */ 
 	public static $model = Service::class;
-	public static $policy = \App\Policies\ServiesPolicy::class;
+	public static $policy = \App\Policies\ServicePolicy::class;
 
 	/**
 	 * Policy Permission can handel

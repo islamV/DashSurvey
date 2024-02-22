@@ -13,7 +13,7 @@ class Clubs extends Resource {
 	 * @param Model Class
 	 */ 
 	public static $model = Service::class;
-	public static $policy = \App\Policies\ServiesPolicy::class;
+	public static $policy = \App\Policies\ServicePolicy::class ;
 	/**
 	 * Policy Permission can handel
 	 * (viewAny,view,create,update,delete,forceDelete,restore) methods
@@ -30,10 +30,7 @@ class Clubs extends Resource {
 	 */
 	public static $group = 'services'; 
 
-	/**
-	 * show or hide resouce In Navigation Menu true|false
-	 * @param static property string
-	 */
+	
 	public static $displayInMenu = true;
 
 	/**

@@ -124,7 +124,7 @@ class AdminGroupRoles extends Resource {
 					'guests' => 'Guests' ,
 					'complaints'=>'Complaints',
 					'questions'=>'Questions',
-					'servies'=> 'Servies'
+					'service'=> 'Service'
 				]),
 			checkbox()
 				->make(' add ', 'create')
