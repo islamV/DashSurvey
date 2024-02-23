@@ -13,13 +13,13 @@ use App\Dash\Metrics\Values\AllAdminGroups;
 
 
 use App\Dash\Metrics\Values\AllAdminGroupRoles;
-use Modules\surveys\Dash\Metrics\Charts\Surveys;
-use Modules\surveys\Dash\Metrics\Values\AllClubsSurveys;
-use Modules\surveys\Dash\Metrics\Values\AllHospitalsSurveys;
-use Modules\surveys\Dash\Metrics\Values\AllHotelsSurveys;
-use Modules\surveys\Dash\Metrics\Values\AllSurveys;
+
+use Modules\Surveys\Dash\Metrics\Values\AllClubsSurveys;
+use Modules\Surveys\Dash\Metrics\Values\AllHospitalsSurveys;
+use Modules\Surveys\Dash\Metrics\Values\AllHotelsSurveys;
+use Modules\Surveys\Dash\Metrics\Values\AllSurveys;
 use Modules\complaints\Dash\Metrics\Charts\Compliants;
-use Modules\surveys\Dash\Metrics\Values\AllCoffeeShopsSurveys;
+use Modules\Surveys\Dash\Metrics\Values\AllCoffeeShopsSurveys;
 
 class Help extends Resource {
 

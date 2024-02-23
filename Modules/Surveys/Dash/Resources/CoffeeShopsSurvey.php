@@ -8,8 +8,8 @@ use App\Dash\Filters\CoffeeshopsSurveyBranch;
 use App\Dash\Filters\CoffeeshopsSurveyStatus;
 use Modules\Services\Dash\Resources\CoffeeShops;
 use Modules\guests\Dash\Resources\GuestcoffeeShops;
-use Modules\surveys\Dash\Metrics\Charts\CoffeeShopsSurveys;
-use Modules\surveys\Dash\Metrics\Charts\CoffeeShopsAnswersSurveys;
+use Modules\Surveys\Dash\Metrics\Charts\CoffeeShopsSurveys;
+use Modules\Surveys\Dash\Metrics\Charts\CoffeeShopsAnswersSurveys;
 
 
 

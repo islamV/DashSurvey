@@ -14,8 +14,8 @@ use Modules\Questions\App\Models\Question;
 use Modules\Services\Dash\Resources\Hotels;
 use Modules\questions\Dash\Resources\HotelsQ;
 use Modules\guests\Dash\Resources\Guesthotels;
-use Modules\surveys\Dash\Metrics\Charts\HotelsSurveys;
-use Modules\surveys\Dash\Metrics\Charts\HotelsAnswersSurveys;
+use Modules\Surveys\Dash\Metrics\Charts\HotelsSurveys;
+use Modules\Surveys\Dash\Metrics\Charts\HotelsAnswersSurveys;
 
 class HotelsSurvey extends Resource {
 

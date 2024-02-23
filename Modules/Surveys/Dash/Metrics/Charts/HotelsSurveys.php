@@ -1,5 +1,5 @@
 <?php
-namespace Modules\surveys\Dash\Metrics\Charts;
+namespace Modules\Surveys\Dash\Metrics\Charts;
 use Dash\Extras\Metrics\Chart;
 use Modules\Complaints\App\Models\Complaint;
 use Modules\Surveys\App\Models\Survey;

@@ -9,7 +9,7 @@ use App\Dash\Metrics\Values\AllUsers;
 use App\Dash\Metrics\Values\AllAdmins;
 use App\Dash\Metrics\Values\AllAdminGroups;
 use Modules\surveys\Dash\Metrics\Values\Hotels;
-use Modules\surveys\Dash\Metrics\Charts\Surveys;
+use Modules\Surveys\Dash\Metrics\Charts\Surveys;
 use Modules\surveys\Dash\Metrics\Values\AllSurveys;
 
 class SurveysReports extends Resource {

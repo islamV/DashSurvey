@@ -8,8 +8,8 @@ use App\Dash\Filters\ClubsSurveyBranch;
 use App\Dash\Filters\ClubsSurveyStatus;
 use Modules\Services\Dash\Resources\Clubs;
 use Modules\guests\Dash\Resources\Guestclubs;
-use Modules\surveys\Dash\Metrics\Charts\ClubsSurveys;
-use Modules\surveys\Dash\Metrics\Charts\ClubsAnswersSurveys;
+use Modules\Surveys\Dash\Metrics\Charts\ClubsSurveys;
+use Modules\Surveys\Dash\Metrics\Charts\ClubsAnswersSurveys;
 
 
 class ClubsSurvey extends Resource {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\surveys\Dash\Metrics\Charts;
+namespace Modules\Surveys\Dash\Metrics\Charts;
 
 use Dash\Extras\Metrics\Chart;
 use Modules\Surveys\App\Models\Answer;

@@ -9,8 +9,8 @@ use App\Dash\Filters\HospitalsSurveyBranch;
 use App\Dash\Filters\HospitalsSurveyStatus;
 use Modules\Services\Dash\Resources\Hospitals;
 use Modules\guests\Dash\Resources\Guesthospitals;
-use Modules\surveys\Dash\Metrics\Charts\HospitalsSurveys;
-use Modules\surveys\Dash\Metrics\Charts\HospitalsAnswersSurveys;
+use Modules\Surveys\Dash\Metrics\Charts\HospitalsSurveys;
+use Modules\Surveys\Dash\Metrics\Charts\HospitalsAnswersSurveys;
 
 
 class HospitalsSurvey extends Resource {
