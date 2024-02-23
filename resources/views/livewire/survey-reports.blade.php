@@ -111,25 +111,7 @@
                             </svg>
                             {{ __('dash::dash.print') }}
                         </button>
-                        <style>
-                            /* Define your custom print styles here */
-                            @media print {
-                                /* Hide non-essential elements */
-                                body * {
-                                    visibility: hidden;
-                                }
-                                .printable-content {
-                                    visibility: visible;
-                                }
-                                /* Style the printable content */
-                                .printable-content {
-                                    /* Define your styles here */
-                                    font-family: Arial, sans-serif;
-                                    color: #333;
-                                    /* Add more styles as needed */
-                                }
-                            }
-                        </style>
+                        
                         <script>
                             function customPrint() {
                                 window.print();
