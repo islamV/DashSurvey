@@ -45,6 +45,14 @@ public function service(){
     }
 
    
+	public function getUpdatedAtAttribute($date) {
+		return empty($date) ? $date : date('Y-m-d', strtotime($date));
+	}
+
+	public function getDeletedAtAttribute($date) {
+		return empty($date) ? null : date('Y-m-d', strtotime($date));
+	}
+
     // public function club(){
     //     return $this->belongsTo(Club::class , 'service_id' );
     // }

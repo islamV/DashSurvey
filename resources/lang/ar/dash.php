@@ -13,8 +13,5 @@ return [
 	'coffee shops'=> 'الكوفي شوب',
 	'questions' => 'اسئلة الخدمات' ,
 	'surveys' => 'الاستبيانات', 
-	'complaints'=> 'الشكاوي'
-	
-
-	
+	'complaints'=> 'الشكاوي' 
 ];

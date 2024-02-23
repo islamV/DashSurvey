@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('guest_id')->constrained('guests')->cascadeOnDelete()->cascadeOnUpdate();
             $table->morphs('service');
-              $table->enum('status' ,['positive' ,'pending','negative']);
+              $table->enum('status' ,['positive' ,'negative']);
               $table->text('note')->nullable();
      
               $table->softDeletes();

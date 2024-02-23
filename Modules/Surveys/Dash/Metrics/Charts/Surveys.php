@@ -12,11 +12,58 @@ class Surveys extends Chart{
      */
     public function options():array{
         return [
-            'column'=>'6',
+            'column'=>'10',
             'elem'=>'surveys'// do not add hash # just clearname
         ];
     }
 
+     public function typeServiceTrans(){
+        $labels = [__('dash.hotels') , __('dash.hospitals') , __("dash.clubs") , __('dash.coffee shops')];
+        return  $labels ;
+
+    }  
+public function dataServicePositive(){
+  
+
+$data  =  [] ; 
+       foreach($this->typeService() as $kay => $value){
+        $data[$kay] =    Survey::where('service_type', $value)->where('status' ,'positive')->count();
+       }
+       return $data ;
+}
+public function dataServiceNotSatisfied(){
+  
+
+    $data  =  [] ; 
+           foreach($this->typeService() as $kay => $value){
+            $data[$kay] =     Survey::where('service_type', $value)->where('status' ,'negative')->count();
+           }
+           return $data ;
+    }
+    public function typeService(){
+        $labels = ['hotels', 'hospitals' , "clubs" , 'coffee_shops'];
+      
+    return  $labels ;
+    }  
+    public function colorGreen(): array{
+        $data = [] ;
+        foreach($this->typeService() as $kay => $value){
+            $data[$kay] =  'rgba(75, 192, 192, 0.2)';                
+
+        }  
+        return $data;
+
+    }  
+    public function colorRed(): array{
+        $data = [] ;
+        foreach($this->typeService() as $kay => $value){
+            $data[$kay] =  'rgba(255, 99, 132, 0.2)';
+           
+
+        }  
+        return $data;
+
+    } 
     /**
      * calculate method is short to calc to set dataset in chart
      * You Can Set Type Using | doughnut , line , bar ,polarArea , radar, scatter, bubble , mixed
@@ -28,37 +75,33 @@ class Surveys extends Chart{
      */
     public function calc(){
         return $this->data([
-                    'type'=>'bar',
-                    'data'=>[
-                        'labels' => [__('survey.positiveu') , __('survey.pendingu') ,__('survey.negativeu')],
-                        'datasets'=> [[
-                            'label'=> __('surveys.reports'),
-                            'data'=> [   Survey::where('status' , 'positive')->count(),
-                            Survey::where('status' , 'pending')->count(),
-                            Survey::where('status' , 'negative')->count(),] ,
-                            'backgroundColor'=> [
-                                'rgba(75, 192, 192, 0.2)',
-                                // 'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 159, 64, 0.2)',
-                                  'rgba(255, 99, 132, 0.2)', 
-                              //   'rgba(153, 102, 255, 0.2)',
-                              //   'rgba(201, 203, 207, 0.2)'
-                              //'rgba(255, 205, 86, 0.2)',
-                            ],
-                            'borderColor'=> [
-                                // 'rgb(54, 162, 235)',
-                                'rgb(75, 192, 192)',
-                                'rgb(255, 159, 64)',
-                              'rgb(255, 99, 132)',
-                            //   'rgb(255, 205, 86)',
-                            //   'rgb(153, 102, 255)',
-                            //   'rgb(201, 203, 207)'
-                            ],
-                            'borderWidth'=> 1
-                          
-                        ]],
+            'type' => 'bar',
+            'data' => [
+                'labels' => $this->typeServiceTrans(),
+                'datasets' => [
+                    [
+                        'label' => __('survey.positiveu') ,
+                        'data' =>$this->dataServicePositive(),
+                        'backgroundColor' =>$this->colorGreen(),
+                        ' barPercentage' => .5
+
                     ],
-        ]);
+                    [
+
+                        'label' => __('survey.negativeu'),
+                        'data' => $this->dataServiceNotSatisfied(),
+                        'backgroundColor' => $this->colorRed(),
+                        ' barPercentage' => .5
+
+                    ] ,
+                   
+                ]
+            ],
+
+        ])
+            // blank or parent or remove this prarm default is parent
+            ->icon('<i class="fa-regular fa-clipboard"></i>')
+            ->title(__('survey.reports'));
 
     }
 

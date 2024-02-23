@@ -54,7 +54,7 @@ class HotelsSurveys extends Chart{
                         ],
                       
         ])  ->icon('<i class="fa-regular fa-clipboard"></i>')
-        ->title(__('survey.report'));
+        ->title(__('survey.reports'));
 
     }
 

@@ -74,7 +74,7 @@ class SurveysController extends Controller
         'guest_id'=> $guest->id??  $guestfind->id ,
         'service_id'=> $request->service_branch,
         'service_type' => $service,
-        'status' => in_array("NotSatisfied" ,$request->answers) ? 'pending' : 'positive',
+        'status' => in_array("NotSatisfied" ,$request->answers) ? 'negative' : 'positive',
         'note'=> $request->note,
     ];
 

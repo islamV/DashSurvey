@@ -32,7 +32,7 @@ class Compliants extends Chart{
                     'data'=>[
                         'labels' => [__('survey.positiveu') , __('survey.pendingu') ,__('survey.negativeu')],
                         'datasets'=> [[
-                            'label'=> __('surveys.complaints'),
+                            'label'=> __('survey.complaints'),
                             'data'=> [   Complaint::where('status' , 'positive')->count(),
                             Complaint::where('status' , 'pending')->count(),
                             Complaint::where('status' , 'negative')->count(),] ,
@@ -58,7 +58,13 @@ class Compliants extends Chart{
                           
                         ]],
                     ],
-        ]);
+        ])->title(__('survey.complaints'))
+         // blank or parent or remove this prarm default is parent
+        ->icon('<i class="fa-regular fa-face-frown"></i>')
+   
+        ->subTitle('تقرير كلي');
+        
+        ;
 
     }
 

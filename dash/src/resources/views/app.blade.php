@@ -13,7 +13,7 @@
     <!--fontawesome-free-6.2.0 Css Start-->
     <link rel="stylesheet" href="{{ url('dashboard/assets/fonts/fontawesome-free-6.2.0-web/css/all.min.css') }}" />
     <!--fontawesome-free-6.2.0 Css End-->
-
+{{-- @livewireStyles --}}
     <!-- CSS Files -->
     <!-- Bootstrap css -->
 		<link href="{{ url('dashboard/assets/dashtemplate/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" id="style"/>
@@ -175,6 +175,7 @@
 						<!--Content-->
 						{{--  <div class="row">
 						</div>  --}}
+                        @livewireStyles()
                             @yield('content')
                         <!--End Content-->
 
@@ -192,7 +193,7 @@
 
 		</div>
 
-
+        @livewireScripts
 	<!-- Back to top -->
 		<a href="#top" id="back-to-top"><span class="feather feather-chevrons-up"></span></a>
 
@@ -206,7 +207,7 @@
 		<script src="{{ url('dashboard/assets/dashtemplate') }}/plugins/bootstrap/js/popper.min.js"></script>
 		<script src="{{ url('dashboard/assets/dashtemplate') }}/plugins/bootstrap/js/bootstrap.min.js"></script>
 
-
+      
 		<!--Sidemenu js-->
 		<script src="{{ url('dashboard/assets/dashtemplate') }}/plugins/sidemenu/sidemenu.js"></script>
 
