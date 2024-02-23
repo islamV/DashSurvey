@@ -12,7 +12,7 @@ class Surveys extends Chart{
      */
     public function options():array{
         return [
-            'column'=>'10',
+            'column'=>'9',
             'elem'=>'surveys'// do not add hash # just clearname
         ];
     }
