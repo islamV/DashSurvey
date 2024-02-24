@@ -1,0 +1,31 @@
+{
+    "name": "nwidart/surveys",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Surveys\\": "",
+            "Modules\\Surveys\\App\\": "app/",
+            "Modules\\Surveys\\Database\\Factories\\": "database/factories/",
+            "Modules\\Surveys\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Surveys\\Tests\\": "tests/"
+        }
+    }
+}

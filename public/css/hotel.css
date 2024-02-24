@@ -1,0 +1,215 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+  }
+  
+  body {
+    width: 100%;
+    height: fit-content;
+    background-color: rgba(78, 206, 78, 0.995);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../img/HOTELB.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 10px 20px;
+    overflow-y: scroll;
+  }
+  
+  .contaner {
+    width: 40rem;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 50px 30px 30px 30px;
+    gap: 10px;
+  }
+  
+  .head {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .head span {
+    font-size: 25px;
+    font-weight: 500;
+    color: rgb(255, 40, 24);
+  }
+  
+  .input {
+    width: 100%;
+    height: fit-content;
+    border: 1px solid rgba(197, 197, 197, 0.863);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  
+  .input div:nth-of-type(1) {
+    padding: 0 15px;
+    background-color: rgba(197, 197, 197, 0.322);
+  }
+  
+  .input:nth-of-type(10) {
+    height: 150px;
+  }
+  
+  .input:nth-of-type(10) div:nth-of-type(1) {
+    height: 40px;
+  }
+  
+  .input:nth-of-type(10) div:nth-of-type(2) {
+    height: 110px;
+  }
+  
+  .input div {
+    width: 100%;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+  
+  .input div span {
+    width: auto;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .input div span:nth-of-type(1) {
+    direction: ltr;
+  }
+  .input div span:nth-of-type(2) {
+    direction: rtl;
+  }
+  
+  .input div input {
+    width: 100%;
+    height: 100%;
+    padding: 0 15px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  
+  .input div input:focus {
+    outline: none;
+  }
+  
+  .input div select {
+    width: 100%;
+    height: 100%;
+    padding: 0 15px;
+    border: none;
+    font-size: 17px;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  
+  .input div select option {
+    font-size: 15px;
+    font-weight: 700;
+  }
+  
+  .input div textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    padding: 15px;
+    font-size: 20px;
+  }
+  
+  .input div textarea:focus {
+    outline: none;
+  }
+  
+  .btn-submit {
+    padding: 15px 50px;
+    font-size: 15px;
+    border: none;
+    background-color: rgb(236, 75, 64);
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  
+  .cover {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+  }
+  
+  .cover img {
+    width: 100%;
+  }
+  
+  .alert {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    direction: rtl;
+    gap: 10px;
+  }
+  
+  .en {
+    direction: ltr;
+  }
+  
+  .alert span {
+    font-size: 25px;
+    color: rgb(236, 75, 64);
+    font-weight: 900;
+  }
+  
+  .alert p {
+    font-size: 20px;
+    color: rgb(107, 107, 107);
+  }
+  
+  @media (max-width: 600px) {
+    body {
+      padding: 10px;
+    }
+    .head span {
+      font-size: 18px;
+    }
+    .input div span,
+    .input div select {
+      font-size: 12px;
+    }
+    .contaner {
+      padding: 50px 20px 20px 20px;
+    }
+  
+    .input div textarea {
+      font-size: 14px;
+    }
+    .alert span {
+      font-size: 20px;
+    }
+    .alert p {
+      font-size: 15px;
+    }
+    .cover {
+      height: 300px;
+    }
+  }
+  
