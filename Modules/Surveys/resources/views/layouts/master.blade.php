@@ -14,15 +14,20 @@
     <meta name="author" content="{{ $author ?? '' }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <!-- Fonts -->
-   
-@stack('css')
+    
 </head>
 
 <body>
     
-    <form action="{{ route('servey' ,['service'=> $service ]) }}" class="contaner">
+    
+    @stack('css')
+
+    <form action=" {{ route('servey', ['service' => $service]) }} " class="contaner">
+
         <div class="head">
             <span>Survey information</span>
             <span>بيانات الاستبيان</span>
@@ -30,81 +35,85 @@
 
         <div class="input">
             <div>
-                <span>name <span style="color: red">*</span></span>
-                <span><span style="color: red">*</span>الاسم</span>
+                <span>name *</span>
+                <span>*الاسم</span>
             </div>
             <div>
-                <input  name="name" type="text" placeholder="الاسم" required>
-            </div>
-        </div>
-        <div class="input">
-            <div>
-                <span>mobile number <span style="color: red">*</span></span>
-                <span><span style="color: red">*</span>رقم الجوال</span>
-            </div>
-            <div>
-                <input name="phone" type="text" placeholder="01234567899" required>
+                <input type="text" name="name" placeholder="الاسم" required>
             </div>
         </div>
 
-
+        <div class="input">
+            <div>
+                <span>mobile number *</span>
+                <span>*رقم الجوال</span>
+            </div>
+            <div>
+                <input type="text" name="phone" placeholder="05XXXXXXXX" required>
+            </div>
+        </div>
 
         <div class="input">
             <div>
-                <span>Branch <span style="color: red">*</span></span>
+                <span>Branch *</span>
                 <span>*الفرع</span>
             </div>
             <div>
                 <select name="service_branch" id="">
-                 @foreach ($services as $service )
-                     <option value="{{ $service->id }}">{{ $service->name }}</option>
-                 @endforeach
+                    @foreach ($services as $service)
+                        <option value="{{ $service->id }}">{{ $service->name }}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
-        @foreach ($questions as $question )
-        <div class="input">
-            <div>
-                <span>{{ $question->title }} <span style="color: red">*</span></span>
-                <span>{{ $question->title }} <span style="color: red">*</span></span>
+
+
+        @foreach ($questions as $question)
+            <div class="input">
+                <div>
+                    <span>{{ $question->title }} <span style="color: red">*</span></span>
+                    <span>{{ $question->title }} <span style="color: red">*</span></span>
+                </div>
+                <div>
+                    <select name="answers[{{ $question->id }}]" id="">
+                        <option selected value="Satisfied">Satisfied راضى</option>
+                        <option value="NotSatisfied">NotSatisfied غير راضى</option>
+                    </select>
+                </div>
             </div>
-            <div>
-                <select name="answers[{{ $question->id }}]" id="">
-                    <option selected value="Satisfied">Satisfied راضى</option>
-                    <option  value="NotSatisfied">NotSatisfied  غير راضى</option>
-                </select>
-            </div>
-        </div>
         @endforeach
+
         <div class="input">
             <div class="">
                 <span>What can be done to improve the service? *</span>
                 <span>* ماذا يمكن عملة لتحسين الخدمة؟</span>
             </div>
-           
-                <textarea  rows="6"  cols="73"  name="note" id="" placeholder="ملاحظات / اقترحات لتحسين الخدمة"></textarea>
-           
+
+            <div class="note">
+                <textarea name="note" id="" placeholder="ملاحظات / اقترحات لتحسين الخدمة"></textarea>
+            </div>
+
         </div>
 
         <button class="btn-submit">submit | ارسال</button>
-        
-@yield('cover')
+
+        @yield('cover')
+
         <div class="alert ar">
             <span>عملائنا الاعزاء</span>
-            <p>يرجى مشاركة رأيكم فى هذا الاستبيان القصير , ومساعدتنا فى تحسين مستوى 
-                الخدمة لتفوق توقعتكم
-            </p>
+            <p>يرجى مشاركة رأيكم فى هذا الاستبيان القصير , ومساعدتنا فى تحسين مستوى الخدمة لتفوق توقعتكم</p>
         </div>
 
         <div class="alert en">
             <span>Dear customers</span>
-            <p>Please share your opinion in this short survey, to help
-                us improve the level of service to exceed your expectations
-            </p>
+            <p>Please share your opinion in this short survey, to help us improve the level of service to exceed your expectations</p>
         </div>
 
     </form>
 
 
- 
+
+
 </body>
+
+</html>

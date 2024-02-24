@@ -1,9 +1,13 @@
 @extends('surveys::layouts.master')
 
 @push('css')
-<link rel="stylesheet" href="{{ asset('css/club.css') }}">
+<style>
+    body{
+    background-image: url("../img/HOTELB.jpg");
+        
+    }
+</style>
 @endpush
 @section('cover')
 <div class="cover"><img src="{{ asset('img/c.jpg') }}" alt=""></div>
-
 @endsection
