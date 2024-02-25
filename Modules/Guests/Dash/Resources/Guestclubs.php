@@ -47,7 +47,7 @@ public static function dtButtons() {
 	 * @return string
 	 */
 	public static function customName() {
-		return __('survey.gclubs');
+		return __('survey.gusetsReports');
 	}
 
 	public function query($model) {

@@ -75,7 +75,7 @@ class HotelsComplaint extends Resource {
 		return $model->where('type', 'hotels');
 	   }
 	public static function customName() {
-		return  __('survey.chotels');
+		return  __('survey.complaints');
 	}
 
 	/**
@@ -84,8 +84,8 @@ class HotelsComplaint extends Resource {
 	 */
 	public static function vertex() {
 		return [
-			(new HotelComplaints)->render('hotels1'),
 			(new HotelsR)->render('hotels2'),
+			(new HotelComplaints)->render('hotels1'),
 		];
 	}
 	public static function dtButtons() {

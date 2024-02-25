@@ -106,6 +106,7 @@ class HospitalsR extends Chart
         ])
             // blank or parent or remove this prarm default is parent
             ->icon('<i class="fa-regular fa-clipboard"></i>')
-            ->title(__('survey.reports'));
+            ->title(__('survey.complaints'));
+
     }
 }

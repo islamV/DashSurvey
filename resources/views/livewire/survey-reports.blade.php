@@ -54,9 +54,9 @@
                                     <option value="" disabled selected>اختر خدمة </option>
                                     <option value="all">{{ __('dash::dash.all') }}</option>
                                     
-                                    {{-- @foreach ($options as $optkey => $optvalue)
-                            <option value="{{ $optkey }}">{{ $optvalue }} </option>
-                            @endforeach --}}
+                                    @foreach ($sections as $key=>  $section)
+                            <option value="{{ $key }}">{{ $section }} </option>
+                            @endforeach
                                 </select>
                             </div>
                         </div>

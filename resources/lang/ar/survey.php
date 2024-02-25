@@ -63,14 +63,8 @@ return [
 'hospitalsReports'=> 'تقارير استبيانات المستشفيات',
 'clubsReports'=> 'تقارير اسبتيانات الاندية',
 'coffee_shopsReports'=> 'تقارير استبيانات الكوفي شوب ',
+'gusetsReports' => 'تقارير الزائرين' 
 
-'ghotels' => 'تقارير الزائرين' ,
-'ghospitals' =>  'تقارير الزائرين' ,
-'gclubs' =>  'تقارير الزائرين'  ,
-'gcoffee shops' =>  'تقارير الزائرين'  ,
-'chotels' => 'تقارير الشكاوي' ,
-'chospitals' => 'تقارير الشكاوي' ,
-'cclubs' =>  'تقارير الشكاوي'  ,
-'ccoffee shops' =>  'تقارير الشكاوي'  ,
+
 
 ] ;

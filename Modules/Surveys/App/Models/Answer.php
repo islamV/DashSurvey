@@ -7,6 +7,7 @@ use Modules\Questions\App\Models\Question;
 use Modules\questions\Dash\Resources\HotelsQ;
 use Modules\Surveys\Database\factories\AnswerFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Services\App\Models\Service;
 
 class Answer extends Model
 {
@@ -15,13 +16,16 @@ class Answer extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = ['survey_id' , 'question_id' , 'answer' ,'type_service','type'];
+    protected $fillable = ['survey_id' , 'question_id' , 'answer' ,'type_service','type' , 'service_id'];
     public function question(){
         return $this->belongsTo(Question::class);
       }
     
     public function survey(){
         return $this->belongsTo(Survey::class ,'survey_id');
+    }
+    public  function service(){
+        return $this->belongsTo(Service::class ,'service_id');
     }
       
 

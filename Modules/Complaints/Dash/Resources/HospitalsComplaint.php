@@ -77,7 +77,7 @@ class HospitalsComplaint extends Resource {
 	 * @return string
 	 */
 	public static function customName() {
-		return  __('survey.chospitals');
+		return  __('survey.complaints');
 
 	}
 
@@ -87,8 +87,8 @@ class HospitalsComplaint extends Resource {
 	 */
 	public static function vertex() {
 		return [
-			(new HospitalsComplaints)->render('hospitals1'),
 			(new HospitalsR)->render('hospitals2'),
+			(new HospitalsComplaints)->render('hospitals1'),
 		];
 	}
 	public static function dtButtons() {

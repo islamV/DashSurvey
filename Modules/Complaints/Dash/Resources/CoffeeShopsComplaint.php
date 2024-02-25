@@ -78,7 +78,7 @@ class CoffeeShopsComplaint extends Resource {
 	 * @return string
 	 */
 	public static function customName() {
-		return __('survey.ccoffee shops');
+		return __('survey.complaints');
 	}
 
 	/**
@@ -87,8 +87,8 @@ class CoffeeShopsComplaint extends Resource {
 	 */
 	public static function vertex() {
 		return [
+			(new CoffeeShopsR)->render('coffee2'),
 				(new CoffeeShopsComplaints)->render('coffee1'),
-				(new CoffeeShopsR)->render('coffee2'),
 		];
 	}
 	public static function dtButtons() {

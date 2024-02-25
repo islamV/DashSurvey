@@ -75,7 +75,7 @@ class ClubsComplaint extends Resource {
 		return $model->where('type', 'clubs');
 	   }
 	public static function customName() {
-           return __('survey.cclubs') ;
+           return __('survey.complaints') ;
 	}
 
 	/**
@@ -84,8 +84,8 @@ class ClubsComplaint extends Resource {
 	 */
 	public static function vertex() {
 		return [
-			(new ClubsComplaints)->render('clubcompaints'),
 			(new ClubsR)->render('clubsr'),
+			(new ClubsComplaints)->render('clubcompaints'),
 	];
 	}
 	public static function dtButtons() {

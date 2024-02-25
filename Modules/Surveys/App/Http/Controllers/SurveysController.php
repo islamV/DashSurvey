@@ -100,6 +100,7 @@ class SurveysController extends Controller
         $ans->answer = $answer; 
         $ans->type_service= $question->type_service;
         $ans->type= $question->type;
+        $ans->service_id=  $request->service_branch;
         $ans->save() ;
      }
    
