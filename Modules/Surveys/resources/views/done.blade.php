@@ -7,9 +7,16 @@
 		</div>
 		<div class="check-shadow"></div>
 		<div>thank you !</div>
+	
 
 	</div>
+	<audio id="myAudio" autoplay >
+	<source src="{{asset('001.mp3') }}" >
+	Your browser does not support the audio element.
+  </audio>
 </div>
+
+  
 <style>
 body {
 	font-size: 24px;
@@ -131,11 +138,9 @@ body {
 }
 
 </style>
-
-{{-- <script>
-
-  setTimeout(function() {
-    window.location.href = ; // Replace "https://example.com" with the URL you want to redirect to
-  }, 3000); // 3000 milliseconds = 3 seconds
-
-</script> --}}
+<script>
+	var service = "<?php echo 'http://127.0.0.1:8000/services/' . $service; ?>";
+	setTimeout(function() {
+		window.location.href = service;
+	}, 2200);
+	</script>

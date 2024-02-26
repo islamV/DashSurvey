@@ -104,7 +104,7 @@ class SurveysController extends Controller
         $ans->save() ;
      }
    
-    return redirect('done');
+    return redirect()->route('done',['s'=>$service]);
 
 
     }

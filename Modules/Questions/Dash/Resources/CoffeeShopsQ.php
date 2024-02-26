@@ -70,7 +70,7 @@ class CoffeeShopsQ extends Resource {
 	 * @return string
 	 */
 	public static function customName() {
-		return __('dash.coffee shops');
+		return __('survey.coffee shops');
 	}
 
 	/**

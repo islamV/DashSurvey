@@ -75,7 +75,7 @@ class Hotels extends Resource {
 	 * @return string
 	 */
 	public static function customName() {
-		return __('dash.hotels');
+		return __('survey.hotels');
 
 	}
 

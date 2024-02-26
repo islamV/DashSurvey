@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Modules\Surveys\App\Http\Controllers\SurveysController;
 
@@ -18,6 +19,7 @@ Route::group([], function () {
     Route::resource('surveys', SurveysController::class)->names('surveys');
 });
 Route::get('survey/{service}', [SurveysController::class,'store'])->name('servey');
-route::get('done' , function(){
-    return view('surveys::done');
+route::get('done/{s}' , function( $service){
+   
+    return view('surveys::done',compact(['service']));
 })->name('done');

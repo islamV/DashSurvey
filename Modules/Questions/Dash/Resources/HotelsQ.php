@@ -69,7 +69,7 @@ class HotelsQ extends Resource {
 		return $model->where('type', 'hotels');
 	   }
 	public static function customName() {
-		return  __('dash.hotels');
+		return  __('survey.hotels');
 	}
 
 	/**

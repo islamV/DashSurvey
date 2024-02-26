@@ -72,7 +72,7 @@ class Hospitals extends Resource {
 	 * @return string
 	 */
 	public static function customName() {
-		return __('dash.hospitals');
+		return __('survey.hospitals');
 	}
 
 	/**

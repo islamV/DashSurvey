@@ -60,11 +60,14 @@ return [
 'all' => 'جميع الاستبيانات' ,
 'sections' => 'الاقسام',
 'hotelsReports' => 'تقارير استبيانات الفنادق' ,
-'hospitalsReports'=> 'تقارير استبيانات المستشفيات',
+'hospitalsReports'=> 'تقارير استبيانات المستوصفات',
 'clubsReports'=> 'تقارير اسبتيانات الاندية',
 'coffee_shopsReports'=> 'تقارير استبيانات الكوفي شوب ',
-'gusetsReports' => 'تقارير الزائرين' 
+'gusetsReports' => 'تقارير الزائرين' ,
 
-
+'hotels'=>'الفنادق' ,
+'hospitals'=> 'المستشفيات',
+'clubs' => 'الاندية',
+'coffee shops'=> 'الكوفي شوب'
 
 ] ;

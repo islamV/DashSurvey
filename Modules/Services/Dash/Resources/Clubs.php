@@ -68,7 +68,7 @@ class Clubs extends Resource {
 	 * @return string
 	 */
 	public static function customName() {
-		return __('dash.clubs');
+		return __('survey.clubs');
 	}
 
 	/**
