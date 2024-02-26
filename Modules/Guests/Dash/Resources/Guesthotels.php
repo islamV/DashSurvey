@@ -4,6 +4,8 @@ use Dash\Resource;
 use Illuminate\Support\Facades\Auth;
 use Modules\Guests\App\Models\Guest;
 use Modules\Surveys\Dash\Resources\HotelsSurvey;
+use Modules\Services\Dash\Resources\Hotels;
+
 
 class Guesthotels extends Resource {
 	
@@ -72,6 +74,9 @@ public static function dtButtons() {
 	
 			text()->make(__('dash::dash.name'),'name')->rule('required')->column(2),
 			tel()->make(__('dash::dash.phone'),'phone')->placeholder('01234567899')->rule('required' , 'regex:/^(0|(\+\d{1,2}\s?))?(\(\d{3}\)|\d{3})([-.\s]?)\d{3}([-.\s]?)\d{4}$/'),
+
+			belongsTo()->make(__('survey.branch' ), 'service', Hotels::class)->column(3), // name service
+
 			hasMany()->make(__('survey.status' ), 'servey', HotelsSurvey::class),
 
 		];

@@ -6,6 +6,7 @@ use Modules\CoffeeShops\App\Models\CoffeeShop;
 
 
 
+
 class CoffeeShops extends Resource {
 	
 	/**

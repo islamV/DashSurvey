@@ -62,13 +62,15 @@ class SurveysController extends Controller
    
     if(!$guestfind ){
         $guest['service_type'] = $service;
+        $guest['service_id'] = $request->service_branch;
     
      $guest = Guest::create($guest);
+  
     }else{
          $guestfind->name = $request->name;
         $guestfind->save() ;
     }
- 
+    // dd($guest);
       
     $data =  [
         'guest_id'=> $guest->id??  $guestfind->id ,

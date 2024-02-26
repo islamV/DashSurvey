@@ -3,6 +3,7 @@ namespace Modules\guests\Dash\Resources;
 use Dash\Resource;
 use Modules\Guests\App\Models\Guest;
 use Modules\Surveys\Dash\Resources\ClubsSurvey;
+use Modules\Services\Dash\Resources\Clubs;
 
 class Guestclubs extends Resource {
 	
@@ -70,6 +71,8 @@ public static function dtButtons() {
 	
 			text()->make(__('dash::dash.name'),'name')->rule('required')->column(2),
 			tel()->make(__('dash::dash.phone'),'phone')->placeholder('01234567899')->rule('required' , 'regex:/^(0|(\+\d{1,2}\s?))?(\(\d{3}\)|\d{3})([-.\s]?)\d{3}([-.\s]?)\d{4}$/'),
+			belongsTo()->make(__('survey.branch' ), 'service', Clubs::class)->column(3), // name service
+
 			hasMany()->make(__('survey.status' ), 'servey', ClubsSurvey::class),
 		];
 	}
