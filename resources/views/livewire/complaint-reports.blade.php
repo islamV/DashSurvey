@@ -15,15 +15,15 @@
                         {{-- service filter --}}
                         <div class="col-md-3 col-xs-12 col-sm-12">
                             <div class="form-group text-start">
-                                <label for="" id="">{{ __('survey.service') }}</label>
+                                <label for="" id="">{{ __('survey.services') }}</label>
                                 <select attribute="" id="" name=""
                                     class="form-select form-select-sm select2 p-2 filter" wire:model="selectedService"">
                                     <option value="" disabled selected>اختر خدمة </option>
                                     <option value="all">{{ __('dash::dash.all') }}</option>
-                                    <option value="hotels">{{ __('dash.hotels') }}</option>
-                                    <option value="hospitals">{{ __('dash.hospitals') }}</option>
-                                    <option value="clubs">{{ __('dash.clubs') }}</option>
-                                    <option value="coffee_shops">{{ __('dash.coffee shops') }}</option>
+                                    <option value="hotels">{{ __('survey.hotels') }}</option>
+                                    <option value="hospitals">{{ __('survey.hospitals') }}</option>
+                                    <option value="clubs">{{ __('survey.clubs') }}</option>
+                                    <option value="coffee_shops">{{ __('survey.coffee shops') }}</option>
                                     {{-- @foreach ($options as $optkey => $optvalue)
                             <option value="{{ $optkey }}">{{ $optvalue }} </option>
                             @endforeach --}}
@@ -46,20 +46,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3 col-xs-12 col-sm-12">
-                            <div class="form-group text-start">
-                                <label for="" id="">{{ __('survey.sections') }}</label>
-                                <select attribute="" id="" name=""
-                                    class="form-select form-select-sm select2 p-2 filter" wire:model="section">
-                                    <option value="" disabled selected>اختر خدمة </option>
-                                    <option value="all">{{ __('dash::dash.all') }}</option>
-                                    
-                                    @foreach ($sections as $key=>  $section)
-                            <option value="{{ $key }}">{{ $section }} </option>
-                            @endforeach
-                                </select>
-                            </div>
-                        </div>
+                     
 
                     </div>
 
@@ -96,7 +83,7 @@
                                     <h3>{{ __('survey.pendingu') }}:</h3>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <h2><span class="badge badge-warning"></span></h2>
+                                    <h2><span class="badge badge-warning">{{ $pending }}</span></h2>
                                 </div>
                             </div>
                         </div>

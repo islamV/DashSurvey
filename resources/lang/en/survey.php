@@ -55,7 +55,7 @@ return [
 'quality'=>'  the quality of the order',
 'employees'=>' the CAFÉ employees',
 
-'survey'=>'Number Of Survey '
-
+'survey'=>'Number Of Survey ',
+'service' => 'Service'
 
 ] ;

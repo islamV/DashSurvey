@@ -39,7 +39,7 @@ class ComplaintReports extends Component
             ],
             'hospitals' => [
                 __('survey.Nurse'),
-                __('survey.Service_Level'),
+                __('survey.services_Level'),
                 __('survey.evaluation'),
                 __('survey.Doctor')
             ],
@@ -103,34 +103,24 @@ class ComplaintReports extends Component
         
         $positive  = Complaint::where('status' ,'positive')->count();
         $negative  = Complaint::where('status' ,'negative')->count();
-        // $pending  = Complaint::where('status' ,'pending')->count();
+       $pending  = Complaint::where('status' ,'pending')->count();
         $all  = Complaint::count();
         if($this->selectedService  && !$this->service &&!$this->section ){
             $positive  = Complaint::where('type' ,$this->selectedService)->where('status' ,'positive')->count();
             $negative  = Complaint::where('type' ,$this->selectedService)->where('status' ,'negative')->count();
-            // $pending  = Complaint::where('type' ,$this->selectedService)->where('status' ,'pending')->count();
+             $pending  = Complaint::where('type' ,$this->selectedService)->where('status' ,'pending')->count();
             $all  = Complaint::where('type' ,$this->selectedService)->count();
 
         }
       if( $this->service && $this->selectedService && !$this->section ){
             $positive  = Complaint::where('service_id' , $this->service)->where('status' ,'positive')->count();
             $negative  = Complaint::where('service_id' , $this->service)->where('status' ,'negative')->count();
-            // $pending  = Complaint::where('service_id' , $this->service)->where('status' ,'pending')->count();
+             $pending  = Complaint::where('service_id' , $this->service)->where('status' ,'pending')->count();
             $all  = Complaint::where('service_id' , $this->service)->count();
          
         }
      
-        if ($this->selectedService && $this->service&& $this->section){
-            $positive  = Answer::where('service_id' , $this->service)->where('answer' ,'Satisfied')->where('type' , $this->selectedService)->where('type_service' ,$sections[$this->selectedService][$this->section])->count();
-            $negative  = Answer::where('service_id' , $this->service)->where('answer' ,'NotSatisfied')->where('type' , $this->selectedService)->where('type_service' ,$sections[$this->selectedService][$this->section])->count();
-            $all  = Answer::where('service_id' , $this->service)->where('type' , $this->selectedService)->where('type_service' ,$sections[$this->selectedService][$this->section])->count();
-        }
-        if($this->selectedService && !$this->service&& $this->section){
-            $positive  = Answer::where('answer' ,'Satisfied')->where('type' , $this->selectedService)->where('type_service' ,$sections[$this->selectedService][$this->section])->count();
-            $negative  = Answer::where('answer' ,'NotSatisfied')->where('type' , $this->selectedService)->where('type_service' ,$sections[$this->selectedService][$this->section])->count();
-            $all  = Answer::where('type' , $this->selectedService)->where('type_service' ,$sections[$this->selectedService][$this->section])->count();
-        }
-        
+    
  
         return view('livewire.complaint-reports',[
             'options'=>$options,
@@ -139,8 +129,7 @@ class ComplaintReports extends Component
             'all'=>  $all,
             'service'=> $this->service,
             'negative' => $negative,
-            // 'pending'=>$pending,
-            'sections' => $this->selectedService?$sectionstrans[$this->selectedService]:[],
+            'pending'=>$pending,
 
         ]);
     }

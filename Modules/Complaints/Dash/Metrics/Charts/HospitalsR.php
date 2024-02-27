@@ -38,7 +38,7 @@ class HospitalsR extends Chart
         return $this->data([
             'type' => 'bar',
             'data' => [
-                'labels' => [__('survey.Nurse'),__('survey.Service_Level'),
+                'labels' => [__('survey.Nurse'),__('survey.services_Level'),
                  __('survey.evaluation'), __('survey.Doctor')],
                 'datasets' => [
                     [
