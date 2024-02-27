@@ -51,7 +51,7 @@ class ComplaintReport extends Pages {
 	 * @return string
 	 */
 	public static function pageName() {
-		return __("survey.reports");
+		return __("survey.reportcom");
 	}
 
 	/**
@@ -78,7 +78,7 @@ class ComplaintReport extends Pages {
 				'color'       => 'info',
 			]);
 		}
-		return view('SurveyReports', [
+		return view('ComplaintReports', [
 				'title'    => static ::pageName(),
 				//'SurveyReports' => ModelName::find(1),
 				'content' => $content

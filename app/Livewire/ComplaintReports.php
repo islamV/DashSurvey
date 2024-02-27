@@ -5,9 +5,9 @@ namespace App\Livewire;
 use Livewire\Component;
 use Modules\Services\App\Models\Service;
 use Modules\Surveys\App\Models\Answer;
-use Modules\Surveys\App\Models\Survey;
+use Modules\Complaints\App\Models\Complaint;
 
-class SurveyReports extends Component
+class ComplaintReports extends Component
 {
 
       public $selectedService = null;
@@ -23,14 +23,19 @@ class SurveyReports extends Component
             'hotels' => [
                 __('survey.Reception_Bellman'),
                 __('survey.Reservation_checkin_checkout_riendly'),
-                __('survey.Food'),
-                __('survey.WI-FI'),
                 __('survey.Resturant'),
+                __('survey.Food'),
                 __('survey.coffe_shop'),
                 __('survey.Swimmingpool_GYM'),
+              
                 __('survey.cleanliness_room'),
                 __('survey.cleanliness_Area'),
-                __('survey.Money')
+                __('survey.Money'),
+                __('survey.WI-FI')
+
+             
+              
+                
             ],
             'hospitals' => [
                 __('survey.Nurse'),
@@ -60,7 +65,6 @@ class SurveyReports extends Component
         $sections = [
             'hotels' => [
                 'Reception_Bellman',
-                
                 'Reservation_checkin_checkout_riendly',
                 'Resturant',
                 'Food',
@@ -97,19 +101,22 @@ class SurveyReports extends Component
             ]
         ];
         
-        $positive  = Survey::where('status' ,'positive')->count();
-        $negative  = Survey::where('status' ,'negative')->count();
-        $all  = Survey::count();
+        $positive  = Complaint::where('status' ,'positive')->count();
+        $negative  = Complaint::where('status' ,'negative')->count();
+        // $pending  = Complaint::where('status' ,'pending')->count();
+        $all  = Complaint::count();
         if($this->selectedService  && !$this->service &&!$this->section ){
-            $positive  = Survey::where('service_type' ,$this->selectedService)->where('status' ,'positive')->count();
-            $negative  = Survey::where('service_type' ,$this->selectedService)->where('status' ,'negative')->count();
-            $all  = Survey::where('service_type' ,$this->selectedService)->count();
+            $positive  = Complaint::where('type' ,$this->selectedService)->where('status' ,'positive')->count();
+            $negative  = Complaint::where('type' ,$this->selectedService)->where('status' ,'negative')->count();
+            // $pending  = Complaint::where('type' ,$this->selectedService)->where('status' ,'pending')->count();
+            $all  = Complaint::where('type' ,$this->selectedService)->count();
 
         }
       if( $this->service && $this->selectedService && !$this->section ){
-            $positive  = Survey::where('service_id' , $this->service)->where('status' ,'positive')->count();
-            $negative  = Survey::where('service_id' , $this->service)->where('status' ,'negative')->count();
-            $all  = Survey::where('service_id' , $this->service)->count();
+            $positive  = Complaint::where('service_id' , $this->service)->where('status' ,'positive')->count();
+            $negative  = Complaint::where('service_id' , $this->service)->where('status' ,'negative')->count();
+            // $pending  = Complaint::where('service_id' , $this->service)->where('status' ,'pending')->count();
+            $all  = Complaint::where('service_id' , $this->service)->count();
          
         }
      
@@ -125,14 +132,15 @@ class SurveyReports extends Component
         }
         
  
-        return view('livewire.survey-reports',[
+        return view('livewire.complaint-reports',[
             'options'=>$options,
             'selectedService'=> $this->selectedService ,
             'positive'=>$positive,
             'all'=>  $all,
             'service'=> $this->service,
             'negative' => $negative,
-            'sections' =>$this->selectedService?$sectionstrans[$this->selectedService]:[],
+            // 'pending'=>$pending,
+            'sections' => $this->selectedService?$sectionstrans[$this->selectedService]:[],
 
         ]);
     }

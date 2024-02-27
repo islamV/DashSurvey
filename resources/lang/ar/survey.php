@@ -68,6 +68,8 @@ return [
 'hotels'=>'الفنادق' ,
 'hospitals'=> 'المستشفيات',
 'clubs' => 'الاندية',
-'coffee shops'=> 'الكوفي شوب'
+'coffee shops'=> 'الكوفي شوب',
+'reportcom'=> 'تقارير الشكاوي ',
+'allcom' => 'جميع  الشكاوي' ,
 
 ] ;

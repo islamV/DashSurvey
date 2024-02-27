@@ -1,9 +1,9 @@
 <?php
 namespace Modules\Complaints\Dash\Metrics\Charts;
 use Dash\Extras\Metrics\Chart;
-use Modules\Surveys\App\Models\Survey;
+use Modules\Complaints\App\Models\Complaint;
 
-class Surveys extends Chart{
+class Complaints extends Chart{
 
      /**
      * @method options
@@ -13,7 +13,7 @@ class Surveys extends Chart{
     public function options():array{
         return [
             'column'=>'9',
-            'elem'=>'surveys'// do not add hash # just clearname
+            'elem'=>'complaints'// do not add hash # just clearname
         ];
     }
 
@@ -27,16 +27,27 @@ public function dataServicePositive(){
 
 $data  =  [] ; 
        foreach($this->typeService() as $kay => $value){
-        $data[$kay] =    Survey::where('service_type', $value)->where('status' ,'positive')->count();
+        $data[$kay] =    Complaint::where('type', $value)->where('status' ,'positive')->count();
        }
        return $data ;
 }
+
+public function dataServicePending(){
+  
+
+    $data  =  [] ; 
+           foreach($this->typeService() as $kay => $value){
+            $data[$kay] =    Complaint::where('type', $value)->where('status' ,'pending')->count();
+           }
+           return $data ;
+    }
+
 public function dataServiceNotSatisfied(){
   
 
     $data  =  [] ; 
            foreach($this->typeService() as $kay => $value){
-            $data[$kay] =     Survey::where('service_type', $value)->where('status' ,'negative')->count();
+            $data[$kay] =     Complaint::where('type', $value)->where('status' ,'negative')->count();
            }
            return $data ;
     }
@@ -54,6 +65,17 @@ public function dataServiceNotSatisfied(){
         return $data;
 
     }  
+
+    public function colorYellow(): array{
+        $data = [] ;
+        foreach($this->typeService() as $kay => $value){
+            $data[$kay] =  'rgba(255, 255, 126,0.5)';                
+
+        }  
+        return $data;
+
+    }  
+
     public function colorRed(): array{
         $data = [] ;
         foreach($this->typeService() as $kay => $value){
@@ -86,6 +108,16 @@ public function dataServiceNotSatisfied(){
                         ' barPercentage' => .5
 
                     ],
+
+                    [
+
+                        'label' => __('survey.pendingu'),
+                        'data' => $this->dataServicePending(),
+                        'backgroundColor' => $this->colorYellow(),
+                        ' barPercentage' => .5
+
+                    ] ,
+
                     [
 
                         'label' => __('survey.negativeu'),
@@ -101,7 +133,7 @@ public function dataServiceNotSatisfied(){
         ])
             // blank or parent or remove this prarm default is parent
             ->icon('<i class="fa-regular fa-clipboard"></i>')
-            ->title(__('survey.reports'));
+            ->title(__('survey.reportcom'));
 
     }
 

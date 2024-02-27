@@ -5,6 +5,7 @@ use App\Dash\Dashboard\Help;
 use App\Dash\Pages\SurveyReports;
 use Dash\DashServiceProviderInit;
 
+use App\Dash\Pages\ComplaintReport;
 use App\Dash\Notifications\ComplaintNotiy;
 
 
@@ -45,6 +46,7 @@ class DashServiceProvider extends DashServiceProviderInit {
 	public static function blankPages() {
 		return [
 			SurveyReports::class,
+			ComplaintReport::class,
 		];
 	}
 

@@ -9,7 +9,7 @@ use App\Dash\Metrics\Values\AllUsers;
 use App\Dash\Metrics\Values\AllAdmins;
 use App\Dash\Metrics\Values\AllAdminGroups;
 use Modules\surveys\Dash\Metrics\Values\Hotels;
-use Modules\Complaints\Dash\Metrics\Charts\Surveys;
+use Modules\Complaints\Dash\Metrics\Charts\Complaints;
 use Modules\surveys\Dash\Metrics\Values\AllSurveys;
 
 class ComplaintReports extends Resource {
@@ -22,7 +22,7 @@ class ComplaintReports extends Resource {
 	public static function cards() {
 		return [
 
-                (new Surveys)->render("surveys"), //chart
+                (new Complaints)->render("complaints"), //chart
 				
 		];
 	}
