@@ -16,7 +16,8 @@ use Modules\questions\Dash\Resources\HotelsQ;
 use Modules\guests\Dash\Resources\Guesthotels;
 use Modules\Surveys\Dash\Metrics\Charts\HotelsSurveys;
 use Modules\Surveys\Dash\Metrics\Charts\HotelsAnswersSurveys;
-
+use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 class HotelsSurvey extends Resource {
 
 
@@ -186,8 +187,11 @@ class HotelsSurvey extends Resource {
 		return [
 			HotelsSurveyStatus::class,
 			HotelsSurveyBranch::class,
+			
 
 		];
 	}
+
+	
 
 }

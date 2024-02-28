@@ -7,35 +7,141 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Auth;
 use Modules\Guests\App\Models\Guest;
 use Modules\Hotels\App\Models\Hotel;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 use Modules\Surveys\App\Models\Answer;
 use Modules\Surveys\App\Models\Survey;
-use Modules\Complaints\App\Models\Complaint;
+use Modules\Services\App\Models\Service;
 use Modules\Questions\App\Models\Question;
+use Modules\Complaints\App\Models\Complaint;
 
 class SurveysController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function typeServiceTrans(){
-        $answers = Answer::select('type_service')->distinct()->pluck('type_service');
-
     
-        foreach ($answers as $kay => $label) {
-            $labels[$kay]= __('survey.'. $label);
-    
-        }  
-    return  $labels ;
-    }  
    
 	
-    public function index()
+    public function index(Request $request)
     {
-          
+        $options = Service::where("type",$request->selectedService)->get()??[];
+        $sectionstrans = [
+            'hotels' => [
+                __('survey.Reception_Bellman'),
+                __('survey.Reservation_checkin_checkout_riendly'),
+                __('survey.Food'),
+                __('survey.WI-FI'),
+                __('survey.Resturant'),
+                __('survey.coffe_shop'),
+                __('survey.Swimmingpool_GYM'),
+                __('survey.cleanliness_room'),
+                __('survey.cleanliness_Area'),
+                __('survey.Money')
+            ],
+            'hospitals' => [
+                __('survey.Nurse'),
+                __('survey.Service_Level'),
+                __('survey.evaluation'),
+                __('survey.Doctor')
+            ],
+            'clubs' => [
+                __('survey.cleanliness'),
+                __('survey.staff'),
+                __('survey.services_provided'),
+                __('survey.massage'),
+                __('survey.Moroccan_bath'),
+                __('survey.recommend'),
+                __('survey.amenities'),
+                __('survey.difficulties')
+            ],
+            'coffee_shops' => [
+                __('survey.quality_coffee'),
+                __('survey.bakery'),
+                __('survey.candy'),
+                __('survey.speed'),
+                __('survey.quality'),
+                __('survey.employees')
+            ]
+        ];
+         
+        $sections = [
+            'hotels' => [
+                'Reception_Bellman',
+
+                'Reservation_checkin_checkout_riendly',
+                'Resturant',
+                'Food',
+                'coffe_shop',
+                'Swimmingpool_GYM',
+                'cleanliness_room',
+                'cleanliness_Area',
+                'Money',
+                'WI-FI'
+            ],
+            'hospitals' => [
+                'Nurse',
+                'Service_Level',
+                'evaluation',
+                'Doctor'
+            ],
+            'clubs' => [
+                'cleanliness',
+                'staff',
+                'services_provided',
+                'massage',
+                'Moroccan_bath',
+                'recommend',
+                'amenities',
+                'difficulties'
+            ],
+            'coffee_shops' => [
+                'quality_coffee',
+                'bakery',
+                'candy',
+                'speed',
+                'quality',
+                'employees'
+            ]
+        ];
+
+        
+        $positive  = Survey::where('status', 'positive')->count();
+        $negative  = Survey::where('status', 'negative')->count();
+        $all  = Survey::count();
+        $data= Survey::get();
+        if ($request->selectedService  && !$request->service && !$request->section) {
+            $data  = Survey::where('service_type', $request->selectedService)->get();
+            $positive  = Survey::where('service_type', $request->selectedService)->where('status', 'positive')->count();
+            $negative  = Survey::where('service_type', $request->selectedService)->where('status', 'negative')->count();
+            $all  = Survey::where('service_type', $request->selectedService)->count();
+        }
+        if ($request->service && $request->selectedService && !$request->section) {
+            $data  = Survey::where('service_type', $request->selectedService)->where('service_id', $request->service)->get();
+
+            $positive  = Survey::where('service_id', $request->service)->where('service_type', $request->selectedService)->where('status', 'positive')->count();
+            $negative  = Survey::where('service_id', $request->service)->where('service_type', $request->selectedService)->where('status', 'negative')->count();
+            $all  = Survey::where('service_id', $request->service)->where('service_type', $request->selectedService)->count();
+        }
+
+        if ($request->selectedService && $request->service && $request->section) {
+            $positive  = Answer::where('service_id', $request->service)->where('answer', 'Satisfied')->where('type', $request->selectedService)->where('type_service', $sections[$request->selectedService][$request->section])->count();
+            $negative  = Answer::where('service_id', $request->service)->where('answer', 'NotSatisfied')->where('type', $request->selectedService)->where('type_service', $sections[$request->selectedService][$request->section])->count();
+            $all  = Answer::where('service_id', $request->service)->where('type', $request->selectedService)->where('type_service', $sections[$request->selectedService][$request->section])->count();
+        }
+        if ($request->selectedService && !$request->service && $request->section) {
+            $data  = Answer::where('type', $request->selectedService)->where('type_service', $sections[$request->selectedService][$request->section])->get();
+
+            $positive  = Answer::where('answer', 'Satisfied')->where('type', $request->selectedService)->where('type_service', $sections[$request->selectedService][$request->section])->count();
+            $negative  = Answer::where('answer', 'NotSatisfied')->where('type', $request->selectedService)->where('type_service', $sections[$request->selectedService][$request->section])->count();
+            $all  = Answer::where('type', $request->selectedService)->where('type_service', $sections[$request->selectedService][$request->section])->count();
+        }
+         
+
+        return compact(['positive' ,'negative' ,'all' ,'data' ,'options']);
+
     }
 
     /**

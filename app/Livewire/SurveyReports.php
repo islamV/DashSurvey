@@ -13,13 +13,18 @@ class SurveyReports extends Component
       public $selectedService = null;
       public $service ;
       public $section ;
-    
+      public $positive= 0;
+      public $negative=0;
+      public $all=0;
+      public $filter = false;
+      public $data = [];
 
 
 
     public function render(){
         $options = Service::where("type",$this->selectedService )->get();
         $sectionstrans = [
+            'all' => [] ,
             'hotels' => [
                 __('survey.Reception_Bellman'),
                 __('survey.Reservation_checkin_checkout_riendly'),
@@ -57,10 +62,40 @@ class SurveyReports extends Component
                 __('survey.employees')
             ]
         ];
+    
+        
+        return view('livewire.survey-reports',[
+            'options'=>$options,
+            'selectedService'=> $this->selectedService ,
+            'positive'=>$this->positive,
+            'all'=>  $this->all,
+            'service'=> $this->service,
+            'negative' => $this->negative,
+            'sections' =>$this->selectedService?$sectionstrans[$this->selectedService]:[],
+            'data' => $this->data,
+            
+
+        ]);
+    }
+    
+    public function getResults()
+    {
+        switch(true) {
+            case ($this->selectedService === 'all'):
+            case ($this->service === 'all'):
+            case ($this->section === 'all'):
+                $this->selectedService = $this->service = $this->section = null;
+                break;
+        }
+        
+
+         $this->filter = true;
+   
+
         $sections = [
             'hotels' => [
                 'Reception_Bellman',
-                
+
                 'Reservation_checkin_checkout_riendly',
                 'Resturant',
                 'Food',
@@ -96,47 +131,37 @@ class SurveyReports extends Component
                 'employees'
             ]
         ];
-        
-        $positive  = Survey::where('status' ,'positive')->count();
-        $negative  = Survey::where('status' ,'negative')->count();
-        $all  = Survey::count();
-        if($this->selectedService  && !$this->service &&!$this->section ){
-            $positive  = Survey::where('service_type' ,$this->selectedService)->where('status' ,'positive')->count();
-            $negative  = Survey::where('service_type' ,$this->selectedService)->where('status' ,'negative')->count();
-            $all  = Survey::where('service_type' ,$this->selectedService)->count();
 
+        $this->positive  = Survey::where('status', 'positive')->count();
+        $this->negative  = Survey::where('status', 'negative')->count();
+        $this->all  = Survey::count();
+        $this->data= Survey::get();
+          
+        if ($this->selectedService && !$this->service && !$this->section  ) {
+            $this->data  = Survey::where('service_type', $this->selectedService)->get();
+            $this->positive  = Survey::where('service_type', $this->selectedService)->where('status', 'positive')->count();
+            $this->negative  = Survey::where('service_type', $this->selectedService)->where('status', 'negative')->count();
+            $this->all  = Survey::where('service_type', $this->selectedService)->count();
         }
-      if( $this->service && $this->selectedService && !$this->section ){
-            $positive  = Survey::where('service_id' , $this->service)->where('status' ,'positive')->count();
-            $negative  = Survey::where('service_id' , $this->service)->where('status' ,'negative')->count();
-            $all  = Survey::where('service_id' , $this->service)->count();
-         
-        }
-     
-        if ($this->selectedService && $this->service&& $this->section){
-            $positive  = Answer::where('service_id' , $this->service)->where('answer' ,'Satisfied')->where('type' , $this->selectedService)->where('type_service' ,$sections[$this->selectedService][$this->section])->count();
-            $negative  = Answer::where('service_id' , $this->service)->where('answer' ,'NotSatisfied')->where('type' , $this->selectedService)->where('type_service' ,$sections[$this->selectedService][$this->section])->count();
-            $all  = Answer::where('service_id' , $this->service)->where('type' , $this->selectedService)->where('type_service' ,$sections[$this->selectedService][$this->section])->count();
-        }
-        if($this->selectedService && !$this->service&& $this->section){
-            $positive  = Answer::where('answer' ,'Satisfied')->where('type' , $this->selectedService)->where('type_service' ,$sections[$this->selectedService][$this->section])->count();
-            $negative  = Answer::where('answer' ,'NotSatisfied')->where('type' , $this->selectedService)->where('type_service' ,$sections[$this->selectedService][$this->section])->count();
-            $all  = Answer::where('type' , $this->selectedService)->where('type_service' ,$sections[$this->selectedService][$this->section])->count();
-        }
-        
- 
-        return view('livewire.survey-reports',[
-            'options'=>$options,
-            'selectedService'=> $this->selectedService ,
-            'positive'=>$positive,
-            'all'=>  $all,
-            'service'=> $this->service,
-            'negative' => $negative,
-            'sections' =>$this->selectedService?$sectionstrans[$this->selectedService]:[],
+        if ($this->service && $this->selectedService  && !$this->section ) {
+            $this->data  = Survey::where('service_type', $this->selectedService)->where('service_id', $this->service)->get();
 
-        ]);
-    }
-    
+            $this->positive  = Survey::where('service_id', $this->service)->where('service_type', $this->selectedService)->where('status', 'positive')->count();
+            $this->negative  = Survey::where('service_id', $this->service)->where('service_type', $this->selectedService)->where('status', 'negative')->count();
+            $this->all  = Survey::where('service_id', $this->service)->where('service_type', $this->selectedService)->count();
+        }
 
-   
+        if ($this->selectedService && $this->service && $this->section) {
+            $this->positive  = Answer::where('service_id', $this->service)->where('answer', 'Satisfied')->where('type', $this->selectedService)->where('type_service', $sections[$this->selectedService][$this->section])->count();
+            $this->negative  = Answer::where('service_id', $this->service)->where('answer', 'NotSatisfied')->where('type', $this->selectedService)->where('type_service', $sections[$this->selectedService][$this->section])->count();
+            $this->all  = Answer::where('service_id', $this->service)->where('type', $this->selectedService)->where('type_service', $sections[$this->selectedService][$this->section])->count();
+        }
+        if ($this->selectedService && !$this->service && $this->section) {
+            $this->data  = Answer::where('type', $this->selectedService)->where('type_service', $sections[$this->selectedService][$this->section])->get();
+            $this->positive  = Answer::where('answer', 'Satisfied')->where('type', $this->selectedService)->where('type_service', $sections[$this->selectedService][$this->section])->count();
+            $this->negative  = Answer::where('answer', 'NotSatisfied')->where('type', $this->selectedService)->where('type_service', $sections[$this->selectedService][$this->section])->count();
+            $this->all  = Answer::where('type', $this->selectedService)->where('type_service', $sections[$this->selectedService][$this->section])->count();
+        }
+
+}
 }
