@@ -7,11 +7,16 @@ use Livewire\Component;
 class Table extends Component
 {
 
-    public  function mount($data){
-      
+    public $data;
+
+    public function mount($data)
+    {
+        $this->data = $data;
     }
     public function render()
     {
-        return view('livewire.table');
+        return view('livewire.table' ,
+      ['data' => $this->data],
+    );
     }
 }

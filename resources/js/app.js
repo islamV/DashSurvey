@@ -1,4 +1,6 @@
 import './bootstrap';
+import './../../vendor/power-components/livewire-powergrid/dist/bootstrap5.css'
+
 const form = document.querySelector("form"),
   nextBtn = form.querySelector(".nextBtn"),
   backBtn = form.querySelector(".backBtn"),

@@ -1,8 +1,4 @@
-@php
 
-$dataT = $data??[];
-
-@endphp
 <div>
     <div class="row">
         <div class="col-12">
@@ -17,7 +13,16 @@ $dataT = $data??[];
                 <div class="card-body px-3 pb-2">
                   <form  wire:submit.prevent="getResults">
                     <div class="row filters  ">
-
+                        <div class="form-group row">
+                            <div class="col-sm-3">
+                                <input type="date" class="form-control input-sm" id="fromDate" wire:model="fromDate" />
+                            </div>
+                            <label for="date" class="col-form-label col-sm-2">Search From</label>
+                            <div class="col-sm-3">
+                                <input type="date" class="form-control input-sm" id="toDate" wire:model="toDate" />
+                            </div>
+                            <label for="date" class="col-form-label col-sm-2">Search To</label>
+                        </div>
                         {{-- service filter --}}
                         <div class="col-md-3 col-xs-12 col-sm-12">
                             <div class="form-group text-start">
@@ -51,7 +56,7 @@ $dataT = $data??[];
                                 </select>
                             </div>
                         </div>
-
+{{-- 
                         <div class="col-md-3 col-xs-12 col-sm-12">
                             <div class="form-group text-start">
                                 <label for="" id="">{{ __('survey.sections') }}</label>
@@ -65,7 +70,7 @@ $dataT = $data??[];
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
 
                     </div>
                     <button class="btn btn-primary" type="submit">{{ __('dash::dash.search') }}  </button>
@@ -136,16 +141,18 @@ $dataT = $data??[];
             </div>
         </div>
     </div>
-   
+ 
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="card">
             <div class="card-header">
                 
-                <button class="btn btn-outline-light buttons-copy buttons-html5" onclick="printPDF()" tabindex="0" aria-controls="example" type="button"><span>{{ __('dash::dash.pdf') }}</span></button> 
+                <button  id="pdfBt" class="btn btn-outline-light buttons-copy buttons-html5"  tabindex="0" aria-controls="example" onclick="printTable()" type="button"><span>{{ __('dash::dash.print') }}</span></button> 
+                <button  id="pdfBt" class="btn btn-outline-light buttons-copy buttons-html5"  tabindex="0" aria-controls="example" onclick="pdfTable()" type="button"><span>{{ __('dash::dash.pdf') }}</span></button> 
             </div>
+      
             <div class="card-body">
            
-                <table id="example" class="table table-striped table-bordered second" style="width:100%">
+                <table id="myTable" class="table table-striped table-bordered second" style="width:100%">
                     <thead>
                         <tr>
                             <th>{{ __('survey.service') }}</th>
@@ -156,18 +163,19 @@ $dataT = $data??[];
                         </tr>
                     </thead>
                     <tbody>
- @if ($filter) 
-             @foreach ($dataT as $d )
-             
+    @if ($filter)
+        
+         @foreach ($data as $d )
+    
              <tr>
-                 <td>{{$selectedService??'all'}}</td>
-                 <td>{{$service??'all'}}</td>
+                 <td>{{$selectedService??'all'  }}</td>
+                 <td>{{ $service??'all'}}</td>
                  <td> {!! __('survey.'.$d->status) !!}</td>
                  <td>{{ $d->created_at }}</td>
                 </tr>
                 @endforeach
-@endif
                 
+     @endif
                       
                 
                      
@@ -184,30 +192,8 @@ $dataT = $data??[];
             </div>
         </div>
     </div>
-    
-
+  
     
 </div>
 
 
-
-<script src="{{ asset('assets/vendor/jquery/jquery-3.3.1.min.js') }}"></script>
-<script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
-<script src="{{ asset('assets/vendor/slimscroll/jquery.slimscroll.js') }}"></script>
-<script src="{{ asset('assets/vendor/multi-select/js/jquery.multi-select.js') }}"></script>
-<script src="{{ asset('assets/libs/js/main-js.js') }}"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="{{ asset('assets/vendor/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-<script src="{{ asset('assets/vendor/datatables/js/buttons.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('assets/vendor/datatables/js/data-table.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
-<script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
-<script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
-<script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>

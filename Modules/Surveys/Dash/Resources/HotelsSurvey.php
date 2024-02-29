@@ -163,7 +163,10 @@ class HotelsSurvey extends Resource {
 			// you can use help & placeholder , whenstore , whenUpdate
 				textarea()->make(__('survey.note') , 'note'),
 				custom()->make('answers') 
-				->view('surveys::answers')->hideInIndex()->hideInCreate()->hideInUpdate()->column(6), // append your blade file
+				->view('surveys::answers')->hideInIndex()->hideInCreate()->hideInUpdate()->column(6),
+			 // append your blade file
+
+			//  fulldate()->make('date' ,'date')->column(3),
 			
 
 		];
