@@ -6,6 +6,8 @@
 </div>
 
 @livewire('survey-reports')
+
+
 @endsection
 
 
