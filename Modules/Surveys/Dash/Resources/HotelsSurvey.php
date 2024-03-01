@@ -16,7 +16,8 @@ use Modules\questions\Dash\Resources\HotelsQ;
 use Modules\guests\Dash\Resources\Guesthotels;
 use Modules\Surveys\Dash\Metrics\Charts\HotelsSurveys;
 use Modules\Surveys\Dash\Metrics\Charts\HotelsAnswersSurveys;
-
+use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
+use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 class HotelsSurvey extends Resource {
 
 
@@ -71,6 +72,7 @@ class HotelsSurvey extends Resource {
 	public static $search = [
 		'id',
 		'status',
+		'created_at'
 	];
 
 	/**
@@ -161,7 +163,10 @@ class HotelsSurvey extends Resource {
 			// you can use help & placeholder , whenstore , whenUpdate
 				textarea()->make(__('survey.note') , 'note'),
 				custom()->make('answers') 
-				->view('surveys::answers')->hideInIndex()->hideInCreate()->hideInUpdate()->column(6), // append your blade file
+				->view('surveys::answers')->hideInIndex()->hideInCreate()->hideInUpdate()->column(6),
+			 // append your blade file
+
+			//  fulldate()->make('date' ,'date')->column(3),
 			
 
 		];
@@ -185,8 +190,11 @@ class HotelsSurvey extends Resource {
 		return [
 			HotelsSurveyStatus::class,
 			HotelsSurveyBranch::class,
+			
 
 		];
 	}
+
+	
 
 }

@@ -65,6 +65,7 @@ class CoffeeShopsSurvey extends Resource {
 	public static $search = [
 		'id',
 		'name',
+		'created_at'
 	];
 
 	/**

@@ -57,6 +57,7 @@ class HotelsComplaint extends Resource {
 	public static $search = [
 		'id',
 		'status',
+		'created_at'
 	];
 
 	/**

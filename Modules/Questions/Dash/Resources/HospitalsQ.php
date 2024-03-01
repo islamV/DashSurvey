@@ -92,7 +92,7 @@ class HospitalsQ extends Resource {
 			select()->make(__('survey.type_service'),'type_service') // you can use disabled() with this element
 			->options([
 				'Nurse'=> __('survey.Nurse'),
-				'Service_Level'=>__('survey.Service_Level'),
+				'Service_Level'=>__('survey.services_Level'),
 				'evaluation'=>__('survey.evaluation'),
 				'Doctor'=>__('survey.Doctor'),
 			

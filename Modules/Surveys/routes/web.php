@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Modules\Surveys\App\Http\Controllers\SurveysController;
+use Modules\Surveys\App\Models\Survey;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ route::get('done/{s}' , function( $service){
    
     return view('surveys::done',compact(['service']));
 })->name('done');
+
+route::get('getResults' , [SurveysController::class , 'index'])->name('getResults');

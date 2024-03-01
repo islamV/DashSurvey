@@ -55,7 +55,34 @@ return [
 'quality'=>'  the quality of the order',
 'employees'=>' the CAFÉ employees',
 
-'survey'=>'Number Of Survey '
 
+// 
+
+
+'reports'=> ' Reports Of Survey',
+'complaints'=> ' Reports Of Complaints',
+'service' => 'Services',
+'all' => 'All Of Survey ' ,
+'sections' => 'Sections',
+'hotelsReports' => 'Hotels Reports Of Survey' ,
+'hospitalsReports'=> 'Hospitals Reports Of Survey',
+'clubsReports'=> ' Clubs Reports Of Survey',
+'coffee_shopsReports'=> 'Coffee_Shops Reports Of Survey ',
+'gusetsReports' => 'Gusets Reports' ,
+
+'hotels'=>'Hotels' ,
+'hospitals'=> 'Hospitals',
+'clubs' => 'Clubs',
+'coffee shops'=> ' Coffee_Shops',
+'reportcom'=> 'Reports Of Complaints',
+'allcom' => 'All Of Complaints' ,
+
+
+// 
+
+
+
+'survey'=>'Number Of Survey ',
+'service' => 'Service',
 
 ] ;
