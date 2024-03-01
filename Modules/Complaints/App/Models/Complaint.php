@@ -43,5 +43,34 @@ class Complaint extends Model
     return $this->belongsTo(Service::class ,'service_id') ;
 }
     
-   
+
+public function scopeTypeOfComplaint( $query,  $type , $value ,$fromDate , $toDate)
+{
+    $query->where($type, $value)
+    ->where('created_at', '>=', $fromDate)
+    ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($toDate)));
+}
+
+public function scopeSelectedService( $query,  $type , $value , $status , $v ,$fromDate , $toDate)
+{
+    $query->where($type, $value)
+    ->where($status, $v)
+    ->where('created_at', '>=', $fromDate)
+    ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($toDate)));
+}
+
+public function scopeServices( $query,  $service_id , $id , $type , $v ,$status, $sv  ,$fromDate , $toDate)
+{
+    $query->where($service_id, $id)
+    ->where($type, $v)
+    ->where($status, $sv)
+    ->where('created_at', '>=', $fromDate)
+    ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($toDate)));
+
+
+ 
+           
+
+}
+
 }

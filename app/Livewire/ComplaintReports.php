@@ -10,19 +10,19 @@ use Modules\Complaints\App\Models\Complaint;
 class ComplaintReports extends Component
 {
 
-     
+
     public $selectedService = null;
     public $service;
     public $section;
     public $positive = 0;
     public $negative = 0;
-    public  $pending =0 ;
+    public  $pending = 0;
     public $all = 0;
     public $filter = false;
     public $data = [];
     public $fromDate;
     public $toDate;
-    
+
 
 
     public function mount()
@@ -80,11 +80,11 @@ class ComplaintReports extends Component
             'positive' => $this->positive,
             'all' =>  $this->all,
             'service' => $this->service,
-            'pending' =>$this->pending,
+            'pending' => $this->pending,
             'negative' => $this->negative,
             'sections' => $this->selectedService ? $sectionstrans[$this->selectedService] : [],
             'data' => $this->data,
-            
+
 
 
         ]);
@@ -92,7 +92,7 @@ class ComplaintReports extends Component
 
     public function getResults()
     {
-        //== dd($this->fromDate , $this->toDate);
+
         switch (true) {
             case ($this->selectedService === 'all'):
             case ($this->service === 'all'):
@@ -145,92 +145,84 @@ class ComplaintReports extends Component
             ]
         ];
 
-        $this->positive  = Complaint::where('status', 'positive')
-        ->where('created_at', '>=', $this->fromDate)
-        ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
-        ->count();
-
-        $this->pending  = Complaint::where('status', 'pending')
-        ->where('created_at', '>=', $this->fromDate)
-        ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
-        ->count();
-    $this->negative  = Complaint::where('status', 'negative')
-        ->where('created_at', '>=', $this->fromDate)
-        ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
-        ->count();
-    $this->all  = Complaint::where('created_at', '>=', $this->fromDate)
-        ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
-        ->count();
-    $this->data = Complaint::where('created_at', '>=', $this->fromDate)
-        ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
-        ->get();
-    
-    
-    if ($this->selectedService && !$this->service) {
-        $this->data  = Complaint::where('type', $this->selectedService)
-            ->where('created_at', '>=', $this->fromDate)
-            ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
-            ->get();
-        $this->positive  = Complaint::where('type', $this->selectedService)
-            ->where('status', 'positive')
-            ->where('created_at', '>=', $this->fromDate)
-            ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
-            ->count();
-
-            $this->pending  = Complaint::where('type', $this->selectedService)
-            ->where('status', 'pending')
-            ->where('created_at', '>=', $this->fromDate)
-            ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
-            ->count();
-        $this->negative  = Complaint::where('type', $this->selectedService)
-            ->where('status', 'negative')
-            ->where('created_at', '>=', $this->fromDate)
-            ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
-            ->count();
-        $this->all  = Complaint::where('type', $this->selectedService)
-            ->where('created_at', '>=', $this->fromDate)
-            ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
-            ->count();
-    }
-    
-    if ($this->service && $this->selectedService) {
-        $this->data  = Complaint::where('type', $this->selectedService)
-            ->where('service_id', $this->service)
-            ->where('created_at', '>=', $this->fromDate)
-            ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
-            ->get();
-    
-        $this->positive  = Complaint::where('service_id', $this->service)
-            ->where('type', $this->selectedService)
-            ->where('status', 'positive')
-            ->where('created_at', '>=', $this->fromDate)
-            ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
-            ->count();
-
-            $this->pending  = Complaint::where('service_id', $this->service)
-            ->where('type', $this->selectedService)
-            ->where('status', 'pending')
-            ->where('created_at', '>=', $this->fromDate)
-            ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
-            ->count();
-
-        $this->negative  = Complaint::where('service_id', $this->service)
-            ->where('type', $this->selectedService)
-            ->where('status', 'negative')
-            ->where('created_at', '>=', $this->fromDate)
-            ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
-            ->count();
-        $this->all  = Complaint::where('service_id', $this->service)
-            ->where('type', $this->selectedService)
-            ->where('created_at', '>=', $this->fromDate)
-            ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
-            ->count();
-    }
-  
-
-    
+        $this->positive  = Complaint::TypeOfComplaint('status', 'positive', $this->fromDate, $this->toDate)->count();
 
 
+
+        $this->pending  = Complaint::TypeOfComplaint('status', 'pending', $this->fromDate, $this->toDate)->count();
+
+
+        $this->negative  = Complaint::TypeOfComplaint('status', 'negative', $this->fromDate, $this->toDate)->count();
+
+
+        $this->all  = Complaint::TypeOfComplaint('status', ' ', $this->fromDate, $this->toDate)->count();
+
+
+        $this->data = Complaint::TypeOfComplaint('status', '', $this->fromDate, $this->toDate)->get();
+
+
+
+
+        if ($this->selectedService && !$this->service) {
+            $this->data  = Complaint::TypeOfComplaint('type', $this->selectedService, $this->fromDate, $this->toDate)->get();
+
+
+            $this->positive  = Complaint::SelectedService('type',  $this->selectedService, 'status', 'positive', $this->fromDate, $this->toDate)->count();
+
+
+            $this->pending  = Complaint::SelectedService('type', $this->selectedService, 'status', 'pending', $this->fromDate, $this->toDate)->count();
+
+
+            $this->negative  = Complaint::SelectedService('type', $this->selectedService, 'status', 'negative', $this->fromDate, $this->toDate)->count();
+
+            $this->all  = Complaint::TypeOfComplaint('type', $this->selectedService, $this->fromDate, $this->toDate)->count();
+        }
+
+        if ($this->service && $this->selectedService) {
+            $this->data  = Complaint::SelectedService('type', $this->selectedService, 'service_id', $this->service, $this->fromDate, $this->toDate)->get();
+
+
+
+
+            $this->positive  = Complaint::Services(
+                'service_id',
+                $this->service,
+                'type',
+                $this->selectedService,
+                'status',
+                'positive',
+                $this->fromDate,
+                $this->toDate
+            )->count();
+
+
+            $this->pending  = Complaint::Services(
+                'service_id',
+                $this->service,
+                'type',
+                $this->selectedService,
+                'status',
+                'pending',
+                $this->fromDate,
+                $this->toDate
+            )->count();
+
+
+
+            $this->negative  = Complaint::Services(
+                'service_id',
+                $this->service,
+                'type',
+                $this->selectedService,
+                'status',
+                'negative',
+                $this->fromDate,
+                $this->toDate
+            )->count();
+
+
+
+            $this->all  = Complaint::SelectedService('type', $this->selectedService, 'service_id', $this->service, $this->fromDate, $this->toDate)->count();
+        }
     }
 }
-
