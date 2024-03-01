@@ -139,7 +139,7 @@ body {
 
 </style>
 <script>
-	var service = "<?php echo 'http://127.0.0.1:8000/services/' . $service; ?>";
+	var service = "<?php echo env('APP_URL').'/services/' . $service; ?>";
 	setTimeout(function() {
 		window.location.href = service;
 	}, 2200);

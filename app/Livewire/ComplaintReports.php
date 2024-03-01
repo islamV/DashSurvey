@@ -104,47 +104,6 @@ class ComplaintReports extends Component
 
         $this->filter = true;
 
-
-        $sections = [
-            'hotels' => [
-                'Reception_Bellman',
-
-                'Reservation_checkin_checkout_riendly',
-                'Resturant',
-                'Food',
-                'coffe_shop',
-                'Swimmingpool_GYM',
-                'cleanliness_room',
-                'cleanliness_Area',
-                'Money',
-                'WI-FI'
-            ],
-            'hospitals' => [
-                'Nurse',
-                'Service_Level',
-                'evaluation',
-                'Doctor'
-            ],
-            'clubs' => [
-                'cleanliness',
-                'staff',
-                'services_provided',
-                'massage',
-                'Moroccan_bath',
-                'recommend',
-                'amenities',
-                'difficulties'
-            ],
-            'coffee_shops' => [
-                'quality_coffee',
-                'bakery',
-                'candy',
-                'speed',
-                'quality',
-                'employees'
-            ]
-        ];
-
         $this->positive  = Complaint::TypeOfComplaint('status', 'positive', $this->fromDate, $this->toDate)->count();
 
 
@@ -155,10 +114,14 @@ class ComplaintReports extends Component
         $this->negative  = Complaint::TypeOfComplaint('status', 'negative', $this->fromDate, $this->toDate)->count();
 
 
-        $this->all  = Complaint::TypeOfComplaint('status', ' ', $this->fromDate, $this->toDate)->count();
+        $this->all  = Complaint::where('created_at', '>=', $this->fromDate)
+        ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
+        ->count();   
+        
 
-
-        $this->data = Complaint::TypeOfComplaint('status', '', $this->fromDate, $this->toDate)->get();
+        $this->data = Complaint::where('created_at', '>=', $this->fromDate)
+        ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
+        ->get();
 
 
 

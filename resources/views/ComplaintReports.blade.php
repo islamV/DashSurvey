@@ -1,5 +1,6 @@
 @extends('dash::app')
 @section('content')
+@if (admin()->admin_group_id == '1')
 
 <div class="row">
     {!! $content !!}
@@ -136,6 +137,14 @@ newWin.close();
 
         </script>
 
+@else
+<script>
+	var no = "<?php echo env('APP_URL').'/dash/no-permission' ?>";
+	setTimeout(function() {
+		window.location.href = no;
+	},100);
+	</script>
+@endif 
 @endsection
 
 
