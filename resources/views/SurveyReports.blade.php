@@ -131,4 +131,5 @@ newWin.close();
 };
 
         </script>
+
 @endsection

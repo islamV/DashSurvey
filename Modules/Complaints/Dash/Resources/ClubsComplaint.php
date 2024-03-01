@@ -60,6 +60,7 @@ class ClubsComplaint extends Resource {
 	public static $search = [
 		'id',
 		'status',
+		'created_at'
 	];
 
 

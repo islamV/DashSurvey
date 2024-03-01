@@ -66,6 +66,8 @@ class HospitalsSurvey extends Resource {
 	public static $search = [
 		'id',
 		'name',
+		
+		'created_at'
 	];
 
 	/**

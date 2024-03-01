@@ -10,36 +10,46 @@ use Modules\Complaints\App\Models\Complaint;
 class ComplaintReports extends Component
 {
 
-      public $selectedService = null;
-      public $service ;
-      public $section ;
-    
+
+    public $selectedService = null;
+    public $service;
+    public $section;
+    public $positive = 0;
+    public $negative = 0;
+    public  $pending = 0;
+    public $all = 0;
+    public $filter = false;
+    public $data = [];
+    public $fromDate;
+    public $toDate;
 
 
 
-    public function render(){
-        $options = Service::where("type",$this->selectedService )->get();
+    public function mount()
+    {
+        $this->fromDate =  '2024-01-01';
+        $this->toDate =  now()->toDate()->format('Y-m-d');
+    }
+    public function render()
+    {
+        $options = Service::where("type", $this->selectedService)->get();
         $sectionstrans = [
+            'all' => [],
             'hotels' => [
                 __('survey.Reception_Bellman'),
                 __('survey.Reservation_checkin_checkout_riendly'),
-                __('survey.Resturant'),
                 __('survey.Food'),
+                __('survey.WI-FI'),
+                __('survey.Resturant'),
                 __('survey.coffe_shop'),
                 __('survey.Swimmingpool_GYM'),
-              
                 __('survey.cleanliness_room'),
                 __('survey.cleanliness_Area'),
-                __('survey.Money'),
-                __('survey.WI-FI')
-
-             
-              
-                
+                __('survey.Money')
             ],
             'hospitals' => [
                 __('survey.Nurse'),
-                __('survey.services_Level'),
+                __('survey.Service_Level'),
                 __('survey.evaluation'),
                 __('survey.Doctor')
             ],
@@ -62,9 +72,43 @@ class ComplaintReports extends Component
                 __('survey.employees')
             ]
         ];
+
+
+        return view('livewire.complaint-reports', [
+            'options' => $options,
+            'selectedService' => $this->selectedService,
+            'positive' => $this->positive,
+            'all' =>  $this->all,
+            'service' => $this->service,
+            'pending' => $this->pending,
+            'negative' => $this->negative,
+            'sections' => $this->selectedService ? $sectionstrans[$this->selectedService] : [],
+            'data' => $this->data,
+
+
+
+        ]);
+    }
+
+    public function getResults()
+    {
+
+        switch (true) {
+            case ($this->selectedService === 'all'):
+            case ($this->service === 'all'):
+            case ($this->section === 'all'):
+                $this->selectedService = $this->service = $this->section = null;
+                break;
+        }
+
+
+        $this->filter = true;
+
+
         $sections = [
             'hotels' => [
                 'Reception_Bellman',
+
                 'Reservation_checkin_checkout_riendly',
                 'Resturant',
                 'Food',
@@ -100,40 +144,85 @@ class ComplaintReports extends Component
                 'employees'
             ]
         ];
-        
-        $positive  = Complaint::where('status' ,'positive')->count();
-        $negative  = Complaint::where('status' ,'negative')->count();
-       $pending  = Complaint::where('status' ,'pending')->count();
-        $all  = Complaint::count();
-        if($this->selectedService  && !$this->service &&!$this->section ){
-            $positive  = Complaint::where('type' ,$this->selectedService)->where('status' ,'positive')->count();
-            $negative  = Complaint::where('type' ,$this->selectedService)->where('status' ,'negative')->count();
-             $pending  = Complaint::where('type' ,$this->selectedService)->where('status' ,'pending')->count();
-            $all  = Complaint::where('type' ,$this->selectedService)->count();
 
-        }
-      if( $this->service && $this->selectedService && !$this->section ){
-            $positive  = Complaint::where('service_id' , $this->service)->where('status' ,'positive')->count();
-            $negative  = Complaint::where('service_id' , $this->service)->where('status' ,'negative')->count();
-             $pending  = Complaint::where('service_id' , $this->service)->where('status' ,'pending')->count();
-            $all  = Complaint::where('service_id' , $this->service)->count();
-         
-        }
-     
-    
- 
-        return view('livewire.complaint-reports',[
-            'options'=>$options,
-            'selectedService'=> $this->selectedService ,
-            'positive'=>$positive,
-            'all'=>  $all,
-            'service'=> $this->service,
-            'negative' => $negative,
-            'pending'=>$pending,
+        $this->positive  = Complaint::TypeOfComplaint('status', 'positive', $this->fromDate, $this->toDate)->count();
 
-        ]);
+
+
+        $this->pending  = Complaint::TypeOfComplaint('status', 'pending', $this->fromDate, $this->toDate)->count();
+
+
+        $this->negative  = Complaint::TypeOfComplaint('status', 'negative', $this->fromDate, $this->toDate)->count();
+
+
+        $this->all  = Complaint::TypeOfComplaint('status', ' ', $this->fromDate, $this->toDate)->count();
+
+
+        $this->data = Complaint::TypeOfComplaint('status', '', $this->fromDate, $this->toDate)->get();
+
+
+
+
+        if ($this->selectedService && !$this->service) {
+            $this->data  = Complaint::TypeOfComplaint('type', $this->selectedService, $this->fromDate, $this->toDate)->get();
+
+
+            $this->positive  = Complaint::SelectedService('type',  $this->selectedService, 'status', 'positive', $this->fromDate, $this->toDate)->count();
+
+
+            $this->pending  = Complaint::SelectedService('type', $this->selectedService, 'status', 'pending', $this->fromDate, $this->toDate)->count();
+
+
+            $this->negative  = Complaint::SelectedService('type', $this->selectedService, 'status', 'negative', $this->fromDate, $this->toDate)->count();
+
+            $this->all  = Complaint::TypeOfComplaint('type', $this->selectedService, $this->fromDate, $this->toDate)->count();
+        }
+
+        if ($this->service && $this->selectedService) {
+            $this->data  = Complaint::SelectedService('type', $this->selectedService, 'service_id', $this->service, $this->fromDate, $this->toDate)->get();
+
+
+
+
+            $this->positive  = Complaint::Services(
+                'service_id',
+                $this->service,
+                'type',
+                $this->selectedService,
+                'status',
+                'positive',
+                $this->fromDate,
+                $this->toDate
+            )->count();
+
+
+            $this->pending  = Complaint::Services(
+                'service_id',
+                $this->service,
+                'type',
+                $this->selectedService,
+                'status',
+                'pending',
+                $this->fromDate,
+                $this->toDate
+            )->count();
+
+
+
+            $this->negative  = Complaint::Services(
+                'service_id',
+                $this->service,
+                'type',
+                $this->selectedService,
+                'status',
+                'negative',
+                $this->fromDate,
+                $this->toDate
+            )->count();
+
+
+
+            $this->all  = Complaint::SelectedService('type', $this->selectedService, 'service_id', $this->service, $this->fromDate, $this->toDate)->count();
+        }
     }
-    
-
-   
 }

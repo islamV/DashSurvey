@@ -169,7 +169,7 @@
     
              <tr>
                  <td>{{$selectedService??'all'  }}</td>
-                 <td>{{ $service??'all'}}</td>
+                 <td>{{$d->service->name  ??'all'}}</td>
                  <td> {!! __('survey.'.$d->status) !!}</td>
                  <td>{{ $d->created_at }}</td>
                 </tr>

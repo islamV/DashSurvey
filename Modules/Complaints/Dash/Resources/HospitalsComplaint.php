@@ -61,6 +61,7 @@ class HospitalsComplaint extends Resource {
 	public static $search = [
 		'id',
 		'status',
+		'created_at'
 	];
 
 
