@@ -35,9 +35,7 @@
 <script>
 
 
-        function pdfTable() {
-          
-
+ function pdfTable() {
   const table = document.getElementById('myTable');
   const pdf = new jsPDF('p', 'pt', 'letter');
   const options = {
@@ -51,7 +49,7 @@
     pdfDoc.save('table.pdf');
   });
 }    
-    function printTable() {
+function printTable() {
 const table = document.getElementById('myTable');
 const html = `
 <!DOCTYPE html>

@@ -202,7 +202,8 @@ class SurveyReports extends Component
             ->where('created_at', '<=', date('Y-m-d 23:59:59', strtotime($this->toDate)))
             ->count();
     }
-    session(['data' => $this->data]);
+
+    
 
         // Similarly modify the other two conditions
         // if ($this->selectedService && $this->service && $this->section) {
