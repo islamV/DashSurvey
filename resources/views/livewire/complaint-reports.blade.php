@@ -155,6 +155,8 @@
                         <tr>
                             <th>{{ __('survey.service') }}</th>
                             <th>{{ __('survey.branch') }}</th>
+                            <th>{{ __('dash.guests') }}</th>
+                            <th>{{ __('survey.phone') }}</th>
                             <th>{{ __('survey.status') }}</th>
                             <th>{{ __('survey.time') }}</th>
                       
@@ -168,6 +170,8 @@
              <tr>
                  <td>{{$selectedService??'all'  }}</td>
                  <td>{{ $d->service->name ?? 'all'}}</td>
+                 <td>{{ $d->guest->name }}</td>
+                 <td>{{ $d->guest->phone }}</td>
                  <td> {!! __('survey.'.$d->status) !!}</td>
                  <td>{{ $d->created_at }}</td>
                 </tr>
@@ -182,6 +186,8 @@
                         <tr>
                             <th>{{ __('survey.service') }}</th>
                             <th>{{ __('survey.branch') }}</th>
+                            <th>{{ __('dash.guests') }}</th>
+                            <th>{{ __('survey.phone') }}</th>
                             <th>{{ __('survey.status') }}</th>
                             <th>{{ __('survey.time') }}</th>
                         </tr>
