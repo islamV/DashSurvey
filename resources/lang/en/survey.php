@@ -61,7 +61,7 @@ return [
 
 'reports'=> ' Reports Of Survey',
 'complaints'=> ' Reports Of Complaints',
-'service' => 'Services',
+'services' => 'Services',
 'all' => 'All Of Survey ' ,
 'sections' => 'Sections',
 'hotelsReports' => 'Hotels Reports Of Survey' ,

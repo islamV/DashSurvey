@@ -71,7 +71,7 @@
         @foreach ($questions as $question)
             <div class="input">
                 <div>
-                    <span>{{ $question->title }} <span style="color: red">*</span></span>
+                    <span><span style="color: red">*</span></span>
                     <span>{{ $question->title }} <span style="color: red">*</span></span>
                 </div>
                 <div>

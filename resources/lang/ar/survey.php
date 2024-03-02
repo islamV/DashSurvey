@@ -58,7 +58,7 @@ return [
 'survey'=>'عدد الاستبيانات' ,
 'reports'=> 'تقارير الاستبيانات',
 'complaints'=> 'تقارير الشكاوي ',
-'service' => 'الخدمات',
+'services' => 'الخدمات',
 'all' => 'جميع الاستبيانات' ,
 'sections' => 'الاقسام',
 'hotelsReports' => 'تقارير استبيانات الفنادق' ,
@@ -66,6 +66,11 @@ return [
 'clubsReports'=> 'تقارير اسبتيانات الاندية',
 'coffee_shopsReports'=> 'تقارير استبيانات الكوفي شوب ',
 'gusetsReports' => 'تقارير الزائرين' ,
+
+'hotelsReportsc' => 'تقارير شكاوي الفنادق' ,
+'hospitalsReportsc'=> 'تقارير شكاوي المستوصفات',
+'clubsReportsc'=> 'تقارير شكاوي الاندية',
+'coffee_shopsReportsc'=> 'تقارير شكاوي الكوفي شوب ',
 
 'hotels'=>'الفنادق' ,
 'hospitals'=> 'المستشفيات',

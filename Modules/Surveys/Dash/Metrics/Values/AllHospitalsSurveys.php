@@ -18,7 +18,7 @@ class AllHospitalsSurveys extends Value{
         }) // or sum // $this->sum(YourModel::class,'id') | id column is optional
         ->at('created_at') // optional
         ->column(3) // optional
-        ->href(dash('resource/HotelsSurvey'))
+        ->href(dash('resource/HospitalsSurvey'))
         ->icon('<i class="fa-solid fa-circle-h"></i>') // icon by fontawesome or other | optional
          ->title(__('survey.hospitalsReports')) // optional
         // ->subTitle('Your subTitle') // optional

@@ -1,9 +1,9 @@
 <?php
-namespace Modules\surveys\Dash\Metrics\Values;
+namespace Modules\complaints\Dash\Metrics\Values;
 use Dash\Extras\Metrics\Value;
-use Modules\Surveys\App\Models\Survey;
+use Modules\Complaints\App\Models\Complaint;
 
-class AllClubsSurveys extends Value{
+class AllComplaints extends Value{
 
     /**
      * calculate method is short to calc to using in value
@@ -13,18 +13,16 @@ class AllClubsSurveys extends Value{
      */
       public function calc(){
         return
-        $this->count(Survey::class , function($q){
-            return $q->where('service_type' ,'clubs');
-        }) // or sum // $this->sum(YourModel::class,'id') | id column is optional
+        $this->count(Complaint::class) // or sum // $this->sum(YourModel::class,'id') | id column is optional
         ->at('created_at') // optional
         ->column(3) // optional
-        ->href(dash('resource/ClubsSurvey'))
-        ->icon('<i class="fa-solid fa-hotel"></i>') // icon by fontawesome or other | optional
-         ->title(__('survey.clubsReports')) // optional
+        // ->href(dash('resource/CoffeShopsComplaints'))
+        ->icon('<i class="fa-solid fa-face-frown"></i>') // icon by fontawesome or other | optional
+         ->title(__('survey.complaints')) // optional
         // ->subTitle('Your subTitle') // optional
         //  ->textBody('Text In Body') // optional
-         ->prefix('<i class="fa-solid fa-hotel"></i>') // add prefix before number or icon
-        // ->suffix('Your suffix') // optional add suffix after number
+         ->prefix('<i class="fa-solid fa-face-frown"></i>') // add prefix before number or icon
+        // ->suffix('Your suffix') // optional add suffix after number 
        ;
     }
 

@@ -18,7 +18,7 @@ class AllCoffeeShopsSurveys extends Value{
         }) // or sum // $this->sum(YourModel::class,'id') | id column is optional
         ->at('created_at') // optional
         ->column(3) // optional
-        ->href(dash('resource/HotelsSurvey'))
+        ->href(dash('resource/CoffeShopsSurvey'))
         ->icon('<i class="fa-solid fa-mug-saucer"></i>') // icon by fontawesome or other | optional
          ->title(__('survey.coffee_shopsReports')) // optional
         // ->subTitle('Your subTitle') // optional
