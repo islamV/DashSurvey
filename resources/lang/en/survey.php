@@ -85,4 +85,7 @@ return [
 'survey'=>'Number Of Survey ',
 'service' => 'Service',
 
+
+'phone'=>'Phone'
+
 ] ;
