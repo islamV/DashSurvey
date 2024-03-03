@@ -29,7 +29,7 @@ class Complaint extends Model
     {
         $date = Carbon::parse($this->attributes['created_at']) ;
      
-        return empty($date) ? $date : date('h:m   Y-m-d ', strtotime($date)) .'--'. $date->diffForHumans();
+        return empty($date) ? $date : date('Y-m-d', strtotime($date)) .'--'. $date->diffForHumans();
     
     }
     
