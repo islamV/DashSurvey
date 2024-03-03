@@ -16,16 +16,16 @@ use App\Dash\Metrics\Values\AllAdminGroupRoles;
 
 use Modules\Surveys\Dash\Metrics\Charts\Surveys;
 use Modules\Surveys\Dash\Metrics\Values\AllSurveys;
-use Modules\complaints\Dash\Metrics\Charts\Compliants;
+// use Modules\complaints\Dash\Metrics\Charts\Compliants;
 use Modules\Surveys\Dash\Metrics\Values\AllClubsSurveys;
-use Modules\complaints\Dash\Metrics\Values\AllComplaints;
+use Modules\Complaints\Dash\Metrics\Values\AllComplaints;
 use Modules\Surveys\Dash\Metrics\Values\AllHotelsSurveys;
 use Modules\Surveys\Dash\Metrics\Values\AllHospitalsSurveys;
-use Modules\complaints\Dash\Metrics\Values\AllClubsComplaints;
+use Modules\Complaints\Dash\Metrics\Values\AllClubsComplaints;
 use Modules\Surveys\Dash\Metrics\Values\AllCoffeeShopsSurveys;
-use Modules\complaints\Dash\Metrics\Values\AllHotelsComplaints;
-use Modules\complaints\Dash\Metrics\Values\AllHospitalsComplaints;
-use Modules\complaints\Dash\Metrics\Values\AllCoffeeShopsComplaints;
+use Modules\Complaints\Dash\Metrics\Values\AllHotelsComplaints;
+use Modules\Complaints\Dash\Metrics\Values\AllHospitalsComplaints;
+use Modules\Complaints\Dash\Metrics\Values\AllCoffeeShopsComplaints;
 
 class Help extends Resource {
 
@@ -50,7 +50,7 @@ class Help extends Resource {
 			(new AllClubsSurveys)->render(),
 			(new AllCoffeeShopsSurveys)->render(),
 			(new AllComplaints)->render(),
-			
+
 			(new AllHotelsComplaints)->render(),
 			(new AllHospitalsComplaints)->render(),
 			(new AllClubsComplaints)->render(),
