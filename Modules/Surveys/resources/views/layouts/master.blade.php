@@ -71,8 +71,8 @@
         @foreach ($questions as $question)
             <div class="input">
                 <div>
-                    <span><span style="color: red">*</span></span>
-                    <span>{{ $question->title }} <span style="color: red">*</span></span>
+                    <span>{{ $question->titleEn }}<span style="color: red">*</span></span>
+                    <span> {!!$question->title  !!} <span style="color: red">*</span></span>
                 </div>
                 <div>
                     <select name="answers[{{ $question->id }}]" id="">

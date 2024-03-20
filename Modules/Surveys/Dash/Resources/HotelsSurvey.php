@@ -96,7 +96,9 @@ class HotelsSurvey extends Resource {
 
 
 	public function query($model){
-		return $model->where('service_type' , 'hotels') ;
+	
+		return $model->where('service_type' , 'hotels');
+	
 	}
 
 	/**
@@ -108,7 +110,7 @@ class HotelsSurvey extends Resource {
 		return 
 			[(new HotelsAnswersSurveys)->render('hotel'),
 		 (new HotelsSurveys)->render('hotel2'),
-		//  (new \Modules\surveys\Dash\Metrics\Values\Hotels)->render(),
+
 		
 		
 		];
@@ -190,8 +192,6 @@ class HotelsSurvey extends Resource {
 		return [
 			HotelsSurveyStatus::class,
 			HotelsSurveyBranch::class,
-			
-
 		];
 	}
 

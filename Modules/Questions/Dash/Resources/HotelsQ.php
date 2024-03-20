@@ -86,7 +86,10 @@ class HotelsQ extends Resource {
 	 */
 	public function fields() {
 		return [
-			text()->make(__ ('title') , 'title')->rule('required'),
+			text()->make(__ ('survey.Qtitle') , 'title')->rule('required'),
+			text()->make(__ ('survey.QtitleEn') , 'titleEn')->rule('required'),
+			// ckeditor()->make(__ ('title') , 'title')->rule('required'),
+		  
 			select()->make(__('survey.type_service'),'type_service') // you can use disabled() with this element
 			->options([
 			'Reception_Bellman'=> __('survey.Reception_Bellman'),
