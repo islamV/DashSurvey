@@ -10,10 +10,10 @@
 	
 
 	</div>
-	<audio id="myAudio" autoplay >
+	{{-- <audio id="myAudio" autoplay >
 	<source src="{{asset('001.mp3') }}" >
 	Your browser does not support the audio element.
-  </audio>
+  </audio> --}}
 </div>
 
   

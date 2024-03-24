@@ -26,7 +26,7 @@
     
     @stack('css')
 
-    <form action=" {{ route('servey', ['service' => $service]) }} " class="contaner">
+    <form action=" {{ route('servey', ['service' => $service]) }} "  class="contaner">
 
         <div class="head">
             <span>Survey information</span>

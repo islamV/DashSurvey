@@ -91,7 +91,7 @@ class Answers extends Resource {
 	public function fields() {
 		return [
 
-			belongsTo()->make(__('survey') ,'survey' , Survey::class),
+			belongsTo()->make(__('survey') ,'survey' , ModelsSurvey::class),
 		];
 	}
 
