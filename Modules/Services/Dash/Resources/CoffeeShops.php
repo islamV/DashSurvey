@@ -114,7 +114,17 @@ class CoffeeShops extends Resource {
 	public function actions() {
 		return [];
 	}
-
+public static function dtButtons() {
+		return [
+		
+		
+			'print',
+			'pdf',
+			'excel',
+			'csv',
+			'copy',
+		]; 
+	}
 	/**
 	 * define the filters To Using in Resource (index)
 	 * php artisan dash:make-filter FilterName
