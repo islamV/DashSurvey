@@ -84,6 +84,18 @@ class HotelsQ extends Resource {
 	 * define fields by Helpers
 	 * @return array
 	 */
+
+	 public static function dtButtons() {
+		return [
+		
+		
+			'print',
+			'pdf',
+			'excel',
+			'csv',
+			'copy',
+		]; 
+	}
 	public function fields() {
 		return [
 			text()->make(__ ('survey.Qtitle') , 'title')->rule('required'),

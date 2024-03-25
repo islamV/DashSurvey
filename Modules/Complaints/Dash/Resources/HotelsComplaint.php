@@ -93,7 +93,7 @@ class HotelsComplaint extends Resource {
 		return [
 		
 		
-			// 'print',
+		'print',
 			'pdf',
 			'excel',
 			'csv',

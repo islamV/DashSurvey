@@ -76,7 +76,8 @@ return [
 'coffee shops'=> ' Coffee_Shops',
 'reportcom'=> 'Reports Of Complaints',
 'allcom' => 'All Of Complaints' ,
-
+'Qtitle' => 'Question title in Arabic',
+'QtitleEn' => 'Question title in English',
 
 // 
 

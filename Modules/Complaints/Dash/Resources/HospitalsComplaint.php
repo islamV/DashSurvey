@@ -96,7 +96,7 @@ class HospitalsComplaint extends Resource {
 		return [
 		
 		
-			// 'print',
+			 'print',
 			'pdf',
 			'excel',
 			'csv',

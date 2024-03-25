@@ -27,6 +27,17 @@ class CoffeeShopsQ extends Resource {
 	 * and add this key directly users
 	 * @param static property
 	 */
+	public static function dtButtons() {
+		return [
+		
+		
+			'print',
+			'pdf',
+			'excel',
+			'csv',
+			'copy',
+		]; 
+	}
 	public static $group = 'questions'; 
 
 	/**

@@ -33,7 +33,7 @@ public static function dtButtons() {
 	return [
 	
 	
-		// 'print',
+	 'print',
 		'pdf',
 		'excel',
 		'csv',
