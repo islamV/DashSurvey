@@ -85,8 +85,8 @@ class ClubsComplaint extends Resource {
 	 */
 	public static function vertex() {
 		return [
-			(new ClubsR)->render('clubsr'),
-			(new ClubsComplaints)->render('clubcompaints'),
+			(new ClubsR)->render(),
+			(new ClubsComplaints)->render(),
 	];
 	}
 	public static function dtButtons() {

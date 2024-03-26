@@ -88,8 +88,8 @@ class HospitalsComplaint extends Resource {
 	 */
 	public static function vertex() {
 		return [
-			(new HospitalsR)->render('hospitals2'),
-			(new HospitalsComplaints)->render('hospitals1'),
+			(new HospitalsR)->render(),
+			(new HospitalsComplaints)->render(),
 		];
 	}
 	public static function dtButtons() {

@@ -26,6 +26,7 @@ class Resource
      */
     public function __get($property)
     {
+
         if (request()->ajax()) {
             $object        = str_replace('._.', '\\', get_class($this)::$model);
             $record_id     = request('record_id');
@@ -62,23 +63,28 @@ class Resource
             // prepare id from segment if not ajax request
             $id = is_numeric(request()->segment(4))?request()->segment(4):request()->segment(5);
         }
-
         $propertys = '';
         if (!empty($id)) {
             $ModelData = app(static::$model)::find($id);
             if (!empty($ModelData)) {
                 static::$model_data = $ModelData;
-                foreach ($ModelData->toArray() as $key => $val) {
-                    $propertys .= ','.$property;
-                    if ($property == $key) {
-
-                        return $this->{$key} = $val;
-                    } else {
-                        return $this->{$key} = null;
+                if(in_array($property,array_keys($ModelData->toArray()))){
+                     $this->{$property} = $ModelData->{$property};
+                     return $this->{$property};
+                }else{
+                    foreach ($ModelData->toArray() as $key => $val) {
+                        $propertys .= ','.$property;
+                        if ($property == $key) {
+                            return  $this->{$key} = $val;
+                        } else {
+                            return  $this->{$key} = null;
+                        }
                     }
                 }
             }
+
         }
+
     }
 
 

@@ -13,7 +13,7 @@ $col = isset($field['columnWhenUpdate'])?$field['columnWhenUpdate']:$field['colu
 <div class="col-lg-{{ $col }} col-md-{{ $col }} col-sm-12 col-xs-12 box_{{ $field['attribute'] }}">
 	<div class="form-group my-3 ">
 		<label for="{{ $field['attribute'] }}"
-		class="text-dark text-capitalize">{{ $field['name'] }}
+		class="text-dark form-label text-start text-capitalize">{{ $field['name'] }}
 		@if(isset($field['rule']) && in_array('required',$field['rule']) || isset($field['ruleWhenUpdate']) && in_array('required',$field['ruleWhenUpdate']))
 		<span class="text-danger text-sm">*</span>
 		@endif
@@ -31,7 +31,7 @@ $col = isset($field['columnWhenUpdate'])?$field['columnWhenUpdate']:$field['colu
 		{{ isset($field['readOnlyIf']) && $field['readOnlyIf']?'readonly':'' }}
 
 
-		class="form-control 
+		class="form-control
 
 				{{ isset($field['hideIf']) && $field['hideIf']?'d-none':'' }}
 

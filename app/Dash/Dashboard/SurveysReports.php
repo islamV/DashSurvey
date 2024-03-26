@@ -22,7 +22,7 @@ class SurveysReports extends Resource {
 	public static function cards() {
 		return [
 
-                (new Surveys)->render("surveys"), //chart
+                (new Surveys)->render(), //chart
 				
 		];
 	}

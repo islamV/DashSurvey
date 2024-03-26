@@ -88,8 +88,8 @@ class CoffeeShopsComplaint extends Resource {
 	 */
 	public static function vertex() {
 		return [
-			(new CoffeeShopsR)->render('coffee2'),
-				(new CoffeeShopsComplaints)->render('coffee1'),
+			(new CoffeeShopsR)->render(),
+				(new CoffeeShopsComplaints)->render(),
 		];
 	}
 	public static function dtButtons() {

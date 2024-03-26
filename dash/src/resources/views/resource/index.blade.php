@@ -20,6 +20,7 @@
                                     <a href="{{ url(app('dash')['DASHBOARD_PATH'] . '/resource/' . $resourceName . '/new') }}"
                                         class="btn btn-dark"><i class="fa fa-plus"></i> {{ __('dash::dash.create') }}</a>
                                 @endif
+
                             </div>
 
                             @if ($multiSelectRecord && method_exists($resource['model'], 'trashed'))
@@ -31,12 +32,11 @@
                                         <span class="custom-switch-indicator"></span>
                                         <span class="custom-switch-description">{{ __('dash::dash.withTrashed') }}</span>
                                     </label>
-
-
                                 </div>
                             @endif
 
                             <div class="col-md-8">
+
                                 @include('dash::resource.actions.index_actions')
                             </div>
 

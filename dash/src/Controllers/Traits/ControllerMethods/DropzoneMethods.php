@@ -7,9 +7,7 @@ use Storage;
 trait DropzoneMethods {
 
 	// Delete Files From Dropzone Library
-	public
-
-function delete_file() {
+	public function delete_file() {
 		if (request("file_type") && request("file_id")) {
 			$file = $this->getFile(strval(request("file_type")), request("file_id"),request('id'));
 			if (!empty($file)) {
@@ -50,8 +48,6 @@ function delete_file() {
 	}
 
 	public function upload($request, $path, $typeid = 'icon', $id = null, $uid = null, $admin_id = null, $resize = null) {
-
-
 
         if ($resize === null) {
 			$resize = 'no';
@@ -112,7 +108,7 @@ function delete_file() {
 			// New Full path
             if(!empty($file->path)){
 
-        
+
 			if (Storage::disk(config('dash.FILESYSTEM_DISK'))->exists($file->path)) {
 				$full_path = resourceShortName($file_type).'/'.$new_id.'/'.$file->file;
 				Storage::disk(config('dash.FILESYSTEM_DISK'))->move($file->full_path, $full_path);

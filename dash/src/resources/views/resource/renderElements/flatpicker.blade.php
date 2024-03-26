@@ -1,7 +1,14 @@
 <script type="text/javascript">
+$(document).ready(function(){
 var inputDate = $('#{{ $field['attribute'] }}').parents('form').attr('id');
- 
-$("#"+inputDate+ "  #{{ $field['attribute'] }}").flatpickr({
+if(inputDate != undefined){
+    var inputflatpicker = "#"+inputDate+ "  #{{ $field['attribute'] }}";
+}else{
+    var inputflatpicker = "#{{ $field['attribute'] }}";
+
+}
+
+$(inputflatpicker).flatpickr({
     "locale": "ar",
 	@if(isset($field['modeDates']))
 	mode: {!! json_encode($field['modeDates']) !!},
@@ -60,5 +67,5 @@ $("#"+inputDate+ "  #{{ $field['attribute'] }}").flatpickr({
 	dateFormat: "{{ $field['format'] }}",
 	@endif
 });
-
+});
 </script>

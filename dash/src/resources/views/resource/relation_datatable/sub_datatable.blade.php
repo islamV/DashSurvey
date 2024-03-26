@@ -21,9 +21,9 @@
        });
 
      if(checkListSingle > 0){
-      $('.deleteAllBtn{{ $resourceName }},.restoreAllBtn{{ $resourceName }}').removeClass('d-none');
+      $('.deleteAllBtn{{ $resourceName }},.restoreAllBtn{{ $resourceName }},.actions_{{ $resourceName }}').removeClass('d-none');
      }else{
-      $('.deleteAllBtn{{ $resourceName }},.restoreAllBtn{{ $resourceName }}').addClass('d-none');
+      $('.deleteAllBtn{{ $resourceName }},.restoreAllBtn{{ $resourceName }},.actions_{{ $resourceName }}').addClass('d-none');
      }
   });
 
@@ -41,9 +41,9 @@
        });
      }
      if(checkList > 0){
-      $('.deleteAllBtn{{ $resourceName }},.restoreAllBtn{{ $resourceName }}').removeClass('d-none');
+      $('.deleteAllBtn{{ $resourceName }},.restoreAllBtn{{ $resourceName }},.actions_{{ $resourceName }}').removeClass('d-none');
      }else{
-      $('.deleteAllBtn{{ $resourceName }},.restoreAllBtn{{ $resourceName }}').addClass('d-none');
+      $('.deleteAllBtn{{ $resourceName }},.restoreAllBtn{{ $resourceName }},.actions_{{ $resourceName }}').addClass('d-none');
      }
    });
    // Check or Uncheck All checkboxes End
@@ -55,7 +55,7 @@
         "lengthChange": {{ $lengthChange?'true':'false' }},
         "lengthMenu": [{{ implode(',',$lengthMenu) }}],
         "paging": {{ $paging?'true':'false' }},
-       "pagingType": "{{ $pagingType??'full_numbers' }}",
+        "pagingType": "{{ $pagingType??'full_numbers' }}",
         //full_numbers,numbers,simple,scrolling
         "ordering": {{ $ordering?'true':'false' }} ,
         "processing": {{ $processing?'true':'false' }} ,
@@ -86,6 +86,29 @@
 
 
                 });
+                    // Auto Add Input To Filters Start
+                    @foreach($filterTextElements as $filterElementtext)
+                        @if($filterElementtext['type'] == 'select')
+                        var element_name = '{!! $filterElementtext['attribute'] !!}';
+                        var element_value = $('#{!! $filterElementtext['attribute'] !!} option:selected').val();
+
+                        @elseif(in_array($filterElementtext['type'],['belongsTo','hasOne','morphOne']))
+                            var element_name = '{!! $filterElementtext['attribute'] !!}_id';
+                            var element_value = $('#{!! $filterElementtext['attribute'] !!} option:selected').val();
+
+                        @else
+                            var element_name = '{!! $filterElementtext['attribute'] !!}';
+                            var element_value = $("#{!! $filterElementtext['attribute'] !!}").val();
+                        @endif
+
+                    if(element_value !== undefined){
+                        filterList.push({
+                            name:element_name,
+                            value:element_value
+                            });
+                        }
+                    @endforeach
+                    // Auto Add Input To Filters Start
                  return JSON.stringify(filterList);
                },
             @if(request('loadByResourcehasMany') && is_array(request('loadByResourcehasMany')))
@@ -153,7 +176,9 @@ $(".filters{{ $resourceName }}").removeClass('d-none');
 // Append Filter End
 
 var reloadByClassList = '#withTrashed{{ $resourceName }},.filter{{ $resourceName }}';
-
+            @foreach($filterTextElements as $filterElementtext)
+             reloadByClassList += ",#{!! $filterElementtext['attribute'] !!}";
+            @endforeach
    $(document).on('change',reloadByClassList,function(){
     table{{ $resourceName }}.ajax.reload();
    });

@@ -1,14 +1,14 @@
  @if(
-$pagesRules['index'] === false &&  
-$pagesRules['show'] === false &&  
-$pagesRules['create'] === false &&  
-$pagesRules['store'] === false &&  
-$pagesRules['edit'] === false &&  
-$pagesRules['update'] === false &&  
-$pagesRules['destroy'] === false &&  
-$pagesRules['forceDelete'] === false &&  
+$pagesRules['index'] === false &&
+$pagesRules['show'] === false &&
+$pagesRules['create'] === false &&
+$pagesRules['store'] === false &&
+$pagesRules['edit'] === false &&
+$pagesRules['update'] === false &&
+$pagesRules['destroy'] === false &&
+$pagesRules['forceDelete'] === false &&
 $pagesRules['restore'] === false
-)  
+)
 <div class="col-md-12 border-bottom mb-2 pb-2">
     <div class="row align-items-center">
         <div class="card mt-4">
@@ -21,7 +21,7 @@ $pagesRules['restore'] === false
         </div>
     </div>
 </div>
-@else 
+@else
 <div class="col-md-12 border-bottom mb-2 pb-2">
     <div class="row align-items-center">
         <div class="col-md-2">
@@ -44,19 +44,23 @@ $pagesRules['restore'] === false
             @endif
         </div>
         <div class="col-md-8">
-        @if ($multiSelectRecord && method_exists($resource['model'], 'trashed'))
-            <div class="col-3">
-                <label class="custom-switch" for="withTrashed{{ $resourceName }}">
-                    <input  type="checkbox" name="withTrashed" value="yes"
-                    id="withTrashed{{ $resourceName }}" class="custom-switch-input">
-                    <span class="custom-switch-indicator"></span>
-                    <span class="custom-switch-description">{{ __('dash::dash.withTrashed') }}</span>
-                </label>
+            <div class="row">
+                @if ($multiSelectRecord && method_exists($resource['model'], 'trashed'))
+                    <div class="col-3">
+                        <label class="custom-switch" for="withTrashed{{ $resourceName }}">
+                            <input  type="checkbox" name="withTrashed" value="yes"
+                            id="withTrashed{{ $resourceName }}" class="custom-switch-input">
+                            <span class="custom-switch-indicator"></span>
+                            <span class="custom-switch-description">{{ __('dash::dash.withTrashed') }}</span>
+                        </label>
+                    </div>
+                @endif
+
+                <div class="col-md-6">
+                    @include('dash::resource.relation_datatable.actions.index_actions')
+                </div>
             </div>
-        @endif
 
-
-            {{--  @include('dash::resource.actions.index_actions')  --}}
         </div>
 
     </div>
@@ -69,7 +73,7 @@ $pagesRules['restore'] === false
     id="datatable_resource{{ $resourceName }}" style="width:100%;" data-turbolinks="false">
     <thead>
         <tr>
-            @if ($multiSelectRecord)
+            @if($multiSelectRecord)
                 <th class="col-1 center">
                     <input class="form-check-input selectAll{{ $resourceName }}" type="checkbox" id="selectAll{{ $resourceName }}">
                 </th>

@@ -8,7 +8,7 @@ $answers = $model->answers ;
 {{-- answer model answer --}}
 
     <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><bdi>{{ $answer->question->title}}:</bdi></div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><bdi>{{ $answer->question->title}}   ({{ __('survey.'.$answer->type_service) }}):</bdi></div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <h4>{!! __('survey.'.$answer->answer)!!}</h4>
       </div>

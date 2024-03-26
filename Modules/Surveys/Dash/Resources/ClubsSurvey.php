@@ -103,8 +103,8 @@ class ClubsSurvey extends Resource {
 	public static function vertex() {
 		return [
 			
-			(new ClubsAnswersSurveys)->render('clubs2'),
-			(new ClubsSurveys)->render('clubs1'),
+			(new ClubsAnswersSurveys)->render(),
+			(new ClubsSurveys)->render(),
 		];
 	}
 	public function query($model){

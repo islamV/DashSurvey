@@ -156,22 +156,38 @@ trait DatatableResource {
 	public function searchWithRelation($table) {
 
 		$searchValue = !is_null(request('search.value'))?trim(request('search.value')):'';
-		if (!empty($searchValue) && !empty($this->searchWithRelation) && count($this->searchWithRelation) > 0) {
+        if (!empty($searchValue) && !empty($this->searchWithRelation) && count($this->searchWithRelation) > 0) {
+           $index = 0;
             foreach ($this->searchWithRelation as $key => $value) {
                 if(!empty($value)) {
-                    $table->whereRelation($key, function ($table) use ($value, $key, $searchValue) {
-                        $i = 0;
-                        foreach ($value as $col) {
-                           // dd($col,$searchValue,$col, 'LIKE', '%'.$searchValue.'%');
-                            if($i == 0){
-                                $table = $table->where($col, 'LIKE', '%'.$searchValue.'%');
-                            }else{
-                                $table = $table->orWhere($col, 'LIKE', '%'.$searchValue.'%');
+                    if($index == 0){
+                        $table->whereHas($key, function ($table) use ($value, $key, $searchValue) {
+                            $i = 0;
+                            foreach ($value as $col) {
+                                if($i == 0){
+                                    $table = $table->where($col, 'LIKE', '%'.$searchValue.'%');
+                                }else{
+                                    $table = $table->orWhere($col, 'LIKE', '%'.$searchValue.'%');
+                                }
+                                $i++;
                             }
-                            $i++;
-						}
-						return $table;
-					});
+                            return $table;
+                        });
+                    }else{
+                        $table->orWhereHas($key, function ($table) use ($value, $key, $searchValue) {
+                            $i = 0;
+                            foreach ($value as $col) {
+                                if($i == 0){
+                                    $table = $table->where($col, 'LIKE', '%'.$searchValue.'%');
+                                }else{
+                                    $table = $table->orWhere($col, 'LIKE', '%'.$searchValue.'%');
+                                }
+                                $i++;
+                            }
+                            return $table;
+                        });
+                    }
+                    $index++;
 				}
 			}
 
@@ -190,7 +206,11 @@ trait DatatableResource {
 			foreach ($decode as $filter) {
 				//return $filter->value;
 				if (!empty($filter->name) && !empty($filter->value)) {
-					$table = $table->where($filter->name, $filter->value);
+                    if(strtotime($filter->value) !== false){
+                        $table = $table->whereDate($filter->name, $filter->value);
+                    }else{
+                        $table = $table->where($filter->name, $filter->value);
+                    }
 				}
 			}
 		}

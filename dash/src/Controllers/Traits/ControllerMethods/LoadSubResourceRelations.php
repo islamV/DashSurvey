@@ -1,6 +1,8 @@
 <?php
 namespace Dash\Controllers\Traits\ControllerMethods;
 
+use Dash\RenderableElements\Element;
+
 trait LoadSubResourceRelations {
 
 	public function subResource() {
@@ -31,11 +33,31 @@ trait LoadSubResourceRelations {
 			'main_resource' => request('main_resource'),
 		];
 		$admin = auth()->guard('dash')->user();
+
+        $inputShowinFilter = [];
+        $disabled_inputs  = [ 'text','textarea','file','image','dropzone','ckeditor','hasManyThrough',
+                            'hasMany','belongsToMany','morphToMany','morphedByMany','morphMany',
+                            'audio','video','morphTo'
+                        ];
+        foreach($this->fields() as $field){
+            if(isset($field['addToFilter']) && $field['addToFilter'] == true && !in_array($field['type'],$disabled_inputs)){
+                $inputShowinFilter[] = $field;
+            }
+        }
+        // this filter show in index with datatable
+        $filterHtmlElements = (new Element($inputShowinFilter, app($this->resource['model']), 'create'))->render();
+
+
 		$data  = view('dash::resource.relation_datatable.sub_resources', [
 				'resource'      => $this->resource,
 				'resourceName'  => $this->resource['resourceName'],
 				'title'         => $this->title,
 				'relationTypes' => $this->relationTypes,
+
+                // for filter in datatable
+				'filterHtmlElements'            => $filterHtmlElements,
+				'filterTextElements'            => $inputShowinFilter,
+
                 'filters'           => $this->prepare_filters(),
 				'actions'           => $this->prepare_actions(),
 				'fields'        => $fields,

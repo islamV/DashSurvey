@@ -22,7 +22,7 @@ class ComplaintReports extends Resource {
 	public static function cards() {
 		return [
 
-                (new Complaints)->render("complaints"), //chart
+                (new Complaints)->render(), //chart
 				
 		];
 	}
