@@ -111,7 +111,6 @@ class CoffeeShopsComplaint extends Resource {
 		return [
 			belongsTo()->make(__('survey.guest_information' ), 'guest', GuestcoffeeShops::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
 			belongsTo()->make(__('survey.branch' ), 'service', CoffeeShops::class)->column(3)->f(), // name service
-
 			select()->make(__('survey.Cstatus'),'status') // you can use disabled() with this element
 			->options([
 				'positive'=> __('survey.positive'),
@@ -126,7 +125,7 @@ class CoffeeShopsComplaint extends Resource {
 				'positive'=> __('survey.positiveu'),
 				'negative'=>__('survey.negativeu'),
 				'pending'=>__('survey.pendingu'),
-			])->filter()->column(3),
+			])->filter()->column(3)->hideInIndex(),
 			fullDateTime()->make(__('survey.Ctime') , 'created_at')->column(3)->hideInUpdate()->enableTime(false)->modeDates("range")->f(true ,['column'=>6]),
 			
 			

@@ -125,7 +125,7 @@ class HospitalsComplaint extends Resource {
 				'positive'=> __('survey.positiveu'),
 				'negative'=>__('survey.negativeu'),
 				'pending'=>__('survey.pendingu'),
-			])->filter()->column(3),
+			])->filter()->column(3)->hideInIndex(),
 			fullDateTime()->make(__('survey.Ctime') , 'created_at')->column(3)->hideInUpdate()->enableTime(false)->modeDates("range")->f(true ,['column'=>6]),
 			
 			

@@ -124,19 +124,24 @@ class ClubsSurvey extends Resource {
 
 			
 			
-			select()->make(__('survey.status'),'status') // you can use disabled() with this element
-			->options([
-			'positive'=> __('survey.positive'),
-			'negative'=>__('survey.negative'),
-			'pending'=>__('survey.pending'),
-			])->selected('pending')->hideInUpdate()->hideInCreate()->column(6)->valueWhenUpdate('pending'),
 
-			select()->make(__('survey.status'),'status') // you can use disabled() with this element
+			select()->make(__('survey.status'),'status')
+			->options([
+				'positive'=> __('survey.positive'),
+				'negative'=>__('survey.negative'),
+				'pending'=>__('survey.pending'),
+			])->filter()->hideInCreate()->hideInUpdate(),
+			 
+
+			
+			select()->make(__('survey.status'),'status') 
 			->options([
 				'positive'=> __('survey.positiveu'),
 				'negative'=>__('survey.negativeu'),
 				'pending'=>__('survey.pendingu'),
-			])->selected('pending')->hideInIndex()->hideInShow()->column(6)->valueWhenUpdate('pending'),
+			])->filter()->column(3)->hideInIndex(),
+
+			
 			fullDateTime()->make(__('survey.time') , 'created_at')->column(3)->hideInUpdate()->enableTime(false)->modeDates("range")->f(true ,['column'=>6]),
 			
 			textarea()->make(__('survey.note') , 'note') ,

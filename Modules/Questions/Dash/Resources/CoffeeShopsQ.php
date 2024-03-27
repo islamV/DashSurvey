@@ -97,7 +97,8 @@ class CoffeeShopsQ extends Resource {
 	   }
 	public function fields() {
 		return [
-			text()->make(__ ('title') , 'title')->rule('required'),
+			text()->make(__ ('survey.Qtitle') , 'title')->rule('required'),
+			text()->make(__ ('survey.QtitleEn') , 'titleEn')->rule('required'),
 			select()->make(__('survey.type_service'),'type_service') // you can use disabled() with this element
 			->options([
 			'quality_coffee'=> __('survey.quality_coffee'),

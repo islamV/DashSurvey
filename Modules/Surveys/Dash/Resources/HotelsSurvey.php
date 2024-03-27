@@ -145,7 +145,7 @@ class HotelsSurvey extends Resource {
 			// belongsTo()->make(__('survey.guest_information' ), 'guest', Guests::class)->column(3)->ViewColumns('phone'),
 			belongsTo()->make(__('survey.branch' ), 'service', Hotels::class)->column(3)->f(), // name service
 
-			select()->make(__('survey.status'),'status') // you can use disabled() with this element
+			select()->make(__('survey.status'),'status')
 			->options([
 				'positive'=> __('survey.positive'),
 				'negative'=>__('survey.negative'),
@@ -154,12 +154,12 @@ class HotelsSurvey extends Resource {
 			 
 
 			
-			select()->make(__('survey.status'),'status') //color
+			select()->make(__('survey.status'),'status') 
 			->options([
 				'positive'=> __('survey.positiveu'),
 				'negative'=>__('survey.negativeu'),
 				'pending'=>__('survey.pendingu'),
-			])->filter()->column(3),
+			])->filter()->column(3)->hideInIndex(),
 
 			fullDateTime()->make(__('survey.time') , 'created_at')->column(3)->hideInUpdate()->enableTime(false)->modeDates("range")->f(true ,['column'=>6]),
 			 
