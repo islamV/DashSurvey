@@ -85,7 +85,8 @@ class ClubsQ extends Resource {
 	 */
 	public function fields() {
 		return [
-			text()->make(__ ('title') , 'title')->rule('required'),
+			text()->make(__ ('survey.Qtitle') , 'title')->rule('required'),
+			text()->make(__ ('survey.QtitleEn') , 'titleEn')->rule('required'),
 			select()->make(__('survey.type_service'),'type_service') // you can use disabled() with this element
 			->options([
 				'cleanliness'=> __('survey.cleanliness'),
@@ -116,7 +117,17 @@ class ClubsQ extends Resource {
 	public function actions() {
 		return [];
 	}
-
+	public static function dtButtons() {
+		return [
+		
+		
+			'print',
+			'pdf',
+			'excel',
+			'csv',
+			'copy',
+		]; 
+	}
 	/**
 	 * define the filters To Using in Resource (index)
 	 * php artisan dash:make-filter FilterName

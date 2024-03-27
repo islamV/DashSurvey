@@ -32,16 +32,15 @@ class SearchableInResouces extends Controller {
 					$i     = 0;
 					$model = $model::select('id');
 					foreach ($search['searchWithRelation'] as $relations) {
+                        foreach($relations as $column) {
+                            if ($i == 0) {
+                                $model = $model->whereTranslationLike($column, '%'.request('search').'%');
 
-foreach($relations as $column) {
-    if ($i == 0) {
-        $model = $model->whereTranslationLike($column, '%'.request('search').'%');
-
-    } else {
-        $model = $model->orWhereTranslationLike($column, '%'.request('search').'%');
-    }
-    $i++;
-}
+                            } else {
+                                $model = $model->orWhereTranslationLike($column, '%'.request('search').'%');
+                            }
+                            $i++;
+                        }
 					}
 
 				} else {

@@ -64,7 +64,7 @@ class CoffeeShopsSurvey extends Resource {
 	 */
 	public static $search = [
 		'id',
-		'name',
+		'status',
 		'created_at'
 	];
 
@@ -105,8 +105,8 @@ class CoffeeShopsSurvey extends Resource {
 	public static function vertex() {
 		return [
 		
-			(new CoffeeShopsAnswersSurveys)->render('coffee_shops2'),
-			(new CoffeeShopsSurveys)->render('coffee_shops1'),
+			(new CoffeeShopsAnswersSurveys)->render(),
+			(new CoffeeShopsSurveys)->render(),
 		];
 	}
 public function query($model){
@@ -120,26 +120,30 @@ public function query($model){
 		return [
 			belongsTo()->make(__('survey.guest_information' ), 'guest', GuestcoffeeShops::class)->column(3)->viewColumns(['phone'=>__('survey.phone')])	,		
 
-			belongsTo()->make(__('survey.branch' ), 'service', CoffeeShops::class)->column(3), // name service
-
-
-		
-		
-			// belongsTo()->make(__('survey.branch' ), 'coffeeshop', CoffeeShops::class)->column(3),
+			belongsTo()->make(__('survey.branch' ), 'service', CoffeeShops::class)->column(3)->f(), // name service
+			
 			select()->make(__('survey.status'),'status') // you can use disabled() with this element
 			->options([
-			'positive'=> __('survey.positive'),
-			'negative'=>__('survey.negative'),
-			'pending'=>__('survey.pending'),
-			])->selected('pending')->hideInUpdate()->hideInCreate()->column(6)->valueWhenUpdate('pending'),
+				'positive'=> __('survey.positive'),
+				'negative'=>__('survey.negative'),
+				'pending'=>__('survey.pending'),
+			])->filter()->hideInCreate()->hideInUpdate(),
+			 
 
-			select()->make(__('survey.status'),'status') // you can use disabled() with this element
+			
+			select()->make(__('survey.status'),'status') //color
 			->options([
 				'positive'=> __('survey.positiveu'),
 				'negative'=>__('survey.negativeu'),
 				'pending'=>__('survey.pendingu'),
-			])->selected('pending')->hideInIndex()->hideInShow()->column(6)->valueWhenUpdate('pending'),
-			text()->make(__('survey.time') , 'created_at')->column(6)->hideInUpdate() ,
+			])->filter()->hideInIndex()->column(3),
+
+
+
+
+
+			fullDateTime()->make(__('survey.time'), 'created_at')->f()->column(3)->hideInUpdate()->modeDates("range"),
+
 			
 			textarea()->make(__('survey.note') , 'note') ,
 			custom()->make('answers') 
@@ -163,12 +167,12 @@ public function query($model){
 	 * php artisan dash:make-filter FilterName
 	 * @return array<string>
 	 */
-	public function filters() {
-		return [
-			CoffeeshopsSurveyStatus::class,
-			CoffeeshopsSurveyBranch::class,
+	// public function filters() {
+	// 	return [
+	// 		CoffeeshopsSurveyStatus::class,
+	// 		CoffeeshopsSurveyBranch::class,
 
-		];
-	}
+	// 	];
+	// }
 
 }

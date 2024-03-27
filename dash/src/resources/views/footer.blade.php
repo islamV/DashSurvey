@@ -16,9 +16,10 @@
             }
            @endphp
             Copyright © {{ date('Y') }},
-                Dashboard 
-                <a href="" class="font-weight-bold"
-                    target="_blank">
+                Dashboard <span class="fa fa-heart text-danger"></span> by
+                <a href="https://phpdash.com/page/team" class="font-weight-bold"
+                    target="_blank">Dash , Mahmoud Ibrahim , Ahmed Mostafa , Hussein
+                    Mostafa , Enas ELlithy
                     (V{{ $dash_current_version_footer }})</a>
             @endif
             </div>

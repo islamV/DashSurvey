@@ -86,9 +86,31 @@
                 name:$(this).attr('attribute'),
                 value:$("option:selected", this).val()
               });
+            });
+
+            @foreach($filterTextElements as $filterElementtext)
+              @if($filterElementtext['type'] == 'select')
+              var element_name = '{!! $filterElementtext['attribute'] !!}';
+              var element_value = $('#{!! $filterElementtext['attribute'] !!} option:selected').val();
+
+              @elseif(in_array($filterElementtext['type'],['belongsTo','hasOne','morphOne']))
+                var element_name = '{!! $filterElementtext['attribute'] !!}_id';
+                var element_value = $('#{!! $filterElementtext['attribute'] !!} option:selected').val();
+
+              @else
+                var element_name = '{!! $filterElementtext['attribute'] !!}';
+                var element_value = $("#{!! $filterElementtext['attribute'] !!}").val();
+              @endif
+
+              if(element_value !== undefined){
+                  filterList.push({
+                      name:element_name,
+                      value:element_value
+                    });
+                }
+              @endforeach
 
 
-             });
               return JSON.stringify(filterList);
             },
             // Prepare data by one to Many from Datatable
@@ -161,6 +183,9 @@ $.fn.dataTable.ext.errMode = function ( settings, helpPage, message ) {
 // Append Filter End
 
  var reloadByClassList = '#withTrashed{{ $resourceName }},.filter{{ $resourceName }}';
+            @foreach($filterTextElements as $filterElementtext)
+             reloadByClassList += ",#{!! $filterElementtext['attribute'] !!}";
+            @endforeach
 
    $(document).on('change',reloadByClassList,function(){
     table{{ $resourceName }}.ajax.reload();

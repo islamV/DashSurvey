@@ -82,6 +82,17 @@ class Hospitals extends Resource {
 	public static function vertex() {
 		return [];
 	}
+	public static function dtButtons() {
+		return [
+		
+		
+			'print',
+			'pdf',
+			'excel',
+			'csv',
+			'copy',
+		]; 
+	}
 
 	public function query($model) {
 		return $model->where('type', 'hospitals');

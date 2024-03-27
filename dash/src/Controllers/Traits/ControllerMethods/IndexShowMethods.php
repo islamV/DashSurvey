@@ -1,13 +1,27 @@
 <?php
 namespace Dash\Controllers\Traits\ControllerMethods;
 
+use Dash\RenderableElements\Element;
+
 trait IndexShowMethods {
 
-	public
-
-	function index() {
+	public function index() {
 		$admin = auth()->guard('dash')->user();
-		return view('dash::resource.index', [
+
+        $inputShowinFilter = [];
+        $disabled_inputs  = [ 'text','textarea','file','image','dropzone','ckeditor','hasManyThrough',
+                            'hasMany','belongsToMany','morphToMany','morphedByMany','morphMany',
+                            'audio','video','morphTo'
+                        ];
+        foreach($this->fields() as $field){
+            if(isset($field['addToFilter']) && $field['addToFilter'] == true && !in_array($field['type'],$disabled_inputs)){
+                $inputShowinFilter[] = $field;
+            }
+        }
+        // this filter show in index with datatable
+        $filterHtmlElements = (new Element($inputShowinFilter, app($this->resource['model']), 'create'))->render();
+
+        return view('dash::resource.index', [
 				'resource'          => $this->resource,
 				'resourceName'      => $this->resource['resourceName'],
 				'title'             => $this->title,
@@ -16,6 +30,9 @@ trait IndexShowMethods {
 				'relationOneTypes'  => $this->relationOneTypes,
 				'pagesRules'        => $this->pagesRules($admin),
 				'fields'            => $this->fields(),
+                // for filter in datatable
+				'filterHtmlElements'            => $filterHtmlElements,
+				'filterTextElements'            => $inputShowinFilter,
 				'filters'           => $this->prepare_filters(),
 				'actions'           => $this->prepare_actions(),
 				'breadcrumb'        => $this->breadcrumb(),
@@ -53,7 +70,6 @@ trait IndexShowMethods {
 				'data'              => $data,
 				'fields'            => $this->fields(),
                 //'filters'           => $this->prepare_filters(),
-				//'actions'           => $this->prepare_actions(),
 				'actions'           => $this->prepare_actions(),
 				'breadcrumb'        => $this->breadcrumb($breadcrumb),
 				'title'             => $title,

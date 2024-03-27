@@ -25,9 +25,9 @@ class Survey extends Model
      */
     protected $fillable = ['id','guest_id' , 'service_type'  ,'service_id', 'status' ,'note'];
 
-    public function getCreatedAtAttribute()
+    public function getCreatedAtAttribute($date)
     {
-        $date = Carbon::parse($this->attributes['created_at']) ;
+        $date = Carbon::parse($date) ;
      
         return empty($date) ? $date : date('h:m Y-m-d', strtotime($date)) .'--'. $date->diffForHumans();
     

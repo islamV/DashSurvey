@@ -34,6 +34,7 @@ class LoadResource extends Controller {
 	FetchInputs,
 	relationTypes,
 	LoadSubResourceRelations;
+
 	public $admin;
 	public $search;
 	public $searchWithRelation;
@@ -72,7 +73,7 @@ class LoadResource extends Controller {
 		$data = preg_match_all('/{(.*?)}/', $string, $match);
 		if (!empty($match[1])) {
 			foreach ($match[1] as $match) {
-				$string = str_replace('{'.$match.'}', $model->{ $match}, $string);
+				$string = str_replace('{'.$match.'}', $model->{$match}, $string);
 			}
 		}
 		return $string;

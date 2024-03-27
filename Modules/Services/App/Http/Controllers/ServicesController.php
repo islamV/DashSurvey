@@ -19,7 +19,7 @@ class ServicesController extends Controller
       
         
             $services = Service::where('type' , $service)->get();
-            $questions  = Question::where('type' ,$service)->take(5)->get();
+            $questions  = Question::where('type' ,$service)->get();
           
            
             return view("surveys::".$service,compact('services','questions' , 'service'));
@@ -61,10 +61,7 @@ class ServicesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
-    {
-        //
-    }
+    
 
     /**
      * Remove the specified resource from storage.

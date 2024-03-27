@@ -12,6 +12,7 @@ trait StoreCreateMethods {
 		$admin    = auth()->guard('dash')->user();
 		$elements = (new Element($this->fields(), app($this->resource['model']), 'create'))->render();
 
+       
         $create = request()->ajax() && request('create_with_inline')?'create_inline':'create';
         $view =  view('dash::resource.create.'.$create, [
 				'resource'          => $this->resource,

@@ -88,15 +88,15 @@ class CoffeeShopsComplaint extends Resource {
 	 */
 	public static function vertex() {
 		return [
-			(new CoffeeShopsR)->render('coffee2'),
-				(new CoffeeShopsComplaints)->render('coffee1'),
+			(new CoffeeShopsR)->render(),
+				(new CoffeeShopsComplaints)->render(),
 		];
 	}
 	public static function dtButtons() {
 		return [
 		
 		
-			// 'print',
+		 'print',
 			'pdf',
 			'excel',
 			'csv',
@@ -110,23 +110,26 @@ class CoffeeShopsComplaint extends Resource {
 	
 		return [
 			belongsTo()->make(__('survey.guest_information' ), 'guest', GuestcoffeeShops::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
-			belongsTo()->make(__('survey.branch' ), 'service', CoffeeShops::class)->column(3), // name service
-
-			select()->make(__('survey.Cstatus'),'status') 
-			->options([
-			'positive'=> __('survey.positive'),
-			'negative'=>__('survey.negative'),
-			'pending'=>__('survey.pending'),
-			])->selected('pending')->hideInUpdate()->hideInCreate()->column(6)->valueWhenUpdate('pending')->column(3),
-
+			belongsTo()->make(__('survey.branch' ), 'service', CoffeeShops::class)->column(3)->f(), // name service
+			
 			select()->make(__('survey.Cstatus'),'status') // you can use disabled() with this element
+			->options([
+				'positive'=> __('survey.positive'),
+				'negative'=>__('survey.negative'),
+				'pending'=>__('survey.pending'),
+			])->filter()->hideInCreate()->hideInUpdate(),
+			 
+
+			
+			select()->make(__('survey.Cstatus'),'status') //color
 			->options([
 				'positive'=> __('survey.positiveu'),
 				'negative'=>__('survey.negativeu'),
 				'pending'=>__('survey.pendingu'),
-			])->selected('pending')->hideInIndex()->hideInShow()->column(6)->valueWhenUpdate('pending')->column(3),
-			text()->make(__('survey.Ctime') , 'created_at')->column(3)->hideInUpdate() ,
-			
+			])->filter()->hideInIndex()->column(3),
+			// text()->make(__('survey.Ctime') , 'created_at')->column(3)->hideInUpdate() ,
+			fullDateTime()->make(__('survey.Ctime'), 'created_at')->f()->column(3)->hideInUpdate()->modeDates("range"),
+
 			
 			custom()->make('Canswers') 
 				->view('complaints::answers')->hideInIndex()->hideInCreate()->hideInUpdate()->column(6),
@@ -149,17 +152,17 @@ class CoffeeShopsComplaint extends Resource {
 		return [];
 	}
 
-	/**
-	 * define the filters To Using in Resource (index)
-	 * php artisan dash:make-filter FilterName
-	 * @return array
-	 */
-	public function filters() {
-		return [
-			CoffesCStatus::class,
-			CoffesCBranch::class,
+	// /**
+	//  * define the filters To Using in Resource (index)
+	//  * php artisan dash:make-filter FilterName
+	//  * @return array
+	//  */
+	// public function filters() {
+	// 	return [
+	// 		CoffesCStatus::class,
+	// 		CoffesCBranch::class,
 
-		];
-	}
+	// 	];
+	// }
 
 }

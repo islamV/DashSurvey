@@ -1,5 +1,7 @@
 <?php
+
 namespace Modules\Surveys\Dash\Resources;
+
 use Dash\Resource;
 use Modules\Surveys\App\Models\Survey;
 
@@ -13,7 +15,8 @@ use Modules\Surveys\Dash\Metrics\Charts\HospitalsSurveys;
 use Modules\Surveys\Dash\Metrics\Charts\HospitalsAnswersSurveys;
 
 
-class HospitalsSurvey extends Resource {
+class HospitalsSurvey extends Resource
+{
 
 
 	/**
@@ -65,8 +68,7 @@ class HospitalsSurvey extends Resource {
 	 */
 	public static $search = [
 		'id',
-		'name',
-		
+		'status',
 		'created_at'
 	];
 
@@ -79,72 +81,85 @@ class HospitalsSurvey extends Resource {
 
 
 	public static $searchWithRelation = [
-        'guest' => ['name' , 'phone'] ,
+		'guest' => ['name', 'phone'],
 
 	];
 	/**
 	 * if you need to custom resource name in menu navigation
 	 * @return string
 	 */
-	public static function customName() {
+	public static function customName()
+	{
 		return __('survey.hospitalsReports');
 	}
-	public function query($model){
-		return $model->where('service_type' , 'hospitals') ;
+	public function query($model)
+	{
+		return $model->where('service_type', 'hospitals');
 	}
 	/**
 	 * you can define vertext in header of page like (Card,HTML,view blade)
 	 * @return array<string>
 	 */
-	public static function vertex() {
+	public static function vertex()
+	{
 		return [
-			
-			 (new HospitalsAnswersSurveys)->render('hosspitalanswers'),
-			 (new HospitalsSurveys)->render('hosspital'),
-			
+
+			(new HospitalsAnswersSurveys)->render(),
+			(new HospitalsSurveys)->render(),
+
 		];
 	}
 
-	public static function dtButtons() {
+	public static function dtButtons()
+	{
 		return [
-		
-		
+
+
 			// 'print',
 			'pdf',
 			'excel',
 			'csv',
 			'copy',
-		]; 
+		];
 	}
 
-	public function fields() {
+	public function fields()
+	{
 		return [
-			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthospitals::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
-			
+			belongsTo()->make(__('survey.guest_information'), 'guest', Guesthospitals::class)->column(3)->viewColumns(['phone' => __('survey.phone')]),
 
 
-			belongsTo()->make(__('survey.branch' ), 'service', Hospitals::class)->column(3), // name service
+
+			belongsTo()->make(__('survey.branch'), 'service', Hospitals::class)->column(3)->f(), // name service
 
 
-			select()->make(__('survey.status'),'status') // you can use disabled() with this element
-			->options([
-			'positive'=> __('survey.positive'),
-			'negative'=>__('survey.negative'),
-			'pending'=>__('survey.pending'),
-			])->selected('pending')->hideInUpdate()->hideInCreate()->column(6)->valueWhenUpdate('pending'),
+			select()->make(__('survey.status'), 'status') // you can use disabled() with this element
+				->options([
+					'positive' => __('survey.positive'),
+					'negative' => __('survey.negative'),
+					'pending' => __('survey.pending'),
+				])->filter()->hideInCreate()->hideInUpdate(),
 
-			select()->make(__('survey.status'),'status') // you can use disabled() with this element
-			->options([
-				'positive'=> __('survey.positiveu'),
-				'negative'=>__('survey.negativeu'),
-				'pending'=>__('survey.pendingu'),
-			])->selected('pending')->hideInIndex()->hideInShow()->column(6)->valueWhenUpdate('pending'),
-			text()->make(__('survey.time') , 'created_at')->column(6)->hideInUpdate() ,
-			
-			textarea()->make(__('survey.note') , 'note') ,
-			custom()->make('answers') 
-			->view('surveys::answers')->hideInIndex()->hideInCreate()->hideInUpdate()->column(6), // append your blade file
-		
+
+
+
+
+			select()->make(__('survey.status'), 'status') //color
+				->options([
+					'positive' => __('survey.positiveu'),
+					'negative' => __('survey.negativeu'),
+					'pending' => __('survey.pendingu'),
+				])->filter()->hideInIndex()->column(3),
+
+			fullDateTime()->make(__('survey.time'), 'created_at')->modeDates("range")->f()->hideInUpdate()->column(3),
+
+			// fullDateTime()->make(__('survey.time'), 'created_at')->modeDates("multiple ")->f(),
+
+
+			textarea()->make(__('survey.note'), 'note'),
+			custom()->make('answers')
+				->view('surveys::answers')->hideInIndex()->hideInCreate()->hideInUpdate()->column(6), // append your blade file
+
 
 
 
@@ -156,22 +171,8 @@ class HospitalsSurvey extends Resource {
 	 * php artisan dash:make-action ActionName
 	 * @return array<string>
 	 */
-	public function actions() {
+	public function actions()
+	{
 		return [];
 	}
-
-	/**
-	 * define the filters To Using in Resource (index)
-	 * php artisan dash:make-filter FilterName
-	 * @return array<string>
-	 */
-	public function filters() {
-		return [
-			HospitalsSurveyStatus::class,
-			HospitalsSurveyBranch::class,
-
-		];
-	}
-	}
-
-
+}

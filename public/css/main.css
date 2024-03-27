@@ -79,7 +79,9 @@
     width: auto;
     font-size: 15px;
     font-weight: 500;
+
     text-transform:lowercase;
+
   }
   .input div span:nth-of-type(1) {
     direction: ltr;
@@ -108,12 +110,16 @@
     border: none;
     font-size: 17px;
     cursor: pointer;
+    color: rgb(98, 0, 255);
     font-weight: 700;
   }
   
    div select option {
     font-size: 15px;
     font-weight: 700;
+    color: rgb(98, 0, 255);
+
+
   }
 
   .input .note{

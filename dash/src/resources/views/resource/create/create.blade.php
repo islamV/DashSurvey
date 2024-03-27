@@ -38,7 +38,6 @@ $('.{{ $fieldName }}').val('{{ $value }}');
 							<i class="fa-solid fa-edit"></i>  {{ __('dash::dash.add_edit') }}
 						</button>
 						<button type="submit" name="add" value="add_show" class="btn add_other btn-dark">
-
 							<i class="fa-solid fa-eye"></i>  {{ __('dash::dash.add_show') }}
 						</button>
 					</form>

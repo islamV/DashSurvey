@@ -108,8 +108,8 @@ class HotelsSurvey extends Resource {
 
 	public static function vertex() {
 		return 
-			[(new HotelsAnswersSurveys)->render('hotel'),
-		 (new HotelsSurveys)->render('hotel2'),
+			[(new HotelsAnswersSurveys)->render(),
+		 (new HotelsSurveys)->render(),
 
 		
 		
@@ -122,7 +122,7 @@ class HotelsSurvey extends Resource {
 		return [
 		
 		
-			'print',
+			// 'print',
 			'pdf',
 			'excel',
 			'csv',
@@ -143,24 +143,26 @@ class HotelsSurvey extends Resource {
 			}),
             
 			// belongsTo()->make(__('survey.guest_information' ), 'guest', Guests::class)->column(3)->ViewColumns('phone'),
-			belongsTo()->make(__('survey.branch' ), 'service', Hotels::class)->column(3), // name service
-
-
-			// morphTo()->make(__('survey.branch' ), 'service', Hotels::class)->column(3),
-			select()->make(__('survey.status'),'status') 
-			->options([
-			'positive'=> __('survey.positive'),
-			'negative'=>__('survey.negative'),
-			'pending'=>__('survey.pending'),
-			])->selected('pending')->hideInUpdate()->hideInCreate()->column(6)->valueWhenUpdate('pending')->column(3),
+			belongsTo()->make(__('survey.branch' ), 'service', Hotels::class)->column(3)->f(), // name service
 
 			select()->make(__('survey.status'),'status') // you can use disabled() with this element
+			->options([
+				'positive'=> __('survey.positive'),
+				'negative'=>__('survey.negative'),
+				'pending'=>__('survey.pending'),
+			])->filter()->hideInCreate()->hideInUpdate(),
+			 
+
+			
+			select()->make(__('survey.status'),'status') //color
 			->options([
 				'positive'=> __('survey.positiveu'),
 				'negative'=>__('survey.negativeu'),
 				'pending'=>__('survey.pendingu'),
-			])->selected('pending')->hideInIndex()->hideInShow()->column(6)->valueWhenUpdate('pending')->column(3),
-			text()->make(__('survey.time') , 'created_at')->column(3)->hideInUpdate() ,
+			])->filter()->hideInIndex()->column(3),
+
+			fullDateTime()->make(__('survey.time') , 'created_at')->f()->column(3)->hideInUpdate()->modeDates("range"),
+			
 			// hasMany()->make(__('answer') , 'answers' , Answers::class ),
 			// you can use help & placeholder , whenstore , whenUpdate
 				textarea()->make(__('survey.note') , 'note'),
@@ -169,7 +171,10 @@ class HotelsSurvey extends Resource {
 			 // append your blade file
 
 			//  fulldate()->make('date' ,'date')->column(3),
+	
 			
+	     
+
 
 		];
 	}
@@ -188,12 +193,7 @@ class HotelsSurvey extends Resource {
 	 * php artisan dash:make-filter FilterName
 	 * @return array<string>
 	 */
-	public function filters() {
-		return [
-			HotelsSurveyStatus::class,
-			HotelsSurveyBranch::class,
-		];
-	}
+	
 
 	
 

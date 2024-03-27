@@ -1,4 +1,18 @@
+ {
+    text:'<i class="fa-solid fa-filter"></i>',
+    className:'btn btn-primary  {{ $resourceName }}',
+    attr:{
+        'data-bs-toggle':'collapse',
+        'data-bs-target':'#collapse{{$resourceName}}',
+        'aria-controls':'#collapse{{$resourceName}}',
+        'aria-expanded':'false'
+    }
+    {{-- action: function(e,dt,node,config){
+
+    } --}}
+},
 @if($multiSelectRecord)
+
  {
  	text:'<i class="fa fa-trash"></i> {{ __('dash::dash.delete') }}',
  	className:'btn btn-danger d-none deleteAllBtn{{ $resourceName }}',

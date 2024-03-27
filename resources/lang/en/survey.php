@@ -34,7 +34,7 @@ return [
 'WI-FI'=>'WI-FI Service',
 // hospital 
 'Nurse'=>'Nurse efficiency satisfaction ',
-'Service_Level'=>' Service Level ',
+'Service_Level'=>'Service Level ',
 'evaluation'=>'Reception evaluation',
 'Doctor'=>'Doctor Co-operation',
 // club
@@ -76,7 +76,8 @@ return [
 'coffee shops'=> ' Coffee_Shops',
 'reportcom'=> 'Reports Of Complaints',
 'allcom' => 'All Of Complaints' ,
-
+'Qtitle' => 'Question title in Arabic',
+'QtitleEn' => 'Question title in English',
 
 // 
 

@@ -56,7 +56,17 @@ class HospitalsQ extends Resource {
 		'id',
 		'name',
 	];
-
+	public static function dtButtons() {
+		return [
+		
+		
+			'print',
+			'pdf',
+			'excel',
+			'csv',
+			'copy',
+		]; 
+	}
 	/**
 	 *  if you want define relationship searches
 	 *  one or Multiple Relations
@@ -87,7 +97,8 @@ class HospitalsQ extends Resource {
 	   }
 	public function fields() {
 		return [
-			text()->make(__ ('title') , 'title')->rule('required'),
+			text()->make(__ ('survey.Qtitle') , 'title')->rule('required'),
+			text()->make(__ ('survey.QtitleEn') , 'titleEn')->rule('required'),
 
 			select()->make(__('survey.type_service'),'type_service') // you can use disabled() with this element
 			->options([

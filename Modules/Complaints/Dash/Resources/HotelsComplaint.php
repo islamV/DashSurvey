@@ -85,15 +85,15 @@ class HotelsComplaint extends Resource {
 	 */
 	public static function vertex() {
 		return [
-			(new HotelsR)->render('hotels2'),
-			(new HotelComplaints)->render('hotels1'),
+			(new HotelsR)->render(),
+			(new HotelComplaints)->render(),
 		];
 	}
 	public static function dtButtons() {
 		return [
 		
 		
-			// 'print',
+		'print',
 			'pdf',
 			'excel',
 			'csv',
@@ -107,24 +107,28 @@ class HotelsComplaint extends Resource {
 	public function fields() {
 		return [
 			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthotels::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
-			belongsTo()->make(__('survey.branch' ), 'service', Hotels::class)->column(3), // name service
-
-			select()->make(__('survey.Cstatus'),'status') 
-			->options([
-			'positive'=> __('survey.positive'),
-			'negative'=>__('survey.negative'),
-			'pending'=>__('survey.pending'),
-			])->selected('pending')->hideInUpdate()->hideInCreate()->column(6)->valueWhenUpdate('pending')->column(3),
-
+			belongsTo()->make(__('survey.branch' ), 'service', Hotels::class)->column(3)->f(), // name service
+			
 			select()->make(__('survey.Cstatus'),'status') // you can use disabled() with this element
+			->options([
+				'positive'=> __('survey.positive'),
+				'negative'=>__('survey.negative'),
+				'pending'=>__('survey.pending'),
+			])->filter()->hideInCreate()->hideInUpdate(),
+			 
+
+			
+			select()->make(__('survey.Cstatus'),'status') //color
 			->options([
 				'positive'=> __('survey.positiveu'),
 				'negative'=>__('survey.negativeu'),
 				'pending'=>__('survey.pendingu'),
-			])->selected('pending')->hideInIndex()->hideInShow()->column(6)->valueWhenUpdate('pending')->column(3),
-			text()->make(__('survey.Ctime') , 'created_at')->column(3)->hideInUpdate() ,
+			])->filter()->hideInIndex()->column(3),
 			
+			// text()->make(__('survey.Ctime') , 'created_at')->column(3)->hideInUpdate() ,
 			
+			fullDateTime()->make(__('survey.Ctime'), 'created_at')->f()->column(3)->hideInUpdate()->modeDates("range"),
+
 			custom()->make('Canswers') 
 				->view('complaints::answers')->hideInIndex()->hideInCreate()->hideInUpdate()->column(6),
 				text()->make(__('Complaint Type') , 'type')->whenStore(function(){
@@ -144,17 +148,17 @@ class HotelsComplaint extends Resource {
 		return [];
 	}
 
-	/**
-	 * define the filters To Using in Resource (index)
-	 * php artisan dash:make-filter FilterName
-	 * @return array
-	 */
-	public function filters() {
-		return [
-			HotelsCStatus::class,
-			HotelsCBranch::class,
+	// /**
+	//  * define the filters To Using in Resource (index)
+	//  * php artisan dash:make-filter FilterName
+	//  * @return array
+	//  */
+	// public function filters() {
+	// 	return [
+	// 		HotelsCStatus::class,
+	// 		HotelsCBranch::class,
 
-		];
-	}
+	// 	];
+	// }
 
 }

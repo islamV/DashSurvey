@@ -61,7 +61,7 @@ class ClubsSurvey extends Resource {
 	 */
 	public static $search = [
 		'id',
-		'name',
+		'status',
 		'created_at'
 	];
 
@@ -103,8 +103,8 @@ class ClubsSurvey extends Resource {
 	public static function vertex() {
 		return [
 			
-			(new ClubsAnswersSurveys)->render('clubs2'),
-			(new ClubsSurveys)->render('clubs1'),
+			(new ClubsAnswersSurveys)->render(),
+			(new ClubsSurveys)->render(),
 		];
 	}
 	public function query($model){
@@ -118,26 +118,26 @@ class ClubsSurvey extends Resource {
 		return [
 		
 			belongsTo()->make(__('survey.guest_information' ), 'guest', Guestclubs::class)->column(3)->viewColumns(['phone'=>__('survey.phone')])	,	
-			// belongsTo()->make(__('survey.branch' ), 'club', Clubs::class)->column(3),
-			belongsTo()->make(__('survey.branch' ), 'service', Clubs::class)->column(3), // name service
-
-
 			
+			belongsTo()->make(__('survey.branch' ), 'service', Clubs::class)->column(3)->f(), // name service
 			
 			select()->make(__('survey.status'),'status') // you can use disabled() with this element
 			->options([
-			'positive'=> __('survey.positive'),
-			'negative'=>__('survey.negative'),
-			'pending'=>__('survey.pending'),
-			])->selected('pending')->hideInUpdate()->hideInCreate()->column(6)->valueWhenUpdate('pending'),
+				'positive'=> __('survey.positive'),
+				'negative'=>__('survey.negative'),
+				'pending'=>__('survey.pending'),
+			])->filter()->hideInCreate()->hideInUpdate(),
+			 
 
-			select()->make(__('survey.status'),'status') // you can use disabled() with this element
+			
+			select()->make(__('survey.status'),'status') //color
 			->options([
 				'positive'=> __('survey.positiveu'),
 				'negative'=>__('survey.negativeu'),
 				'pending'=>__('survey.pendingu'),
-			])->selected('pending')->hideInIndex()->hideInShow()->column(6)->valueWhenUpdate('pending'),
-			text()->make(__('survey.time') , 'created_at')->column(6)->hideInUpdate() ,
+			])->filter()->hideInIndex()->column(3),
+			fullDateTime()->make(__('survey.time'), 'created_at')->f()->column(3)->hideInUpdate()->modeDates("range"),
+
 			
 			textarea()->make(__('survey.note') , 'note') ,
 			custom()->make('answers') 
@@ -155,17 +155,17 @@ class ClubsSurvey extends Resource {
 		return [];
 	}
 
-	/**
-	 * define the filters To Using in Resource (index)
-	 * php artisan dash:make-filter FilterName
-	 * @return array<string>
-	 */
-	public function filters() {
-		return [
-			ClubsSurveyStatus::class,
-			ClubsSurveyBranch::class,
+	// /**
+	//  * define the filters To Using in Resource (index)
+	//  * php artisan dash:make-filter FilterName
+	//  * @return array<string>
+	//  */
+	// public function filters() {
+	// 	return [
+	// 		ClubsSurveyStatus::class,
+	// 		ClubsSurveyBranch::class,
 
-		];
-	}
+	// 	];
+	// }
 
 }
