@@ -108,23 +108,25 @@ class ClubsComplaint extends Resource {
 		
 		return [
 			belongsTo()->make(__('survey.guest_information' ), 'guest', Guestclubs::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
-			belongsTo()->make(__('survey.branch' ), 'service', Clubs::class)->column(3), // name service
+			belongsTo()->make(__('survey.branch' ), 'service', Clubs::class)->column(3)->f(), // name service
 
-
-			select()->make(__('survey.Cstatus'),'status') 
-			->options([
-			'positive'=> __('survey.positive'),
-			'negative'=>__('survey.negative'),
-			'pending'=>__('survey.pending'),
-			])->selected('pending')->hideInUpdate()->hideInCreate()->column(6)->valueWhenUpdate('pending')->column(3),
 
 			select()->make(__('survey.Cstatus'),'status') // you can use disabled() with this element
+			->options([
+				'positive'=> __('survey.positive'),
+				'negative'=>__('survey.negative'),
+				'pending'=>__('survey.pending'),
+			])->filter()->hideInCreate()->hideInUpdate(),
+			 
+
+			
+			select()->make(__('survey.Cstatus'),'status') //color
 			->options([
 				'positive'=> __('survey.positiveu'),
 				'negative'=>__('survey.negativeu'),
 				'pending'=>__('survey.pendingu'),
-			])->selected('pending')->hideInIndex()->hideInShow()->column(6)->valueWhenUpdate('pending')->column(3),
-			text()->make(__('survey.Ctime') , 'created_at')->column(3)->hideInUpdate() ,
+			])->filter()->column(3),
+			fullDateTime()->make(__('survey.Ctime') , 'created_at')->column(3)->hideInUpdate()->enableTime(false)->modeDates("range")->f(true ,['column'=>6]),
 			
 			
 			custom()->make('Canswers') 
@@ -151,12 +153,12 @@ class ClubsComplaint extends Resource {
 	 * php artisan dash:make-filter FilterName
 	 * @return array
 	 */
-	public function filters() {
-		return [
-			ClubsCStatus::class,
-			ClubsCBranch::class,
+	// public function filters() {
+	// 	return [
+	// 		ClubsCStatus::class,
+	// 		ClubsCBranch::class,
 
-		];
-	}
+	// 	];
+	// }
 
 }

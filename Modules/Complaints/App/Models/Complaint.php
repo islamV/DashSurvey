@@ -25,9 +25,9 @@ class Complaint extends Model
     public function guest(){
         return $this->belongsTo(Guest::class);
     }
-    public function getCreatedAtAttribute()
+    public function getCreatedAtAttribute($date)
     {
-        $date = Carbon::parse($this->attributes['created_at']) ;
+        $date = Carbon::parse($date) ;
      
         return empty($date) ? $date : date('h:m Y-m-d', strtotime($date)) .'--'. $date->diffForHumans();
     

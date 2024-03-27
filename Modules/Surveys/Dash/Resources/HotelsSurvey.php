@@ -161,8 +161,10 @@ class HotelsSurvey extends Resource {
 				'pending'=>__('survey.pendingu'),
 			])->filter()->column(3),
 
-			fullDateTime()->make(__('survey.time') , 'created_at')->f()->column(3)->hideInUpdate()->modeDates("range"),
-			
+			fullDateTime()->make(__('survey.time') , 'created_at')->column(3)->hideInUpdate()->enableTime(false)->modeDates("range")->f(true ,['column'=>6]),
+			 
+
+
 			// hasMany()->make(__('answer') , 'answers' , Answers::class ),
 			// you can use help & placeholder , whenstore , whenUpdate
 				textarea()->make(__('survey.note') , 'note'),

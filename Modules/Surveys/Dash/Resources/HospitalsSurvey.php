@@ -109,7 +109,7 @@ class HospitalsSurvey extends Resource {
 		return [
 		
 		
-			// 'print',
+			 'print',
 			'pdf',
 			'excel',
 			'csv',
@@ -123,8 +123,7 @@ class HospitalsSurvey extends Resource {
 			
 
 
-			belongsTo()->make(__('survey.branch' ), 'service', Hospitals::class)->column(3), // name service
-
+			belongsTo()->make(__('survey.branch' ), 'service', Hospitals::class)->column(3)->f(), // name service
 
 			select()->make(__('survey.status'),'status') // you can use disabled() with this element
 			->options([
@@ -139,7 +138,7 @@ class HospitalsSurvey extends Resource {
 				'negative'=>__('survey.negativeu'),
 				'pending'=>__('survey.pendingu'),
 			])->selected('pending')->hideInIndex()->hideInShow()->column(6)->valueWhenUpdate('pending'),
-			text()->make(__('survey.time') , 'created_at')->column(6)->hideInUpdate() ,
+			fullDateTime()->make(__('survey.time') , 'created_at')->column(3)->hideInUpdate()->enableTime(false)->modeDates("range")->f(true ,['column'=>6]),
 			
 			textarea()->make(__('survey.note') , 'note') ,
 			custom()->make('answers') 
