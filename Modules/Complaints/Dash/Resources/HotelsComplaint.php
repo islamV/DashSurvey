@@ -9,6 +9,7 @@ use Modules\Complaints\App\Models\Complaint;
 use Modules\guests\Dash\Resources\Guesthotels;
 use Modules\Complaints\Dash\Metrics\Charts\HotelsR;
 use Modules\Complaints\Dash\Metrics\Charts\HotelComplaints;
+use Modules\Surveys\Dash\Resources\HotelsSurvey;
 
 class HotelsComplaint extends Resource {
 	
@@ -108,6 +109,7 @@ class HotelsComplaint extends Resource {
 		return [
 			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthotels::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
 			belongsTo()->make(__('survey.branch' ), 'service', Hotels::class)->column(3)->f(), // name service
+			belongsTo(__('survey.survey') ,'survey', HotelsSurvey::class)->column(3),
 
 
 
@@ -116,7 +118,7 @@ class HotelsComplaint extends Resource {
 				'positive'=> __('survey.positive'),
 				'negative'=>__('survey.negative'),
 				'pending'=>__('survey.pending'),
-			])->filter()->hideInCreate()->hideInUpdate(),
+			])->filter()->hideInCreate()->hideInUpdate()->column(6),
 			 
 
 			
@@ -125,7 +127,7 @@ class HotelsComplaint extends Resource {
 				'positive'=> __('survey.positiveu'),
 				'negative'=>__('survey.negativeu'),
 				'pending'=>__('survey.pendingu'),
-			])->filter()->column(3)->hideInIndex(),
+			])->filter()->column(3)->hideInIndex()->hideInShow(),
 
 			fullDateTime()->make(__('survey.Ctime') , 'created_at')->column(3)->hideInUpdate()->enableTime(false)->modeDates("range")->f(),
 		

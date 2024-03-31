@@ -6,6 +6,7 @@ use App\Dash\Filters\ClubsCStatus;
 use Modules\Services\Dash\Resources\Clubs;
 use Modules\Complaints\App\Models\Complaint;
 use Modules\guests\Dash\Resources\Guestclubs;
+use Modules\Surveys\Dash\Resources\ClubsSurvey;
 use Modules\Complaints\Dash\Metrics\Charts\ClubsR;
 use Modules\Complaints\Dash\Metrics\Charts\ClubsComplaints;
 
@@ -108,24 +109,27 @@ class ClubsComplaint extends Resource {
 		
 		return [
 			belongsTo()->make(__('survey.guest_information' ), 'guest', Guestclubs::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
-			belongsTo()->make(__('survey.branch' ), 'service', Clubs::class)->column(3)->f(), // name service
+			belongsTo()->make(__('survey.branch' ), 'service', Clubs::class)->column(3)->f(),
+			belongsTo(__('survey.survey') ,'survey', ClubsSurvey::class)->column(3),
+			 // name service
 
 
-			select()->make(__('survey.Cstatus'),'status') // you can use disabled() with this element
-			->options([
-				'positive'=> __('survey.positive'),
-				'negative'=>__('survey.negative'),
-				'pending'=>__('survey.pending'),
-			])->filter()->hideInCreate()->hideInUpdate(),
+		
+			 select()->make(__('survey.Cstatus'),'status') // you can use disabled() with this element
+			 ->options([
+				 'positive'=> __('survey.positive'),
+				 'negative'=>__('survey.negative'),
+				 'pending'=>__('survey.pending'),
+			 ])->filter()->hideInCreate()->hideInUpdate()->column(6),
+			  
+ 
 			 
-
-			
-			select()->make(__('survey.Cstatus'),'status') //color
-			->options([
-				'positive'=> __('survey.positiveu'),
-				'negative'=>__('survey.negativeu'),
-				'pending'=>__('survey.pendingu'),
-			])->filter()->column(3)->hideInIndex(),
+			 select()->make(__('survey.Cstatus'),'status') //color
+			 ->options([
+				 'positive'=> __('survey.positiveu'),
+				 'negative'=>__('survey.negativeu'),
+				 'pending'=>__('survey.pendingu'),
+			 ])->filter()->column(3)->hideInIndex()->hideInShow(),
 			fullDateTime()->make(__('survey.Ctime') , 'created_at')->column(3)->hideInUpdate()->enableTime(false)->modeDates("range")->f(true ,['column'=>6]),
 			
 			

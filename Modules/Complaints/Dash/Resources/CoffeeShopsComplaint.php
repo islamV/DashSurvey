@@ -6,6 +6,7 @@ use App\Dash\Filters\CoffesCStatus;
 use Modules\Complaints\App\Models\Complaint;
 use Modules\Services\Dash\Resources\CoffeeShops;
 use Modules\guests\Dash\Resources\GuestcoffeeShops;
+use Modules\Surveys\Dash\Resources\CoffeeShopsSurvey;
 use Modules\Complaints\Dash\Metrics\Charts\CoffeeShopsR;
 use Modules\Complaints\Dash\Metrics\Charts\CoffeeShopsComplaints;
 
@@ -110,22 +111,25 @@ class CoffeeShopsComplaint extends Resource {
 	
 		return [
 			belongsTo()->make(__('survey.guest_information' ), 'guest', GuestcoffeeShops::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
-			belongsTo()->make(__('survey.branch' ), 'service', CoffeeShops::class)->column(3)->f(), // name service
-			select()->make(__('survey.Cstatus'),'status') // you can use disabled() with this element
-			->options([
-				'positive'=> __('survey.positive'),
-				'negative'=>__('survey.negative'),
-				'pending'=>__('survey.pending'),
-			])->filter()->hideInCreate()->hideInUpdate(),
+			belongsTo()->make(__('survey.branch' ), 'service', CoffeeShops::class)->column(3)->f(),
+			belongsTo(__('survey.survey') ,'survey', CoffeeShopsSurvey::class)->column(3),
+			 // name service
+	
+			 select()->make(__('survey.Cstatus'),'status') // you can use disabled() with this element
+			 ->options([
+				 'positive'=> __('survey.positive'),
+				 'negative'=>__('survey.negative'),
+				 'pending'=>__('survey.pending'),
+			 ])->filter()->hideInCreate()->hideInUpdate()->column(6),
+			  
+ 
 			 
-
-			
-			select()->make(__('survey.Cstatus'),'status') //color
-			->options([
-				'positive'=> __('survey.positiveu'),
-				'negative'=>__('survey.negativeu'),
-				'pending'=>__('survey.pendingu'),
-			])->filter()->column(3)->hideInIndex(),
+			 select()->make(__('survey.Cstatus'),'status') //color
+			 ->options([
+				 'positive'=> __('survey.positiveu'),
+				 'negative'=>__('survey.negativeu'),
+				 'pending'=>__('survey.pendingu'),
+			 ])->filter()->column(3)->hideInIndex()->hideInShow(),
 			fullDateTime()->make(__('survey.Ctime') , 'created_at')->column(3)->hideInUpdate()->enableTime(false)->modeDates("range")->f(true ,['column'=>6]),
 			
 			

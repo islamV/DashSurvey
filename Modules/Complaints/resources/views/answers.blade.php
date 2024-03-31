@@ -1,10 +1,10 @@
 @php
-$answers = $model->answers ; 
 
+// dd($model->answers)
 @endphp
 <div class="col-12">
   
-  @foreach ( $answers as $answer  )
+  @foreach ( $model->answers as $answer  )
 {{-- answer model answer --}}
 
     <div class="row">

@@ -19,9 +19,6 @@ class Complaint extends Model
      */
     protected $fillable = ['guest_id' , 'expired_time'  ,'service_id', 'status' ,'show_status','survey_id','type'];
 
-    public function survey(){
-        return $this->belongsTo(Survey::class);
-    }
     public function guest(){
         return $this->belongsTo(Guest::class);
     }
@@ -35,10 +32,14 @@ class Complaint extends Model
     
 
     
-   public function answers(){
-    return $this->hasMany(Answer::class ,'id' , 'survey_id')->where('answer' ,'NotSatisfied');
-   }
-
+    public function answers() {
+        return $this->hasMany(Answer::class, 'survey_id');
+    }
+    
+    // Define a relationship to the Survey model
+    public function survey() {
+        return $this->belongsTo(Survey::class, 'survey_id');
+    }
    public function service(){
     return $this->belongsTo(Service::class ,'service_id') ;
 }

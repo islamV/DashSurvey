@@ -6,6 +6,7 @@ use App\Dash\Filters\HospitalsCStatus;
 use Modules\Complaints\App\Models\Complaint;
 use Modules\Services\Dash\Resources\Hospitals;
 use Modules\guests\Dash\Resources\Guesthospitals;
+use Modules\Surveys\Dash\Resources\HospitalsSurvey;
 use Modules\Complaints\Dash\Metrics\Charts\HospitalsR;
 use Modules\Complaints\Dash\Metrics\Charts\HospitalsComplaints;
 
@@ -111,12 +112,15 @@ class HospitalsComplaint extends Resource {
 		return [
 			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthospitals::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
 			belongsTo()->make(__('survey.branch' ), 'service', Hospitals::class)->column(3)->f(), // name service
+			belongsTo(__('survey.survey') ,'survey', HospitalsSurvey::class)->column(3),
+
+		
 			select()->make(__('survey.Cstatus'),'status') // you can use disabled() with this element
 			->options([
 				'positive'=> __('survey.positive'),
 				'negative'=>__('survey.negative'),
 				'pending'=>__('survey.pending'),
-			])->filter()->hideInCreate()->hideInUpdate(),
+			])->filter()->hideInCreate()->hideInUpdate()->column(6),
 			 
 
 			
@@ -125,7 +129,7 @@ class HospitalsComplaint extends Resource {
 				'positive'=> __('survey.positiveu'),
 				'negative'=>__('survey.negativeu'),
 				'pending'=>__('survey.pendingu'),
-			])->filter()->column(3)->hideInIndex(),
+			])->filter()->column(3)->hideInIndex()->hideInShow(),
 			fullDateTime()->make(__('survey.Ctime') , 'created_at')->column(3)->hideInUpdate()->enableTime(false)->modeDates("range")->f(true ,['column'=>6]),
 			
 			

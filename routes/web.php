@@ -16,7 +16,7 @@ use Modules\Surveys\App\Http\Controllers\SurveysController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+return redirect('/dash');
 });
 route::get('pusher', function () {
     return view('pusher');
