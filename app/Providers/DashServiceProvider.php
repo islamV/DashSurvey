@@ -45,8 +45,8 @@ class DashServiceProvider extends DashServiceProviderInit {
 	 */
 	public static function blankPages() {
 		return [
-			// SurveyReports::class,
-			// ComplaintReport::class,
+			SurveyReports::class,
+			ComplaintReport::class,
 		];
 	}
 
