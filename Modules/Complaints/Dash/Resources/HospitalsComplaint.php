@@ -112,7 +112,7 @@ class HospitalsComplaint extends Resource {
 		return [
 			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthospitals::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
 			belongsTo()->make(__('survey.branch' ), 'service', Hospitals::class)->column(3)->f(), // name service
-			belongsTo(__('survey.survey') ,'survey', HospitalsSurvey::class)->column(3),
+			belongsTo(__('survey.status') ,'survey', HospitalsSurvey::class)->column(3),
 
 		
 			select()->make(__('survey.Cstatus'),'status') // you can use disabled() with this element

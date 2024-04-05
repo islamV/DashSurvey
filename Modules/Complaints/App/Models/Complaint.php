@@ -32,13 +32,14 @@ class Complaint extends Model
     
 
     
-    public function answers() {
-        return $this->hasMany(Answer::class, 'survey_id');
-    }
+    // public function answers() {
+    //     return $this->hasMany(Answer::class );
+    // }
     
+   
     // Define a relationship to the Survey model
     public function survey() {
-        return $this->belongsTo(Survey::class, 'survey_id');
+        return $this->belongsTo(Survey::class)->with('answers');
     }
    public function service(){
     return $this->belongsTo(Service::class ,'service_id') ;

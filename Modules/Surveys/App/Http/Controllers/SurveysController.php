@@ -156,7 +156,7 @@ class SurveysController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request ,$service){
-   
+//    dd($request->answers);
        $guest = $request->validate([
             'name'=> 'required|string',
             'phone' => 'required',

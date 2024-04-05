@@ -110,7 +110,7 @@ class ClubsComplaint extends Resource {
 		return [
 			belongsTo()->make(__('survey.guest_information' ), 'guest', Guestclubs::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
 			belongsTo()->make(__('survey.branch' ), 'service', Clubs::class)->column(3)->f(),
-			belongsTo(__('survey.survey') ,'survey', ClubsSurvey::class)->column(3),
+			belongsTo(__('survey.status ') ,'survey', ClubsSurvey::class)->column(3),
 			 // name service
 
 

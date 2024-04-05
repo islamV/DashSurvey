@@ -107,9 +107,10 @@ class HotelsComplaint extends Resource {
 	 */
 	public function fields() {
 		return [
+	
 			belongsTo()->make(__('survey.guest_information' ), 'guest', Guesthotels::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
 			belongsTo()->make(__('survey.branch' ), 'service', Hotels::class)->column(3)->f(), // name service
-			belongsTo(__('survey.survey') ,'survey', HotelsSurvey::class)->column(3),
+			belongsTo(__('survey.status') ,'survey', HotelsSurvey::class)->column(3),
 
 
 

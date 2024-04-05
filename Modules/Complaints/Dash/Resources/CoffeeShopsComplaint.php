@@ -112,7 +112,7 @@ class CoffeeShopsComplaint extends Resource {
 		return [
 			belongsTo()->make(__('survey.guest_information' ), 'guest', GuestcoffeeShops::class)->column(3)->viewColumns(['phone'=>__('survey.phone')]),
 			belongsTo()->make(__('survey.branch' ), 'service', CoffeeShops::class)->column(3)->f(),
-			belongsTo(__('survey.survey') ,'survey', CoffeeShopsSurvey::class)->column(3),
+			belongsTo(__('survey.status') ,'survey', CoffeeShopsSurvey::class)->column(3),
 			 // name service
 	
 			 select()->make(__('survey.Cstatus'),'status') // you can use disabled() with this element
