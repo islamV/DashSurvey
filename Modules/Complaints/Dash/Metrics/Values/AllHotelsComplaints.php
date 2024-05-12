@@ -18,7 +18,7 @@ class AllHotelsComplaints extends Value{
         }) // or sum // $this->sum(YourModel::class,'id') | id column is optional
         ->at('created_at') // optional
         ->column(3) // optional
-        ->href(dash('resource/HotelsComplaints'))
+        ->href(dash('resource/HotelsComplaint'))
         ->icon('<i class="fa-solid fa-hotel"></i>') // icon by fontawesome or other | optional
          ->title(__('survey.hotelsReportsc')) // optional
         // ->subTitle('Your subTitle') // optional

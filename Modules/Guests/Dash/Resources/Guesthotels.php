@@ -19,7 +19,7 @@ class Guesthotels extends Resource {
             
 	public static $displayInMenu =true ;
 
-    public static $lengthMenu        = [20, 40, 60, 80, 100];
+    // public static $lengthMenu        = [20, 40, 60, 80, 100];
 	
 	public static $icon = '<i class="fa-solid fa-hotel"></i>'; // put <i> tag or icon name
 

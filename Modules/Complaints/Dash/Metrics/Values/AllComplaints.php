@@ -18,7 +18,7 @@ class AllComplaints extends Value{
         ->column(3) // optional
         // ->href(dash('resource/CoffeShopsComplaints'))
         ->icon('<i class="fa-solid fa-face-frown"></i>') // icon by fontawesome or other | optional
-         ->title(__('survey.complaints')) // optional
+         ->title(__('survey.complaint')) // optional
         // ->subTitle('Your subTitle') // optional
         //  ->textBody('Text In Body') // optional
          ->prefix('<i class="fa-solid fa-face-frown"></i>') // add prefix before number or icon

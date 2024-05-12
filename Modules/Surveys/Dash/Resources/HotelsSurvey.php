@@ -51,7 +51,7 @@ class HotelsSurvey extends Resource {
 
 	
 	 	public static $displayInMenu =  true ;
-
+		//  public static $lengthMenu        = [100, 10, 15, 20, 25, 50, 75];
 	/**
 	 * change icon in navigation menu
 	 * you can use font awesome icons LIKE (<i class="fa fa-users"></i>)
